@@ -1,0 +1,26 @@
+public bool nuevo_parametro(Object ParametroProcedimiento)
+        {
+            OleDbParameter ParametroLibreria;
+            switch (Convert.ToString(ParametroProcedimiento.GetType()))
+            {
+                case "System.Int16":
+                    ParametroLibreria = comando.Parameters.Add("@InputParm", OleDbType.BigInt);
+                    ParametroLibreria.Value = ParametroProcedimiento;
+                    break;
+                case "System.String":
+                    ParametroLibreria = comando.Parameters.Add("@InputParm", OleDbType.VarChar, 2500);
+                    ParametroLibreria.Value = ParametroProcedimiento;
+                    break;
+                case "System.Decimal":
+                    ParametroLibreria = comando.Parameters.Add("@InputParm", OleDbType.Decimal, 10);
+                    ParametroLibreria.Value = ParametroProcedimiento;
+                    ParametroLibreria.Precision = 18;
+                    ParametroLibreria.Scale = 5;
+                    break;
+                case "Sytem.System.DateTime":
+                    ParametroLibreria = comando.Parameters.Add("@InputParm", OleDbType.Date);
+                    ParametroLibreria.Value = ParametroProcedimiento;
+                    break;
+            }
+            return false;
+        }

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ubicación</title>
+</head>
+<body>
+
+    <div id="info"></div>
+    <input type="text" id="idUbicacion" placeholder="Id Ubicacion">
+    <input type="text" id="Provincia" placeholder="Provincia" >
+    <input type="text" id="Canton" placeholder="Canton">
+    <input type="text" id="Distrito" placeholder="Distrito">
+    <input type="text" id="Barrio" placeholder="Barrio">
+    <input type="text" id="otrasSenas" placeholder="Otras Senas">
+    <br />
+    <input type="button" id="GuardarBtn" value="Guardar"/>
+    <input type="button" id="EliminarBtn" value="Elimina"/>
+    <input type="button" id="ModificarBtn" value="Modificaar"/>
+
+    <script src="../Scripts/Ajax.js"></script>
+    <script src="../Scripts/jquery.js"></script>
+
+    <script type="text/javascript">
+
+        function nuevaUbicacion() {
+            Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
+            Ubicacion.Provincia = document.getElementById('Provincia').value;
+            Ubicacion.Canton = document.getElementById('Canton').value;
+            Ubicacion.Distrito = document.getElementById('Distrito').value;
+            Ubicacion.Barrio = document.getElementById('Barrio').value;
+            Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
+
+            var etiquetaInfo = document.getElementById('info');
+
+            guardarUbicacion(Ubicacion, etiquetaInfo);
+        }
+
+
+        (function () {
+            document.getElementById('GuardarBtn').addEventListener('click', nuevaUbicacion);
+      ///      document.getElementById('EliminarBtn').addEventListener('click', EliminaUbicacion);
+       ///     document.getElementById('ModificarBtn').addEventListener('click', ModificaUbicacion);
+        })();
+    </script>
+</body>
+</html>
