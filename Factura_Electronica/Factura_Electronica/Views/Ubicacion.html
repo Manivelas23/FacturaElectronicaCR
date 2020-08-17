@@ -1,27 +1,69 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Ubicación</title>
-</head>
-<body>
+	<head>
+		<meta charset="utf-8" />
+		<title>Ubicación</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+				<link href="styles/styles.css" rel="stylesheet" />
+			</head>
+			<body>
+            <div class="container ">
+                <img src="img/header.png" class="img-fluid" >
+            </div>
+            <div class="container bg-light" id="mainContainer">
 
-    <div id="info"></div>
-    <input type="text" id="idUbicacion" placeholder="Id Ubicacion">
-    <input type="text" id="Provincia" placeholder="Provincia" >
-    <input type="text" id="Canton" placeholder="Canton">
-    <input type="text" id="Distrito" placeholder="Distrito">
-    <input type="text" id="Barrio" placeholder="Barrio">
-    <input type="text" id="otrasSenas" placeholder="Otras Senas">
-    <br />
-    <input type="button" id="GuardarBtn" value="Guardar"/>
-    <input type="button" id="EliminarBtn" value="Elimina"/>
-    <input type="button" id="ModificarBtn" value="Modificaar"/>
+                    <ul class="row col-md-3 bg-success list-group justify-content-center align-items-center" id="olMenu">
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu"><span class="material-icons">place</span>Ubicacion</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu"><span class="material-icons">monetization_on</span>Codigo Tipo Moneda</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu"><span class="material-icons">redeem</span>Descuento</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu">Exoneración</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu"><span class="material-icons">printer</span>Fax</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu">Indentificación Receptor</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu">Indentificación Emisor</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu">Teléfono</a></li>
+                        <li class="row liMenu list-group-item list-group-item-action"><a href="" class="aMenu">Tipo de Documento</a></li>
+                    </ul>
+                <div class="row col-md-9" id="formContainer">
+                    <div class="form-group col-md-7">
+                        <input class="row form-control" type="text" id="idUbicacion" placeholder="Id Ubicacion" autofocus>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <input class="row form-control" type="text" id="Provincia" placeholder="Provincia">
+                            </div>
+                            <div class="form-group col-md-7">
+                                <input class="row form-control" type="text" id="Canton" placeholder="Canton">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <input class="row form-control" type="text" id="Distrito" placeholder="Distrito">
+                                    </div>
+                                    <div class="form-group col-md-7">
+                                        <input class="row form-control" type="text" id="Barrio" placeholder="Barrio">
+                                        </div>
+                                        <div class="form-group col-md-7">
+                                            <textarea class="row form-control" type="textarea" id="otrasSenas" placeholder="Otras Senas"></textarea>
+                                        </div>
+                                        <div class=" row col-md-7 justify-content-between align-items-center " role="group" >
+                                            <input class="btn  btn-success" type="button" id="GuardarBtn" value="Guardar" />
+                                            <input class="btn  btn-warning" type="button" id="ModificaBtn" value="Modificar" />
+                                            <input class="btn  btn-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+				
 
-    <script src="../Scripts/Ajax.js"></script>
-    <script src="../Scripts/jquery.js"></script>
 
-    <script type="text/javascript">
+            
+                            
+<script src="../Scripts/Ajax.js"></script>
+<script src="../Scripts/jquery.js"></script>
+<script type="text/javascript">
 
         function nuevaUbicacion() {
             Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
@@ -30,7 +72,6 @@
             Ubicacion.Distrito = document.getElementById('Distrito').value;
             Ubicacion.Barrio = document.getElementById('Barrio').value;
             Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
-
             var etiquetaInfo = document.getElementById('info');
 
             guardarUbicacion(Ubicacion, etiquetaInfo);

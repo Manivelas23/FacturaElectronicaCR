@@ -13,8 +13,6 @@ namespace Factura_Electronica.Models ///nombre corregido
         public OleDbConnection conexion;
         public OleDbCommand comando;
         OleDbTransaction transaccion;
-        public ConexionconBD() { } 
-        
 
         ///metodos
         public bool activaBD()
@@ -42,7 +40,6 @@ namespace Factura_Electronica.Models ///nombre corregido
             conexion.Close();
             conexion.Dispose();
             return busca_int;
-
         }
         public bool nueva_consulta(string _Consulta)
         {
@@ -108,6 +105,7 @@ namespace Factura_Electronica.Models ///nombre corregido
 
 
         }
+        public ConexionconBD() { }
 
     }
 }

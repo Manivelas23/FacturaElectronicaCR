@@ -83,6 +83,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ajax.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Views\styles\styles.css" />
     <Content Include="Views\Ubicacion.html" />
     <Content Include="Views\img\guardar.gif" />
     <Content Include="Web.config" />
@@ -116,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
