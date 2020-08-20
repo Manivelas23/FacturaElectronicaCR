@@ -40,6 +40,7 @@ namespace Factura_Electronica.Models ///nombre corregido
             conexion.Close();
             conexion.Dispose();
             return busca_int;
+
         }
         public bool nueva_consulta(string _Consulta)
         {

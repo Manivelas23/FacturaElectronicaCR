@@ -93,14 +93,13 @@ namespace Factura_Electronica.Models
         {
             string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
-            try
-            {
+
                 if (objeto_conexion.activaBD())
                 {
                     string query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC INSERT_14 ?,?,?,?,?,?";
+                    query = "EXEC INSERT_14 ?,?,?,?,?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
@@ -120,10 +119,5 @@ namespace Factura_Electronica.Models
                 else
                     return "Sin Conexión con la Base de Datos";
             }
-            catch (Exception err)
-            {
-                return "soy yo el error ";
-            }
         }
     }
-}
