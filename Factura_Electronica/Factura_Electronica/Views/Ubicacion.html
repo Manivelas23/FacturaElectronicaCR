@@ -10,7 +10,6 @@
                     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
                 </head>
                 <body>
-                    <p id="resultadoOperacion"></p>
                 <div class="container col-md-11s" id="mainContainer">
                     <ul class="row col-md-4  " id="olMenu">
                         <li class=" liMenu list-group-item list-group-item-action">
@@ -60,34 +59,33 @@
                     </ul>
                     
                     <div class="row col-md-8" id="formContainer">
-
                         <div class="row col-md-11 " id="formInfo">
                             <h5>Formulario Ubicacion:</h5> <br>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
                         </div>
                         <div class="form-group col-md-9">
                             <strong>Id:</strong>
-                            <input class=" form-control" type="text" id="idUbicacion"  autofocus>
+                            <input class="form-control x" type="text" id="idUbicacion"  autofocus>
                             </div>
                             <div class="form-group col-md-9">
                                 <strong>Provincia:</strong>
-                                <input class= "form-control" type="text" id="Provincia" >
+                                <input class= "form-control x" type="text" id="Provincia" >
                                 </div>
                                 <div class="form-group col-md-9">
                                     <strong>Cantón:</strong>
-                                    <input class=" form-control" type="text" id="Canton">
+                                    <input class=" form-control x" type="text" id="Canton">
                                     </div>
                                     <div class="form-group col-md-9">
                                         <strong>Distrito:</strong>
-                                        <input class=" form-control" type="text" id="Distrito" >
+                                        <input class=" form-control x" type="text" id="Distrito" >
                                         </div>
                                         <div class="form-group col-md-9">
                                             <strong>Barrio:</strong>
-                                            <input class=" form-control" type="text" id="Barrio">
+                                            <input class=" form-control x " type="text" id="Barrio">
                                             </div>
                                             <div class="form-group col-md-9">
                                                 <strong>Otras Senas:</strong>
-                                                <textarea class=" form-control" type="textarea" id="otrasSenas"></textarea>
+                                                <textarea class="form-control x" type="textarea" id="otrasSenas"></textarea>
                                             </div>
 
                                             <div class="col-md-7 " id="btnGroup" >
@@ -111,24 +109,49 @@
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
     <script type="text/javascript">
+        function eliminaValores(){
+            var x = document.getElementById("formContainer").querySelectorAll(".x");
+            var i;
+            for (i = 0; i < x.length; i++) {
+                x[i].value = "";
+            }
+        }
 
-            function nuevaUbicacion() {
+        function nuevaUbicacion() {
+            Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
+            Ubicacion.Provincia = document.getElementById('Provincia').value;
+            Ubicacion.Canton = document.getElementById('Canton').value;
+            Ubicacion.Distrito = document.getElementById('Distrito').value;
+            Ubicacion.Barrio = document.getElementById('Barrio').value;
+            Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
+
+            guardarUbicacion(Ubicacion);
+            eliminaValores();
+            }
+           
+        function eliminaUbicacion() {
+            Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
+
+                eliminarUbicacion(Ubicacion);
+                eliminaValores();
+            }
+
+        function modificaUbicacion() {
                 Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
                 Ubicacion.Provincia = document.getElementById('Provincia').value;
                 Ubicacion.Canton = document.getElementById('Canton').value;
                 Ubicacion.Distrito = document.getElementById('Distrito').value;
                 Ubicacion.Barrio = document.getElementById('Barrio').value;
-                Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
-                var resultadoOperacion = document.getElementById('resultadoOperacion');
+            Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
 
-                guardarUbicacion(Ubicacion, resultadoOperacion);
+            modificarUbicacion(Ubicacion);
+            eliminaValores();
             }
-
 
             (function () {
                 document.getElementById('GuardarBtn').addEventListener('click', nuevaUbicacion);
-        ///      document.getElementById('EliminarBtn').addEventListener('click', EliminaUbicacion);
-        ///     document.getElementById('ModificarBtn').addEventListener('click', ModificaUbicacion);
+                document.getElementById('EliminarBtn').addEventListener('click', eliminaUbicacion);
+                document.getElementById('ModificaBtn').addEventListener('click', modificaUbicacion);
             })();
         </script>
     </body>

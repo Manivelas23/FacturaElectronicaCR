@@ -83,6 +83,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ajax.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Views\Descuento.html" />
+    <Content Include="Views\Exoneracion.html" />
     <Content Include="Views\styles\styles.css" />
     <Content Include="Views\Ubicacion.html" />
     <Content Include="Views\img\guardar.gif" />

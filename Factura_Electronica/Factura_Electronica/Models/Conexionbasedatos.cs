@@ -34,7 +34,7 @@ namespace Factura_Electronica.Models ///nombre corregido
         {
             OleDbDataReader busca_int;
             comando.Prepare();
-            busca_int = comando.ExecuteReader(); ////error
+            busca_int = comando.ExecuteReader(); 
             comando.CommandTimeout = 0;
 
             conexion.Close();

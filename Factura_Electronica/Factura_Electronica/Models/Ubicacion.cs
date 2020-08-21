@@ -44,107 +44,81 @@ namespace Factura_Electronica.Models
 
         public string Actualiza_ubicacion()
         {
-            string respuesta = "0";
-            ConexionconBD objeto_conexion = new ConexionconBD();
-
-            try
-            {
-                if (objeto_conexion.activaBD())
-                {
-                    String query;
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
-
-                    query = "EXC UPDATE_15 ?,?,?,?,?,?";
-
-                    objeto_conexion.nueva_consulta(query);
-                    objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
-                    objeto_conexion.nuevo_parametro(Provincia1, "string");
-                    objeto_conexion.nuevo_parametro(Canton1, "string");
-                    objeto_conexion.nuevo_parametro(Distrito1, "string");
-                    objeto_conexion.nuevo_parametro(Barrio1, "string");
-                    objeto_conexion.nuevo_parametro(OtrasSenas1, "string");
-
-                    CONTENEDOR = objeto_conexion.busca();
-
-                    objeto_conexion.conexion.Close();
-                    objeto_conexion.conexion.Dispose();
-                    CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
-                }
-                else return "Sin Conexión con la Base de Datos";
-            }
-            catch (Exception err)
-            {
-                return err.Message;
-            }
-        }
-        public string Elimina_ubicacion()
-        {
-            string respuesta = "0";
-            ConexionconBD objeto_conexion = new ConexionconBD();
-
-            try
-            {
-                if (objeto_conexion.activaBD()) ///verificamos si el metodo activaBD está en true
-                {
-                    String query;
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
-
-                    query = "EXC DELETE_15 ?"; ///almacenamos la consulta en una variable
-                    objeto_conexion.nueva_consulta(query); ///usamos el metodo de la clase "Conexionbasedatos" y enviamos la variable que tiene la consulta
-
-                    objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
-
-                    CONTENEDOR = objeto_conexion.busca();
-
-                    objeto_conexion.conexion.Close();
-                    objeto_conexion.conexion.Dispose();
-                    CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
-                }
-                else return "Sin Conexión con la Base de Datos";
-            }
-            catch (Exception err)
-            {
-                return "";
-            }
-        }
-        public string Inserta_ubicacion()
-        {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
                 if (objeto_conexion.activaBD())
                 {
                     string query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC INSERT_14 ?,?,?,?,?,?";
+                    query = "EXEC  UPDATE_15 ?,?,?,?,?,?";
                     objeto_conexion.nueva_consulta(query);
 
-                    objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
                     objeto_conexion.nuevo_parametro(Provincia1, "string");
                     objeto_conexion.nuevo_parametro(Canton1, "string");
                     objeto_conexion.nuevo_parametro(Distrito1, "string");
                     objeto_conexion.nuevo_parametro(Barrio1, "string");
                     objeto_conexion.nuevo_parametro(OtrasSenas1, "string");
+                    objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
+
 
                     CONTENEDOR = objeto_conexion.busca();
-
                     objeto_conexion.conexion.Close();
-                    objeto_conexion.conexion.Dispose();
-                    CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                        objeto_conexion.conexion.Dispose();
+                        CONTENEDOR.Close();
+                return "Se modificó la ubicación con el id:" + IdUbicacion1;
                 }
-                else
+                else return "Sin Conexión con la Base de Datos";
+        }
+        public string Elimina_ubicacion()
+        {
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            if (objeto_conexion.activaBD())
+            {
+                String query;
+                System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                query = "EXEC DELETE_15 ?";
+                objeto_conexion.nueva_consulta(query);
+
+                objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
+                    
+                CONTENEDOR = objeto_conexion.busca();
+
+                objeto_conexion.conexion.Close();
+                objeto_conexion.conexion.Dispose();
+                CONTENEDOR.Close();
+                return "Se eliminó la ubicación con el id : "+ IdUbicacion1;
+            }
+            else return "Sin Conexión con la Base de Datos";
+        }
+        public string Inserta_ubicacion()
+        {
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            if (objeto_conexion.activaBD())
+            {
+                string query;
+                System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                query = "EXEC INSERT_14 ?,?,?,?,?,?";
+                objeto_conexion.nueva_consulta(query);
+
+                objeto_conexion.nuevo_parametro(Provincia1, "string");
+                objeto_conexion.nuevo_parametro(Canton1, "string");
+                objeto_conexion.nuevo_parametro(Distrito1, "string");
+                objeto_conexion.nuevo_parametro(Barrio1, "string");
+                objeto_conexion.nuevo_parametro(OtrasSenas1, "string");
+                objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
+
+
+                CONTENEDOR = objeto_conexion.busca();
+
+                objeto_conexion.conexion.Close();
+                objeto_conexion.conexion.Dispose();
+                CONTENEDOR.Close();
+                return "Se guardó la ubicación con el id:" + IdUbicacion1;
+            }
+            else
                 return "Sin Conexión con la Base de Datos";
         }
     }
 }
-
-/*
- 
- try{
-}
-catch{
-}
- */
