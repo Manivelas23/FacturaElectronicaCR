@@ -34,13 +34,12 @@ namespace Factura_Electronica.Models ///nombre corregido
         {
             OleDbDataReader busca_int;
             comando.Prepare();
-            busca_int = comando.ExecuteReader();
+            busca_int = comando.ExecuteReader(); ////error
             comando.CommandTimeout = 0;
 
             conexion.Close();
             conexion.Dispose();
             return busca_int;
-
         }
         public bool nueva_consulta(string _Consulta)
         {
@@ -106,7 +105,9 @@ namespace Factura_Electronica.Models ///nombre corregido
 
 
         }
-        public ConexionconBD() { }
+        public ConexionconBD() 
+        { 
+        }
 
     }
 }

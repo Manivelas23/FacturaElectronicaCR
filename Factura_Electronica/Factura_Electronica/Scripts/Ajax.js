@@ -17,22 +17,27 @@
                             dataType: 'json',
                             data:Ubicacion,
                             success: function (data, textStatus, xhr) {
-                                alert(data[0]); ///'sirve el ajax'
-                                console.log(Ubicacion);
-                                Progreso.innerHTML += `<span id='InfoUbicacionGuarda' Guardar Ubicación: ${Ubicacion.IdUbicacion}/> 
-                                                         <br> 
-                                                        <img src='../Views/img/guardar.gif' /> `; 
-                               /// $('#InfoUbicacionGuarda').remove();
+                                alert(data[0]);
+                              /*  Progreso.innerHTML += `
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  <strong>$</strong>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>`*/
                             },
                             error: function (xhr, textStatus, erroThrown) {
+                               /*` <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error</strong> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>`*/
                                 alert(xhr);
                             }
                         })
                     }
   /* function eliminarUbicacion(Ubicacion, Progreso) {
-                    progreso.innerHTML += `<span id='InfoUbicacionElimina' Guardar Ubicación: ${Ubicacion.IdUbicacion}/> 
-                                                         <br> 
-                                                        <img src='../Views/img/guardar.gif' /> `;
                     $.ajax({
                         url: ruta + "Ubicacion",
                         type: 'DELETE',
@@ -40,7 +45,6 @@
                         data: Ubicacion,
                         success: function (data, textStatus, xhr) {
                             alert(data[0])
-                            $('#InfoUbicacionElimina' + data[1]).remove()
                         },
                         error: function (xhr, textStatus, erroThrown) {
                             alert(err);

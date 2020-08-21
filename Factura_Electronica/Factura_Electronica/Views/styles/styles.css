@@ -19,6 +19,8 @@ box-shadow:  1px 1px 2px #0e0e0e,
     align-items: center;
     font-family: 'Poppins', sans-serif;
 }
+
+/* Formulario */
 #formContainer{
     display: flex ;
     min-height: inherit;
@@ -26,7 +28,37 @@ box-shadow:  1px 1px 2px #0e0e0e,
     align-items: center;
     color: #B4B4B4;
     justify-content:center;   
+}
+#formInfo{
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    color: #B4B4B4;
+}
+.form-group{
+    background: none;
+}
+.form-control{
+    border: none;
+    margin-top: 2vh;
+    background: none;
+    border-radius: 8px;
+    color:white;
+    background: linear-gradient(360deg, #1d1e1f, #18191a);
+    box-shadow:  -5px -5px 10px #1a1b1c, 
+                 5px 5px 10px #1c1d1e;
+}
 
+/* sideMenu */
+#olMenu{
+    justify-content: flex-start;
+    display: flex;
+    height: auto;
+    box-sizing: border-box;
+    padding: 2vh;
+    align-self:center;
+    align-items: center;
+    margin-right: 16vh;
 }
 .liMenu{
     justify-content:flex-start ;
@@ -38,16 +70,12 @@ box-shadow:  1px 1px 2px #0e0e0e,
     inset 5px 5px 10px #1d1d1d;
     margin-top: 2vh;
 }
-
-#olMenu{
-    justify-content: flex-start;
-    display: flex;
-    height: auto;
-    box-sizing: border-box;
-    padding: 2vh;
-    align-self:center;
-    align-items: center;
-    margin-right: 16vh;
+.liMenu:hover{
+    transition: 0.7s;
+    background-color: orange;
+}
+.activeLi{
+    background: orange;
 }
 .spanMenu{
     position: relative;
@@ -65,25 +93,6 @@ box-shadow:  1px 1px 2px #0e0e0e,
     color: #B4B4B4;
     font-weight: bold;
 }
-#formInfo{
-    height: auto;
-    align-items: center;
-    justify-content: center;
-    color: #B4B4B4;
-}
-.form-control{
-    border: none;
-    margin-top: 2vh;
-    background: none;
-    border-radius: 8px;
-    color:#1d1d1d;
-    background: linear-gradient(360deg, #1d1e1f, #18191a);
-    box-shadow:  -5px -5px 10px #1a1b1c, 
-                 5px 5px 10px #1c1d1e;
-}
-.form-group{
-    background: none;
-}
 #btnGroup{
     display: flex;
     justify-content: space-evenly;
@@ -91,3 +100,4 @@ box-shadow:  1px 1px 2px #0e0e0e,
     margin-top: 4vh;
     align-items: center;
 }
+

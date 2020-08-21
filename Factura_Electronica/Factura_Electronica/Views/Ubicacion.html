@@ -10,22 +10,55 @@
                     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
                 </head>
                 <body>
-                            
+                    <p id="resultadoOperacion"></p>
                 <div class="container col-md-11s" id="mainContainer">
-
-                        <ul class="row col-md-4  " id="olMenu">
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">home</span><a href="" class="aMenu">Menú</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">place</span><a href="" class="aMenu">Ubicacion</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">monetization_on</span><a href="" class="aMenu">Codigo Tipo Moneda</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">redeem</span><a href="" class="aMenu">Descuento</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">done</span><a href="" class="aMenu">Exoneración</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">printer</span><a href="" class="aMenu">Fax</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">contact_mail</span><a href="" class="aMenu">Indentificación Receptor</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">contact_phone</span><a href="" class="aMenu">Indentificación Emisor</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">phone</span><a href="" class="aMenu">Teléfono</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">article</span><a href="" class="aMenu">Tipo de Documento</a></li>
-                            <li class=" liMenu list-group-item list-group-item-action"><span class="material-icons spanMenu">vpn_key</span><a href="" class="aMenu">Código Comercial</a></li>
-                        </ul>
+                    <ul class="row col-md-4  " id="olMenu">
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">home</span>
+                            <a href=Index.html" class="aMenu">Menú</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action activeLi">
+                            <span class="material-icons spanMenu">place</span>
+                            <a href="Ubicacion.html" class="aMenu">Ubicacion</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">monetization_on</span>
+                            <a href="CodigoTipoMoneda.html" class="aMenu">Codigo Tipo Moneda</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">redeem</span>
+                            <a href="Descuento.html" class="aMenu">Descuento</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">done</span>
+                            <a href="Exoneracion.html" class="aMenu">Exoneración</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">printer</span>
+                            <a href="Fax.html" class="aMenu">Fax</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">contact_mail</span>
+                            <a href="IdentificacionReceptor.html" class="aMenu">Indentificación Receptor</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">contact_phone</span>
+                            <a href="IdentificacionEmisor.html" class="aMenu">Indentificación Emisor</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">phone</span>
+                            <a href="Telefono.html" class="aMenu">Teléfono</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">article</span>
+                            <a href="TipoDocumento.html" class="aMenu">Tipo de Documento</a>
+                        </li>
+                        <li class=" liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">vpn_key</span>
+                            <a href="CodigoComercial.html" class="aMenu">Código Comercial</a>
+                        </li>
+                    </ul>
+                    
                     <div class="row col-md-8" id="formContainer">
 
                         <div class="row col-md-11 " id="formInfo">
@@ -86,9 +119,9 @@
                 Ubicacion.Distrito = document.getElementById('Distrito').value;
                 Ubicacion.Barrio = document.getElementById('Barrio').value;
                 Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
-                var etiquetaInfo = document.getElementById('info');
+                var resultadoOperacion = document.getElementById('resultadoOperacion');
 
-                guardarUbicacion(Ubicacion, etiquetaInfo);
+                guardarUbicacion(Ubicacion, resultadoOperacion);
             }
 
 

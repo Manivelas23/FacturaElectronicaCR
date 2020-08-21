@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Exoneración</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+                <link href="styles/styles.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+            </head>
+            <body>
+                
+<p id="resultadoOperacion"></p>
+<div class="container col-md-11s" id="mainContainer">
+	<ul class="row col-md-4  " id="olMenu">
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">home</span>
+			<a href=Index.html" class="aMenu">Menú</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">place</span>
+			<a href="Ubicacion.html" class="aMenu">Ubicacion</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">monetization_on</span>
+			<a href="CodigoTipoMoneda.html" class="aMenu">Codigo Tipo Moneda</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">redeem</span>
+			<a href="Descuento.html" class="aMenu">Descuento</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action activeLi">
+			<span class="material-icons spanMenu">done</span>
+			<a href="Exoneracion.html" class="aMenu">Exoneración</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">printer</span>
+			<a href="Fax.html" class="aMenu">Fax</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">contact_mail</span>
+			<a href="IdentificacionReceptor.html" class="aMenu">Indentificación Receptor</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">contact_phone</span>
+			<a href="IdentificacionEmisor.html" class="aMenu">Indentificación Emisor</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">phone</span>
+			<a href="Telefono.html" class="aMenu">Teléfono</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">article</span>
+			<a href="TipoDocumento.html" class="aMenu">Tipo de Documento</a>
+		</li>
+		<li class=" liMenu list-group-item list-group-item-action">
+			<span class="material-icons spanMenu">vpn_key</span>
+			<a href="CodigoComercial.html" class="aMenu">Código Comercial</a>
+		</li>
+	</ul>
+	<div class="row col-md-8" id="formContainer">
+		<div class="row col-md-11 " id="formInfo">
+			<h5>Formulario Exoneración:</h5>
+			<br>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
+			</div>
+			<div class="form-group col-md-9">
+				<strong>Tipo de Documento:</strong>
+				<input class=" form-control" type="text" id="tipoDocumento"  autofocus>
+				</div>
+				<div class="form-group col-md-9">
+					<strong>Número de Documento:</strong>
+					<input class= "form-control" type="text" id="numeroDocumento" >
+					</div>
+					<div class="form-group col-md-9">
+						<strong>Nombre de Institución:</strong>
+						<input class=" form-control" type="text" id="nombreInstitucion">
+						</div>
+						<div class="form-group col-md-9"> 
+							<strong>Fecha de Emisión:</strong>
+							<input class=" form-control" type="text" id="fechaEmision" >
+							</div>
+							<div class="form-group col-md-9">
+								<strong>Porcentaje de Exoneración:</strong>
+								<input class=" form-control" type="text" id="porcentajeExoneracion">
+								</div>
+								<div class="form-group col-md-9">
+									<strong>Monto de Exoneración:</strong>
+									<input class=" form-control" type="text" id="montoExoneracion"></input>
+								</div>
+								<div class="col-md-7 " id="btnGroup" >
+									<input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
+									<input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
+									<input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>  
+                
+
+
+            
+                            
+<script src="../Scripts/Ajax.js"></script>
+<script src="../Scripts/jquery.js"></script>
+<script type="text/javascript">
+
+        function nuevaExoneracion() {
+            Exoneracion.tipoDocumento = document.getElementById('tipoDocumento').value;
+            Exoneracion.numeroDocumento = document.getElementById('numeroDocumento').value;
+            Exoneracion.nombreInstitucion = document.getElementById('nombreInstitucion').value;
+            Exoneracion.fechaEmision = document.getElementById('fechaEmision').value;
+            Exoneracion.porcentajeExoneracion = document.getElementById('porcentajeExoneracion').value;
+            Exoneracion.montoExoneracion = document.getElementById('montoExoneracion').value;
+            var resultadoOperacion = document.getElementById('resultadoOperacion');
+
+            guardarUbicacion(Exoneracion, resultadoOperacion);
+        }
+
+
+        (function () {
+            document.getElementById('GuardarBtn').addEventListener('click', nuevaExoneracion);
+    ///      document.getElementById('EliminarBtn').addEventListener('click', EliminaUbicacion);
+    ///     document.getElementById('ModificarBtn').addEventListener('click', ModificaUbicacion);
+        })();
+    </script>
+</body>
+</html>

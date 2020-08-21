@@ -37,7 +37,7 @@ namespace Factura_Electronica.Controllers
         {
             Ubicacion ubicacion = new Ubicacion();
 
-            ubicacion.IdUbicacion1 = Convert.ToInt16(form.Get("idUbicacion"));
+            ubicacion.IdUbicacion1 = Convert.ToInt32(form.Get("idUbicacion"));
             ubicacion.Provincia1 = Convert.ToString(form.Get("Provincia"));
             ubicacion.Canton1 = Convert.ToString(form.Get("Canton"));
             ubicacion.Barrio1 = Convert.ToString(form.Get("Barrio"));
@@ -71,3 +71,15 @@ namespace Factura_Electronica.Controllers
         }
     }
 }
+
+/*
+   Ubicacion ubicacion = new Ubicacion
+            {
+                IdUbicacion1 = Convert.ToInt16(form.Get("idUbicacion")),
+                Provincia1 = form.Get("Provincia"),
+                Canton1 = form.Get("Canton"),
+                Barrio1 = form.Get("Barrio"),
+                Distrito1 = form.Get("Distrito"),
+                OtrasSenas1 = form.Get("otrasSenas")
+            };
+ */
