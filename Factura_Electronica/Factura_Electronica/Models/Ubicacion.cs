@@ -65,7 +65,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                         objeto_conexion.conexion.Dispose();
                         CONTENEDOR.Close();
-                return "Se modificó la ubicación con el id:" + IdUbicacion1;
+                return "Se modificó la ubicación con el id : " + IdUbicacion1;
                 }
                 else return "Sin Conexión con la Base de Datos";
         }
@@ -115,7 +115,7 @@ namespace Factura_Electronica.Models
                 objeto_conexion.conexion.Close();
                 objeto_conexion.conexion.Dispose();
                 CONTENEDOR.Close();
-                return "Se guardó la ubicación con el id:" + IdUbicacion1;
+                return "Se guardó la ubicación con el id : " + IdUbicacion1;
             }
             else
                 return "Sin Conexión con la Base de Datos";

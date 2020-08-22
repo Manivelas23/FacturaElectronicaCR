@@ -21,9 +21,8 @@ namespace Factura_Electronica.Models
         public int PorcentajeExoneracion1 { get => PorcentajeExoneracion; set => PorcentajeExoneracion = value; }
         public decimal MontoExoneracion1 { get => MontoExoneracion; set => MontoExoneracion = value; }
 
-        public string Actualiza_exoneracion()
+        public string Actualiza_Exoneracion()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
 
             try
@@ -33,9 +32,8 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC UPDATE_19 ?,?,?,?,?,?";
+                    query = "EXEC UPDATE_19 ?,?,?,?,?,?";
                     objeto_conexion.nueva_consulta(query); 
-
                     objeto_conexion.nuevo_parametro(TipoDocumento1, "string");
                     objeto_conexion.nuevo_parametro(NumeroDocumento1, "string");
                     objeto_conexion.nuevo_parametro(NombreInstitucion1, "string");
@@ -48,7 +46,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Exoneración Actualizada con el Número de Documento: "+ NumeroDocumento1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -58,19 +56,18 @@ namespace Factura_Electronica.Models
                 return err.Message;
             }
         }
-        public string Elimina_exoneracion()
+        public string Elimina_Exoneracion()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
 
             try
             {
-                if (objeto_conexion.activaBD()) ///verificamos si el metodo activaBD está en true
+                if (objeto_conexion.activaBD()) 
                 {
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC DELETE_15 ?,?"; 
+                    query = "EXEC DELETE_15 ?,?"; 
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(TipoDocumento1, "string");
@@ -81,7 +78,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Exoneración Eliminada con el Número de Documento: " + NumeroDocumento1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -91,9 +88,8 @@ namespace Factura_Electronica.Models
                 return err.Message;
             }
         }
-        public string Inserta_exoneracion()
+        public string Inserta_Exoneracion()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
 
             try
@@ -103,7 +99,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC INSERT_19 ?,?,?,?,?,?";
+                    query = "EXEC INSERT_19 ?,?,?,?,?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(TipoDocumento1, "string");
@@ -118,7 +114,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Exoneración Guardada con el Número de Documento: " + NumeroDocumento1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";

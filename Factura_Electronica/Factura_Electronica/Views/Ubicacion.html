@@ -14,7 +14,7 @@
                     <ul class="row col-md-4  " id="olMenu">
                         <li class=" liMenu list-group-item list-group-item-action">
                             <span class="material-icons spanMenu">home</span>
-                            <a href=Index.html" class="aMenu">Menú</a>
+                            <a href="Index.html" class="aMenu">Menú</a>
                         </li>
                         <li class=" liMenu list-group-item list-group-item-action activeLi">
                             <span class="material-icons spanMenu">place</span>
@@ -109,14 +109,6 @@
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
     <script type="text/javascript">
-        function eliminaValores(){
-            var x = document.getElementById("formContainer").querySelectorAll(".x");
-            var i;
-            for (i = 0; i < x.length; i++) {
-                x[i].value = "";
-            }
-        }
-
         function nuevaUbicacion() {
             Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
             Ubicacion.Provincia = document.getElementById('Provincia').value;
@@ -126,26 +118,21 @@
             Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
 
             guardarUbicacion(Ubicacion);
-            eliminaValores();
-            }
-           
+            }           
         function eliminaUbicacion() {
             Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
 
-                eliminarUbicacion(Ubicacion);
-                eliminaValores();
+             eliminarUbicacion(Ubicacion);
             }
-
         function modificaUbicacion() {
                 Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
                 Ubicacion.Provincia = document.getElementById('Provincia').value;
                 Ubicacion.Canton = document.getElementById('Canton').value;
                 Ubicacion.Distrito = document.getElementById('Distrito').value;
                 Ubicacion.Barrio = document.getElementById('Barrio').value;
-            Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
+                Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
 
-            modificarUbicacion(Ubicacion);
-            eliminaValores();
+               modificarUbicacion(Ubicacion);
             }
 
             (function () {
