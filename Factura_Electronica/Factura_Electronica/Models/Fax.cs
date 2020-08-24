@@ -13,7 +13,6 @@ namespace Factura_Electronica.Models
         public int CodigoPais1 { get => CodigoPais; set => CodigoPais = value; }
         public string Actualiza_fax()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -22,18 +21,18 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC UPDATE_13 ?,?";
+                    query = "EXEC UPDATE_13 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
-                    objeto_conexion.nuevo_parametro(NumFax1,"int");
                     objeto_conexion.nuevo_parametro(CodigoPais1, "int");
+                    objeto_conexion.nuevo_parametro(NumFax1, "int");
 
                     CONTENEDOR = objeto_conexion.busca();
 
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se actualizó el fax con el número : " + NumFax1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -43,9 +42,8 @@ namespace Factura_Electronica.Models
                 return err.Message;
             }
         }
-        public string Elimina_numero()
+        public string Elimina_fax()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -54,7 +52,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC DELETE_14 ?";
+                    query = "EXEC DELETE_14 ?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(NumFax1, "int");
 
@@ -63,7 +61,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se eliminó el fax con el número : " + NumFax1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -73,11 +71,9 @@ namespace Factura_Electronica.Models
                 return err.Message;
             }
         }
-        public string Inserta_numero()
+        public string Inserta_fax()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
-
             try
             {
                 if (objeto_conexion.activaBD())
@@ -85,18 +81,18 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC INSERT_13 ?,?";
+                    query = "EXEC INSERT_13 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
-                    objeto_conexion.nuevo_parametro(NumFax1, "int");
                     objeto_conexion.nuevo_parametro(CodigoPais1, "int");
+                    objeto_conexion.nuevo_parametro(NumFax1, "int");
 
                     CONTENEDOR = objeto_conexion.busca();
 
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se agregó el fax con el número : " + NumFax1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";

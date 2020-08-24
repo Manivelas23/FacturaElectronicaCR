@@ -48,6 +48,19 @@ box-shadow:  1px 1px 2px #0e0e0e,
     box-shadow:  -5px -5px 10px #1a1b1c, 
                  5px 5px 10px #1c1d1e;
 }
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+    visibility: hidden;
+    margin-top:3vh;
+}
+
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #4CAF50;
+    color: #050606;
+}
 
 /* sideMenu */
 #olMenu{

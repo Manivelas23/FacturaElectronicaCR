@@ -1,4 +1,4 @@
-﻿ using System;
+﻿     using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -107,7 +107,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.nuevo_parametro(NombreInstitucion1, "string");
                     objeto_conexion.nuevo_parametro(FechaEmision1, "date");
                     objeto_conexion.nuevo_parametro(PorcentajeExoneracion1, "int");
-                    objeto_conexion.nuevo_parametro(MontoExoneracion1, "decimal");
+                    objeto_conexion.nuevo_parametro(MontoExoneracion1, "int");
 
                     CONTENEDOR = objeto_conexion.busca();
 

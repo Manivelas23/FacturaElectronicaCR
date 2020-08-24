@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http;
 using System.Web.Http;
 using System.Net.Http.Formatting;
 using Factura_Electronica.Models;
@@ -43,11 +42,11 @@ namespace Factura_Electronica.Controllers
 
             string[] respuesta = new string[2];
             respuesta[0] = exoneracion.Inserta_Exoneracion();
-            respuesta[1] = form.Get("NumeroDocumento");
+            respuesta[1] = Convert.ToString(form.Get("NumeroDocumento"));
             HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
             return res;
         }
-        [HttpPut]
+        [HttpDelete]
         public HttpResponseMessage Delete(FormDataCollection form)
         {
             Exoneracion exoneracion = new Exoneracion();

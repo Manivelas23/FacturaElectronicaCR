@@ -85,6 +85,7 @@
     <Content Include="Scripts\jquery.js" />
     <Content Include="Views\Descuento.html" />
     <Content Include="Views\Exoneracion.html" />
+    <Content Include="Views\Fax.html" />
     <Content Include="Views\styles\styles.css" />
     <Content Include="Views\Ubicacion.html" />
     <Content Include="Views\img\guardar.gif" />
@@ -94,6 +95,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DescuentoController.cs" />
     <Compile Include="Controllers\ExoneracionController.cs" />
+    <Compile Include="Controllers\FaxController.cs" />
     <Compile Include="Controllers\UbicacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -11,7 +11,6 @@
             </head>
             <body>
                 
-<p id="resultadoOperacion"></p>
 <div class="container col-md-11s" id="mainContainer">
 	<ul class="row col-md-4  " id="olMenu">
 		<li class=" liMenu list-group-item list-group-item-action">
@@ -67,27 +66,27 @@
 			</div>
 			<div class="form-group col-md-9">
 				<strong>Tipo de Documento:</strong>
-				<input class=" form-control" type="text" id="tipoDocumento"  autofocus>
+				<input class="form-control x" type="text" id="tipoDocumento"  autofocus>
 				</div>
 				<div class="form-group col-md-9">
 					<strong>Número de Documento:</strong>
-					<input class= "form-control" type="text" id="numeroDocumento" >
+					<input class= "form-control x" type="text" id="numeroDocumento" >
 					</div>
 					<div class="form-group col-md-9">
 						<strong>Nombre de Institución:</strong>
-						<input class=" form-control" type="text" id="nombreInstitucion">
+						<input class="form-control x" type="text" id="nombreInstitucion">
 						</div>
 						<div class="form-group col-md-9"> 
 							<strong>Fecha de Emisión:</strong>
-							<input class=" form-control" type="text" id="fechaEmision" >
+							<input class="form-control x" type="date" id="fechaEmision" >
 							</div>
 							<div class="form-group col-md-9">
 								<strong>Porcentaje de Exoneración:</strong>
-								<input class=" form-control" type="text" id="porcentajeExoneracion">
+								<input class="form-control x" type="text" id="porcentajeExoneracion">
 								</div>
 								<div class="form-group col-md-9">
 									<strong>Monto de Exoneración:</strong>
-									<input class=" form-control" type="text" id="montoExoneracion"></input>
+									<input class="form-control x" type="text" id="montoExoneracion" >
 								</div>
 								<div class="col-md-7 " id="btnGroup" >
 									<input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
@@ -96,16 +95,8 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>  
-                
+				
 
-
-            
-                            
 <script src="../Scripts/Ajax.js"></script>
 <script src="../Scripts/jquery.js"></script>
 <script type="text/javascript">
@@ -116,17 +107,26 @@
             Exoneracion.nombreInstitucion = document.getElementById('nombreInstitucion').value;
             Exoneracion.fechaEmision = document.getElementById('fechaEmision').value;
             Exoneracion.porcentajeExoneracion = document.getElementById('porcentajeExoneracion').value;
-            Exoneracion.montoExoneracion = document.getElementById('montoExoneracion').value;
-            var resultadoOperacion = document.getElementById('resultadoOperacion');
-
-            guardarUbicacion(Exoneracion, resultadoOperacion);
+			guardarExoneracion(Exoneracion);
         }
-
+		function eliminaExoneracion() {
+			Exoneracion.tipoDocumento = document.getElementById('tipoDocumento').value;
+			Exoneracion.numeroDocumento = document.getElementById('numeroDocumento').value;
+			eliminarExoneracion(Exoneracion);
+		}
+		function actualizaExoneracion() {
+            Exoneracion.tipoDocumento = document.getElementById('tipoDocumento').value;
+            Exoneracion.numeroDocumento = document.getElementById('numeroDocumento').value;
+            Exoneracion.nombreInstitucion = document.getElementById('nombreInstitucion').value;
+            Exoneracion.fechaEmision = document.getElementById('fechaEmision').value;
+            Exoneracion.porcentajeExoneracion = document.getElementById('porcentajeExoneracion').value;
+            actualizarExoneracion(Exoneracion);
+		}
 
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevaExoneracion);
-    ///      document.getElementById('EliminarBtn').addEventListener('click', EliminaUbicacion);
-    ///     document.getElementById('ModificarBtn').addEventListener('click', ModificaUbicacion);
+         document.getElementById('GuardarBtn').addEventListener('click', nuevaExoneracion);
+		 document.getElementById('EliminarBtn').addEventListener('click', eliminaExoneracion);
+         document.getElementById('ModificaBtn').addEventListener('click', actualizaExoneracion);
         })();
     </script>
 </body>
