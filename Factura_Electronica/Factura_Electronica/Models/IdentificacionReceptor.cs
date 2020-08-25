@@ -14,7 +14,6 @@ namespace Factura_Electronica.Models
         public string Tipo1 { get => Tipo; set => Tipo = value; }
         public string Actualiza_identificacionreceptor()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -23,7 +22,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC UPDATE_8 ?,?";
+                    query = "EXEC UPDATE_8 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(Identificacionreceptor1, "string");
@@ -34,7 +33,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se modificó la identificación : " + Identificacionreceptor1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -46,7 +45,6 @@ namespace Factura_Electronica.Models
         }
         public string Elimina_identificacionreceptor()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -55,7 +53,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC DELETE_9 ?";
+                    query = "EXEC DELETE_9 ?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(Identificacionreceptor1, "string");
 
@@ -64,7 +62,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se eliminó la identificación : " + Identificacionreceptor1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -76,7 +74,6 @@ namespace Factura_Electronica.Models
         }
         public string Inserta_identificacionreceptor()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
 
             try
@@ -86,7 +83,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC INSERT_8 ?,?";
+                    query = "EXEC INSERT_8 ?,?";
                     objeto_conexion.nueva_consulta(query);
         
                     objeto_conexion.nuevo_parametro(Identificacionreceptor1, "string");
@@ -97,7 +94,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se guardó la identificación : " + Identificacionreceptor1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";

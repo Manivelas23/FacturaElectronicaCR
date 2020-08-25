@@ -14,7 +14,6 @@ namespace Factura_Electronica.Models
         public int CodigoPais1 { get => CodigoPais; set => CodigoPais = value; }
         public string Actualiza_telefono()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -23,7 +22,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC UPDATE_12 ?,?";
+                    query = "EXEC UPDATE_12 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(NumTelefono1, "int");
@@ -34,7 +33,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se modificó el teléfono con el número : " + NumTelefono1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -46,7 +45,6 @@ namespace Factura_Electronica.Models
         }
         public string Elimina_telefono()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -55,7 +53,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC DELETE_13 ?";
+                    query = "EXEC DELETE_13 ?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(NumTelefono1, "int");
 
@@ -64,7 +62,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se eliminó el teléfono con el número : " + NumTelefono1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -76,9 +74,7 @@ namespace Factura_Electronica.Models
         }
         public string Inserta_telefono()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
-
             try
             {
                 if (objeto_conexion.activaBD())
@@ -86,7 +82,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC INSERT_12 ?,?";
+                    query = "EXEC INSERT_12 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(NumTelefono1, "int");
@@ -97,7 +93,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se guardó el teléfono con el número : " + NumTelefono1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";

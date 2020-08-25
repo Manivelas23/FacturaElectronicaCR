@@ -32,11 +32,11 @@
                 <span class="material-icons spanMenu">done</span>
                 <a href="Exoneracion.html" class="aMenu">Exoneración</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action activeLi">
+            <li class=" liMenu list-group-item list-group-item-action">
                 <span class="material-icons spanMenu">printer</span>
                 <a href="Fax.html" class="aMenu">Fax</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action">
+            <li class=" liMenu list-group-item list-group-item-action activeLi">
                 <span class="material-icons spanMenu">contact_mail</span>
                 <a href="IdentificacionReceptor.html" class="aMenu">Indentificación Receptor</a>
             </li>
@@ -60,16 +60,16 @@
 
         <div class="row col-md-8" id="formContainer">
             <div class="row col-md-11 " id="formInfo">
-                <h5>Formulario Fax:</h5> <br>
+                <h5>Formulario Identificación del Receptor:</h5> <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
             </div>
             <div class="form-group col-md-9">
-                <strong>Número de Fax: </strong>
-                <input class=" form-control" type="text" id="numFax" autofocus>
+                <strong>Identificación del Receptor: </strong>
+                <input class=" form-control" type="text" id="identificacionReceptor" autofocus>
             </div>
             <div class="form-group col-md-9">
-                <strong>Código de País: </strong>
-                <input class="form-control" type="text" id="codigoPais">
+                <strong>Tipo de identificación: </strong>
+                <input class="form-control" type="text" id="tipo">
             </div>
             <div id="myProgress">
                 <div id="myBar"></div>
@@ -86,30 +86,29 @@
     <script src="../Scripts/jquery.js"></script>
     <script type="text/javascript">
 
-        function nuevoFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            guardarFax(Fax);
+        function nuevoIdReceptor() {
+            idReceptor.identificacionReceptor = document.getElementById('identificacionReceptor').value;
+            idReceptor.tipo = document.getElementById('tipo').value;
+            guardaridReceptor(idReceptor);
         }
-        function eliminaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            eliminarFax(Fax);
+        function eliminaIdReceptor() {
+            idReceptor.identificacionReceptor = document.getElementById('identificacionReceptor').value;
+            eliminaridReceptor(idReceptor);
         }
-        function modificaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            modificarFax(Fax)
+        function modificaIdReceptor() {
+            idReceptor.identificacionReceptor = document.getElementById('identificacionReceptor').value;
+            idReceptor.tipo = document.getElementById('tipo').value;
+            modificaridReceptor(idReceptor)
         }
 
 
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevoFax);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminaFax);
-            document.getElementById('ModificaBtn').addEventListener('click', modificaFax);
+            document.getElementById('GuardarBtn').addEventListener('click', nuevoIdReceptor);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaIdReceptor);
+            document.getElementById('ModificaBtn').addEventListener('click', modificaIdReceptor);
 
         })();
     </script>
 </body>
 </html>
-
 

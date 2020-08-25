@@ -32,7 +32,7 @@
                 <span class="material-icons spanMenu">done</span>
                 <a href="Exoneracion.html" class="aMenu">Exoneración</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action activeLi">
+            <li class=" liMenu list-group-item list-group-item-action">
                 <span class="material-icons spanMenu">printer</span>
                 <a href="Fax.html" class="aMenu">Fax</a>
             </li>
@@ -44,7 +44,7 @@
                 <span class="material-icons spanMenu">contact_phone</span>
                 <a href="IdentificacionEmisor.html" class="aMenu">Indentificación Emisor</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action">
+            <li class=" liMenu list-group-item list-group-item-action activeLi">
                 <span class="material-icons spanMenu">phone</span>
                 <a href="Telefono.html" class="aMenu">Teléfono</a>
             </li>
@@ -60,12 +60,12 @@
 
         <div class="row col-md-8" id="formContainer">
             <div class="row col-md-11 " id="formInfo">
-                <h5>Formulario Fax:</h5> <br>
+                <h5>Formulario Teléfono:</h5> <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
             </div>
             <div class="form-group col-md-9">
-                <strong>Número de Fax: </strong>
-                <input class=" form-control" type="text" id="numFax" autofocus>
+                <strong>Número de Teléfono: </strong>
+                <input class=" form-control" type="text" id="numTelefono" autofocus>
             </div>
             <div class="form-group col-md-9">
                 <strong>Código de País: </strong>
@@ -86,26 +86,26 @@
     <script src="../Scripts/jquery.js"></script>
     <script type="text/javascript">
 
-        function nuevoFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            guardarFax(Fax);
+        function nuevoTelefono() {
+            Telefono.numTelefono = document.getElementById('numTelefono').value;
+            Telefono.codigoPais = document.getElementById('codigoPais').value;
+            guardarTelefono(Telefono);
         }
-        function eliminaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            eliminarFax(Fax);
+        function eliminaTelefono() {
+            Telefono.numTelefono = document.getElementById('numTelefono').value;
+            eliminarTelefono(Telefono);
         }
-        function modificaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            modificarFax(Fax)
+        function modificaTelefono() {
+            Telefono.numTelefono = document.getElementById('numTelefono').value;
+            Telefono.codigoPais = document.getElementById('codigoPais').value;
+            modificarTelefono(Telefono)
         }
 
 
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevoFax);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminaFax);
-            document.getElementById('ModificaBtn').addEventListener('click', modificaFax);
+            document.getElementById('GuardarBtn').addEventListener('click', nuevoTelefono);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaTelefono);
+            document.getElementById('ModificaBtn').addEventListener('click', modificaTelefono);
 
         })();
     </script>

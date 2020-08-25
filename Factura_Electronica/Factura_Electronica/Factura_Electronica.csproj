@@ -83,23 +83,33 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ajax.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Views\CodigoTipoMoneda.html" />
     <Content Include="Views\Descuento.html" />
     <Content Include="Views\Exoneracion.html" />
     <Content Include="Views\Fax.html" />
+    <Content Include="Views\IdentificacionEmisor.html" />
+    <Content Include="Views\IdentificacionReceptor.html" />
     <Content Include="Views\styles\styles.css" />
+    <Content Include="Views\Telefono.html" />
     <Content Include="Views\Ubicacion.html" />
     <Content Include="Views\img\guardar.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CodigoTipoMonedaController.cs" />
     <Compile Include="Controllers\DescuentoController.cs" />
     <Compile Include="Controllers\ExoneracionController.cs" />
     <Compile Include="Controllers\FaxController.cs" />
+    <Compile Include="Controllers\IdentificacionEmisorController.cs" />
+    <Compile Include="Controllers\IdentificacionReceptorController.cs" />
+    <Compile Include="Controllers\TelefonoController.cs" />
+    <Compile Include="Controllers\TipoDocumentoController.cs" />
     <Compile Include="Controllers\UbicacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CodigoComercial.cs" />
     <Compile Include="Models\CodigoTipoMoneda.cs" />
     <Compile Include="Models\Conexionbasedatos.cs" />
     <Compile Include="Models\Descuento.cs" />

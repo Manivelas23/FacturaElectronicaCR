@@ -15,7 +15,6 @@ namespace Factura_Electronica.Models
 
         public string Actualiza_CodigoTipoMoneda()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -24,18 +23,18 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC UPDATE_6 ?,?";
+                    query = "EXEC UPDATE_6 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoMoneda1,"string");
-                    objeto_conexion.nuevo_parametro(TipoCambio,"decimal");
+                    objeto_conexion.nuevo_parametro(TipoCambio,"int");
 
                     CONTENEDOR = objeto_conexion.busca();
 
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se actualizó el Código de Moneda : " + CodigoMoneda1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -47,7 +46,7 @@ namespace Factura_Electronica.Models
         }
         public string Elimina_CodigoTipoMoneda()
         {
-            string respuesta = "0";
+
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
@@ -56,7 +55,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC DELETE_7 ?";
+                    query = "EXEC DELETE_7 ?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(CodigoMoneda1, "string");
 
@@ -65,7 +64,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se eliminó el Código de Moneda : " + CodigoMoneda1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
@@ -77,9 +76,7 @@ namespace Factura_Electronica.Models
         }
         public string Inserta_CodigoTipoMoneda()
         {
-            string respuesta = "0";
             ConexionconBD objeto_conexion = new ConexionconBD();
-
             try
             {
                 if (objeto_conexion.activaBD())
@@ -87,18 +84,18 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXC INSERT_13 ?,?";
+                    query = "EXEC INSERT_6 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoMoneda1, "string");
-                    objeto_conexion.nuevo_parametro(TipoCambio1, "decimal");
+                    objeto_conexion.nuevo_parametro(TipoCambio1, "int");
 
                     CONTENEDOR = objeto_conexion.busca();
 
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Operación Realizada Con Éxito";
+                    return "Se guardó el Código de Moneda : " + CodigoMoneda1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";

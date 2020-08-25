@@ -32,7 +32,7 @@
                 <span class="material-icons spanMenu">done</span>
                 <a href="Exoneracion.html" class="aMenu">Exoneración</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action activeLi">
+            <li class=" liMenu list-group-item list-group-item-action">
                 <span class="material-icons spanMenu">printer</span>
                 <a href="Fax.html" class="aMenu">Fax</a>
             </li>
@@ -48,7 +48,7 @@
                 <span class="material-icons spanMenu">phone</span>
                 <a href="Telefono.html" class="aMenu">Teléfono</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action">
+            <li class=" liMenu list-group-item list-group-item-action activeLi">
                 <span class="material-icons spanMenu">article</span>
                 <a href="TipoDocumento.html" class="aMenu">Tipo de Documento</a>
             </li>
@@ -60,25 +60,24 @@
 
         <div class="row col-md-8" id="formContainer">
             <div class="row col-md-11 " id="formInfo">
-                <h5>Formulario Fax:</h5> <br>
+                <h5>Formulario Tipo de Docuemtno:</h5>
+                <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
             </div>
             <div class="form-group col-md-9">
-                <strong>Número de Fax: </strong>
-                <input class=" form-control" type="text" id="numFax" autofocus>
+                <strong>Número de Identidad de Tercero: </strong>
+                <input class=" form-control" type="text" id="numeroIdentidadTercero" autofocus>
             </div>
             <div class="form-group col-md-9">
-                <strong>Código de País: </strong>
-                <input class="form-control" type="text" id="codigoPais">
+                <strong>Tipo de Documento: </strong>
+                <input class="form-control" type="text" id="tipoDocumento">
             </div>
             <div id="myProgress">
                 <div id="myBar"></div>
             </div>
             <div class="col-md-7 " id="btnGroup">
                 <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
-                <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
                 <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
-
             </div>
         </div>
     </div>
@@ -86,27 +85,21 @@
     <script src="../Scripts/jquery.js"></script>
     <script type="text/javascript">
 
-        function nuevoFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            guardarFax(Fax);
-        }
-        function eliminaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            eliminarFax(Fax);
-        }
-        function modificaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            modificarFax(Fax)
-        }
+        function nuevoTD() {
+            TD.numeroIdentidadTercero = document.getElementById('numeroIdentidadTercero').value;
+            TD.tipoDocumento = document.getElementById('tipoDocumento').value;
+            guardarTD(TD);
+		}
+
+        function eliminaTD() {
+            TD.montoDescuento = document.getElementById('numeroIdentidadTercero').value;
+            eliminarTD(TD);
+		}
 
 
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevoFax);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminaFax);
-            document.getElementById('ModificaBtn').addEventListener('click', modificaFax);
-
+            document.getElementById('GuardarBtn').addEventListener('click', nuevoTD);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaTD);
         })();
     </script>
 </body>

@@ -1,31 +1,30 @@
-﻿const ruta = "https://localhost:44314/api/";
-var i = 0;
-function eliminaValores() {
-    var x = document.getElementById("formContainer").querySelectorAll(".form-control");
-    for (var i = 0; i < x.length; i++) {
-        x[i].value = "";
+﻿    const ruta = "https://localhost:44314/api/";
+    var i = 0;
+    function eliminaValores() {
+        var x = document.getElementById("formContainer").querySelectorAll(".form-control");
+        for (var i = 0; i < x.length; i++) {
+            x[i].value = "";
+        }
     }
-}
-function mover() {
-    if (i == 0) {
-        i = 1;
-        var elem = document.getElementById("myBar");
-        elem.style.visibility = "visible"
-        var width = 1;
-        var id = setInterval(frame, 10);
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id); 
-                i = 0;
-                elem.style.visibility = "hidden";
-            } else {
-                width++;
-                elem.style.width = width + "%";
+    function mover() {
+        if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            elem.style.visibility = "visible";
+            var width = 1;
+            var id = setInterval(frame, 10);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id); 
+                    i = 0;
+                    elem.style.visibility = "hidden";
+                } else {
+                    width++;
+                    elem.style.width = width + "%";
+                }
             }
         }
     }
-}
-
 /////////////////////////////////////////////////////////////////////////////////////////
     var Ubicacion = new Object;
     Ubicacion.idUbicacion = "";
@@ -233,3 +232,263 @@ function mover() {
     })
 }
 /////////////////////////////////////////////////////////////////////////////////////////
+    var CTM = new Object;
+    CTM.codigoMoneda = "";
+    CTM.tipoCambio = "";
+    function guardarCTM(CTM) {
+            $.ajax({
+                url: ruta + "CodigoTipoMoneda",
+                type: 'PUT',
+                dataType: 'json',
+                data: CTM,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
+
+                },
+                error: function (xhr, textStatus, erroThrown) {
+
+                    alert(xhr);
+                }
+            })
+        }
+    function eliminarCTM(CTM) {
+            $.ajax({
+                url: ruta + "CodigoTipoMoneda",
+                type: 'DELETE',
+                dataType: 'json',
+                data: CTM,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
+                },
+                error: function (xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            })
+        }
+    function modificarCTM(CTM) {
+            $.ajax({
+                url: ruta + "CodigoTipoMoneda",
+                type: 'POST',
+                dataType: 'json',
+                data: CTM,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
+                },
+                error: function (xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            })
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+    var idEmisor = new Object;
+    idEmisor.identificacionEmisor = "";
+    idEmisor.tipo = "";
+    function guardaridEmisor(idEmisor) {
+            $.ajax({
+                url: ruta + "IdentificacionEmisor",
+                type: 'PUT',
+                dataType: 'json',
+                data: idEmisor,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
+
+                },
+                error: function (xhr, textStatus, erroThrown) {
+
+                    alert(xhr);
+                }
+            })
+        }
+    function eliminaridEmisor(idEmisor) {
+                $.ajax({
+                    url: ruta + "IdentificacionEmisor",
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: idEmisor,
+                    success: function (data, textStatus, xhr) {
+                        mover();
+                        eliminaValores();
+                        setTimeout(function () { alert(data[0]); }, 1500);
+
+                    },
+                    error: function (xhr, textStatus, erroThrown) {
+                        alert(xhr);
+                    }
+                })
+            }
+    function modificaridEmisor(idEmisor) {
+                $.ajax({
+                    url: ruta + "IdentificacionEmisor",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: idEmisor,
+                    success: function (data, textStatus, xhr) {
+                        mover();
+                        eliminaValores();
+                        setTimeout(function () { alert(data[0]); }, 1500);
+
+                    },
+                    error: function (xhr, textStatus, erroThrown) {
+                        alert(xhr);
+                    }
+                })
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+    var idReceptor = new Object;
+    idReceptor.identificacionReceptor = "";
+    idReceptor.tipo = "";
+    function guardaridReceptor(idReceptor) {
+        $.ajax({
+            url: ruta + "IdentificacionReceptor",
+            type: 'PUT',
+            dataType: 'json',
+            data: idReceptor,
+            success: function (data, textStatus, xhr) {
+                mover();
+                eliminaValores();
+                setTimeout(function () { alert(data[0]); }, 1500);
+
+            },
+            error: function (xhr, textStatus, erroThrown) {
+
+                alert(xhr);
+            }
+        })
+    }
+    function eliminaridReceptor(idReceptor) {
+            $.ajax({
+                url: ruta + "IdentificacionReceptor",
+                type: 'DELETE',
+                dataType: 'json',
+                data: idReceptor,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
+
+                },
+                error: function (xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            })
+        }
+    function modificaridReceptor(idReceptor) {
+            $.ajax({
+                url: ruta + "IdentificacionReceptor",
+                type: 'POST',
+                dataType: 'json',
+                data: idReceptor,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
+
+                },
+                error: function (xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            })
+        }
+/////////////////////////////////////////////////////////////////////////////////////////
+    var Telefono = new Object;
+    Telefono.numTelefono = "";
+    Telefono.codigoPais = "";
+    function guardarTelefono(Telefono) {
+                $.ajax({
+                    url: ruta + "Telefono",
+                    type: 'PUT',
+                    dataType: 'json',
+                    data: Telefono,
+                    success: function (data, textStatus, xhr) {
+                        mover();
+                        eliminaValores();
+                        setTimeout(function () { alert(data[0]); }, 1500);
+
+                    },
+                    error: function (xhr, textStatus, erroThrown) {
+
+                        alert(xhr);
+                    }
+                })
+            }
+    function eliminarTelefono(Telefono) {
+                $.ajax({
+                    url: ruta + "Telefono",
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: Telefono,
+                    success: function (data, textStatus, xhr) {
+                        mover();
+                        eliminaValores();
+                        setTimeout(function () { alert(data[0]); }, 1500);
+
+                    },
+                    error: function (xhr, textStatus, erroThrown) {
+                        alert(xhr);
+                    }
+                })
+            }
+    function modificarTelefono(Telefono) {
+                $.ajax({
+                    url: ruta + "Telefono",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: Telefono,
+                    success: function (data, textStatus, xhr) {
+                        mover();
+                        eliminaValores();
+                        setTimeout(function () { alert(data[0]); }, 1500);
+                    },
+                    error: function (xhr, textStatus, erroThrown) {
+                        alert(xhr);
+                    }
+                })
+            }
+/////////////////////////////////////////////////////////////////////////////////////////
+    var TD = new Object;
+    TD.numeroIdentidadTercero = "";
+    TD.tipoDocumento = "";
+    function guardarTD(TD) {
+            $.ajax({
+                url: ruta + "TipoDocumento",
+                type: 'PUT',
+                dataType: 'json',
+                data: TD,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
+
+                },
+                error: function (xhr, textStatus, erroThrown) {
+
+                    alert(xhr);
+                }
+            })
+        }
+    function eliminarTD(TD) {
+        $.ajax({
+            url: ruta + "TipoDocumento",
+            type: 'DELETE',
+            dataType: 'json',
+            data: TD,
+            success: function (data, textStatus, xhr) {
+                mover();
+                eliminaValores();
+                setTimeout(function () { alert(data[0]); }, 1500);
+
+            },
+            error: function (xhr, textStatus, erroThrown) {
+
+                alert(xhr);
+            }
+        })
+            }

@@ -32,7 +32,7 @@
                 <span class="material-icons spanMenu">done</span>
                 <a href="Exoneracion.html" class="aMenu">Exoneración</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action activeLi">
+            <li class=" liMenu list-group-item list-group-item-action">
                 <span class="material-icons spanMenu">printer</span>
                 <a href="Fax.html" class="aMenu">Fax</a>
             </li>
@@ -40,7 +40,7 @@
                 <span class="material-icons spanMenu">contact_mail</span>
                 <a href="IdentificacionReceptor.html" class="aMenu">Indentificación Receptor</a>
             </li>
-            <li class=" liMenu list-group-item list-group-item-action">
+            <li class=" liMenu list-group-item list-group-item-action activeLi">
                 <span class="material-icons spanMenu">contact_phone</span>
                 <a href="IdentificacionEmisor.html" class="aMenu">Indentificación Emisor</a>
             </li>
@@ -60,16 +60,16 @@
 
         <div class="row col-md-8" id="formContainer">
             <div class="row col-md-11 " id="formInfo">
-                <h5>Formulario Fax:</h5> <br>
+                <h5>Formulario Identificación del Emisor:</h5> <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
             </div>
             <div class="form-group col-md-9">
-                <strong>Número de Fax: </strong>
-                <input class=" form-control" type="text" id="numFax" autofocus>
+                <strong>Identificación del Emisor: </strong>
+                <input class=" form-control" type="text" id="identificacionEmisor" autofocus>
             </div>
             <div class="form-group col-md-9">
-                <strong>Código de País: </strong>
-                <input class="form-control" type="text" id="codigoPais">
+                <strong>Tipo de identificación: </strong>
+                <input class="form-control" type="text" id="tipo">
             </div>
             <div id="myProgress">
                 <div id="myBar"></div>
@@ -86,30 +86,29 @@
     <script src="../Scripts/jquery.js"></script>
     <script type="text/javascript">
 
-        function nuevoFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            guardarFax(Fax);
+        function nuevoIdEmisor() {
+            idEmisor.identificacionEmisor = document.getElementById('identificacionEmisor').value;
+            idEmisor.tipo = document.getElementById('tipo').value;
+            guardaridEmisor(idEmisor);
         }
-        function eliminaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            eliminarFax(Fax);
+        function eliminaIdEmisor() {
+            idEmisor.identificacionEmisor = document.getElementById('identificacionEmisor').value;
+            eliminaridEmisor(idEmisor);
         }
-        function modificaFax() {
-            Fax.numFax = document.getElementById('numFax').value;
-            Fax.codigoPais = document.getElementById('codigoPais').value;
-            modificarFax(Fax)
+        function modificaIdEmisor() {
+            idEmisor.identificacionEmisor = document.getElementById('identificacionEmisor').value;
+            idEmisor.tipo = document.getElementById('tipo').value;
+            modificaridEmisor(idEmisor)
         }
 
 
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevoFax);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminaFax);
-            document.getElementById('ModificaBtn').addEventListener('click', modificaFax);
+            document.getElementById('GuardarBtn').addEventListener('click', nuevoIdEmisor);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaIdEmisor);
+            document.getElementById('ModificaBtn').addEventListener('click', modificaIdEmisor);
 
         })();
     </script>
 </body>
 </html>
-
 
