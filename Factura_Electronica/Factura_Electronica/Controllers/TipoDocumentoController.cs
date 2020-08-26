@@ -32,7 +32,6 @@ namespace Factura_Electronica.Controllers
             TipoDocumento tipoDocumento = new TipoDocumento();
 
             tipoDocumento.Tipodocumento1 = form.Get("tipoDocumento");
-            tipoDocumento.NumeroIdentidadTercero1 = form.Get("numeroIdentidadTercero");
 
             string[] respuesta = new string[2];
             respuesta[0] = tipoDocumento.Elimina_TipoDocumento();

@@ -453,6 +453,46 @@
                 })
             }
 /////////////////////////////////////////////////////////////////////////////////////////
+    var codComercial = new Object;
+    codComercial.codigo = "";
+    codComercial.tipo = "";
+    function guardarcodComercial(codComercial) {
+                    $.ajax({
+                        url: ruta + "CodigoComercial",
+                        type: 'PUT',
+                        dataType: 'json',
+                        data: codComercial,
+                        success: function (data, textStatus, xhr) {
+                            mover();
+                            eliminaValores();
+                            setTimeout(function () { alert(data[0]); }, 1500);
+
+                        },
+                        error: function (xhr, textStatus, erroThrown) {
+
+                            alert(xhr);
+                        }
+                    })
+                }
+    function eliminarcodComercial(codComercial) {
+                $.ajax({
+                    url: ruta + "CodigoComercial",
+                    type: 'DELETE',
+                    dataType: 'json',
+                    data: codComercial,
+                    success: function (data, textStatus, xhr) {
+                        mover();
+                        eliminaValores();
+                        setTimeout(function () { alert(data[0]); }, 1500);
+
+                    },
+                    error: function (xhr, textStatus, erroThrown) {
+
+                        alert(xhr);
+                    }
+                })
+}
+/////////////////////////////////////////////////////////////////////////////////////////
     var TD = new Object;
     TD.numeroIdentidadTercero = "";
     TD.tipoDocumento = "";
@@ -475,20 +515,20 @@
             })
         }
     function eliminarTD(TD) {
-        $.ajax({
-            url: ruta + "TipoDocumento",
-            type: 'DELETE',
-            dataType: 'json',
-            data: TD,
-            success: function (data, textStatus, xhr) {
-                mover();
-                eliminaValores();
-                setTimeout(function () { alert(data[0]); }, 1500);
+            $.ajax({
+                url: ruta + "TipoDocumento",
+                type: 'DELETE',
+                dataType: 'json',
+                data: TD,
+                success: function (data, textStatus, xhr) {
+                    mover();
+                    eliminaValores();
+                    setTimeout(function () { alert(data[0]); }, 1500);
 
-            },
-            error: function (xhr, textStatus, erroThrown) {
+                },
+                error: function (xhr, textStatus, erroThrown) {
 
-                alert(xhr);
-            }
-        })
-            }
+                    alert(xhr);
+                }
+            })
+        }

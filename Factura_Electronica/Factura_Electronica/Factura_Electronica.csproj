@@ -83,6 +83,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ajax.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Views\CodigoComercial.html" />
     <Content Include="Views\CodigoTipoMoneda.html" />
     <Content Include="Views\Descuento.html" />
     <Content Include="Views\Exoneracion.html" />
@@ -91,12 +92,14 @@
     <Content Include="Views\IdentificacionReceptor.html" />
     <Content Include="Views\styles\styles.css" />
     <Content Include="Views\Telefono.html" />
+    <Content Include="Views\TipoDocumento.html" />
     <Content Include="Views\Ubicacion.html" />
     <Content Include="Views\img\guardar.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CodigoComercialController.cs" />
     <Compile Include="Controllers\CodigoTipoMonedaController.cs" />
     <Compile Include="Controllers\DescuentoController.cs" />
     <Compile Include="Controllers\ExoneracionController.cs" />

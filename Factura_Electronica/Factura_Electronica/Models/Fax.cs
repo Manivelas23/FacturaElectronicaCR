@@ -6,9 +6,8 @@ using System.Web;
 namespace Factura_Electronica.Models
 {
     public class Fax { 
-    private int NumFax;
-    private int CodigoPais;
-
+        private int NumFax;
+        private int CodigoPais;
         public int NumFax1 { get => NumFax; set => NumFax = value; }
         public int CodigoPais1 { get => CodigoPais; set => CodigoPais = value; }
         public string Actualiza_fax()
