@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Ubicación</title>
+    <title>Codigo Comercial</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -11,53 +11,7 @@
 </head>
 <body>
     <div class="container col-md-11s" id="mainContainer">
-        <ul class="row col-md-4  " id="olMenu">
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">home</span>
-                <a href="Index.html" class="aMenu">Menú</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">place</span>
-                <a href="Ubicacion.html" class="aMenu">Ubicacion</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">monetization_on</span>
-                <a href="CodigoTipoMoneda.html" class="aMenu">Codigo Tipo Moneda</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">redeem</span>
-                <a href="Descuento.html" class="aMenu">Descuento</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">done</span>
-                <a href="Exoneracion.html" class="aMenu">Exoneración</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">printer</span>
-                <a href="Fax.html" class="aMenu">Fax</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">contact_mail</span>
-                <a href="IdentificacionReceptor.html" class="aMenu">Indentificación Receptor</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">contact_phone</span>
-                <a href="IdentificacionEmisor.html" class="aMenu">Indentificación Emisor</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action">
-                <span class="material-icons spanMenu">phone</span>
-                <a href="Telefono.html" class="aMenu">Teléfono</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action ">
-                <span class="material-icons spanMenu">article</span>
-                <a href="TipoDocumento.html" class="aMenu">Tipo de Documento</a>
-            </li>
-            <li class=" liMenu list-group-item list-group-item-action activeLi">
-                <span class="material-icons spanMenu">vpn_key</span>
-                <a href="CodigoComercial.html" class="aMenu">Código Comercial</a>
-            </li>
-        </ul>
-
+        <div class="row col-md-5" id="navBar"></div>
         <div class="row col-md-8" id="formContainer">
             <div class="row col-md-11 " id="formInfo">
                 <h5>Formulario Código Comercial:</h5>
@@ -81,6 +35,7 @@
             </div>
         </div>
     </div>
+
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
     <script type="text/javascript">
@@ -89,18 +44,21 @@
             codComercial.codigo = document.getElementById('codigo').value;
             codComercial.tipo = document.getElementById('tipo').value;
             guardarcodComercial(codComercial);
-		}
-
+        }
         function eliminacodComercial() {
             codComercial.codigo = document.getElementById('tipo').value;
             codComercial.tipo = document.getElementById('tipo').value;
             eliminarcodComercial(codComercial);
-		}
-
+        }
+        function activeLi() {
+            $('#CC').addClass('activeLi');
+        }
 
         (function () {
             document.getElementById('GuardarBtn').addEventListener('click', nuevocodComercial);
             document.getElementById('EliminarBtn').addEventListener('click', eliminacodComercial);
+            document.getElementById('navBar').innerHTML += cargaNavBar();
+            activeLi();
         })();
     </script>
 </body>

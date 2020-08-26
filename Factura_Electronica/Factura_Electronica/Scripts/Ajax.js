@@ -24,6 +24,70 @@
                 }
             }
         }
+}
+    function cargaNavBar() {
+        var navBar = "";
+        navBar +=
+            `
+                  <ul class="row col-md-12  " id="olMenu">
+
+                        <li class="liMenu list-group-item list-group-item-action">
+                            <span class="material-icons spanMenu">home</span>
+                            <a href="Index.html" class="aMenu">Menú</a>
+                        </li>
+
+                        <li class="liMenu list-group-item list-group-item-action" id="UB">
+                            <span class="material-icons spanMenu">place</span>
+                            <a href="Ubicacion.html" class="aMenu">Ubicacion</a>
+                        </li>
+
+                        <li class="liMenu list-group-item list-group-item-action" id="CTM">
+                            <span class="material-icons spanMenu">monetization_on</span>
+                            <a href="CodigoTipoMoneda.html" class="aMenu">Codigo Tipo Moneda</a>
+                        </li>
+
+                        <li class="liMenu list-group-item list-group-item-action" id="DES">
+                            <span class="material-icons spanMenu">redeem</span>
+                            <a href="Descuento.html" class="aMenu">Descuento</a>
+                        </li>
+
+                        <li class="liMenu list-group-item list-group-item-action" id="EXO">
+                            <span class="material-icons spanMenu">done</span>
+                            <a href="Exoneracion.html" class="aMenu">Exoneración</a>
+                        </li>
+
+                        <li class=" liMenu list-group-item list-group-item-action" id="FAX">
+                            <span class="material-icons spanMenu">printer</span>
+                            <a href="Fax.html" class="aMenu">Fax</a>
+                        </li>
+
+                        <li class=" liMenu list-group-item list-group-item-action" id="IDR">
+                            <span class="material-icons spanMenu">contact_mail</span>
+                            <a href="IdentificacionReceptor.html" class="aMenu">Indentificación Receptor</a>
+                        </li>
+
+                        <li class=" liMenu list-group-item list-group-item-action" id="IDE">
+                            <span class="material-icons spanMenu">contact_phone</span>
+                            <a href="IdentificacionEmisor.html" class="aMenu">Indentificación Emisor</a>
+                        </li>
+
+                        <li class=" liMenu list-group-item list-group-item-action" id="TEL">
+                            <span class="material-icons spanMenu">phone</span>
+                            <a href="Telefono.html" class="aMenu">Teléfono</a>
+                        </li>
+
+                        <li class=" liMenu list-group-item list-group-item-action" id="TD">
+                            <span class="material-icons spanMenu">article</span>
+                            <a href="TipoDocumento.html" class="aMenu">Tipo de Documento</a>
+                        </li>
+
+                        <li class=" liMenu list-group-item list-group-item-action" id="CC">
+                            <span class="material-icons spanMenu">vpn_key</span>
+                            <a href="CodigoComercial.html" class="aMenu">Código Comercial</a>
+                        </li>
+                    </ul>
+            `
+        return navBar;
     }
 /////////////////////////////////////////////////////////////////////////////////////////
     var Ubicacion = new Object;

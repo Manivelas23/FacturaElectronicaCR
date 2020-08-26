@@ -3,19 +3,16 @@
     margin: 0;
 
 }
-body{
-    border-radius: 50px;
-background: #050606;
-box-shadow:  1px 1px 2px #0e0e0e, 
-             -1px -1px 2px #161616;
+body {
+    background: #050606; 
 }
-#mainContainer{
+#mainContainer {
     margin-top: 4vh;
     margin-bottom: 4vh;
     padding: 2vh;
     height: auto;
     display: flex;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     align-items: center;
     font-family: 'Poppins', sans-serif;
 }
@@ -54,7 +51,6 @@ box-shadow:  1px 1px 2px #0e0e0e,
     visibility: hidden;
     margin-top:3vh;
 }
-
 #myBar {
     width: 1%;
     height: 30px;
@@ -70,7 +66,7 @@ box-shadow:  1px 1px 2px #0e0e0e,
     box-sizing: border-box;
     padding: 2vh;
     align-self:center;
-    align-items: center;
+    align-items: center;    
     margin-right: 16vh;
 }
 .liMenu{
@@ -83,12 +79,13 @@ box-shadow:  1px 1px 2px #0e0e0e,
     inset 5px 5px 10px #1d1d1d;
     margin-top: 2vh;
 }
-.liMenu:hover{
-    transition: 0.7s;
-    background-color: orange;
-}
+.liMenu:hover {
+        transition: 0.9s;
+        background-color: orange;
+    }
 .activeLi{
     background: orange;
+    color:#050606;
 }
 .spanMenu{
     position: relative;
@@ -97,11 +94,16 @@ box-shadow:  1px 1px 2px #0e0e0e,
     border-radius: 8px;
     color: #ff5900;
 }
-.aMenu{
+.aMenu {
     color: #B4B4B4;
     background: none;
     font-weight: bold;
 }
+.aMenu:hover {
+        text-decoration: none;
+        color: #050606;
+        transition: 0.3s;
+    }
 .menuBtn{
     color: #B4B4B4;
     font-weight: bold;
