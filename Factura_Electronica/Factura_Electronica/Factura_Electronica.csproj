@@ -83,6 +83,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\Ajax.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\Responsive.js" />
     <Content Include="Views\CodigoComercial.html" />
     <Content Include="Views\CodigoTipoMoneda.html" />
     <Content Include="Views\Descuento.html" />

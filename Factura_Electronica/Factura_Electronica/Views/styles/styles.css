@@ -1,118 +1,134 @@
-﻿*{
-    padding:0;
-    margin: 0;
+﻿* {
+    padding: 0;
+    margin: 0
+}
 
-}
 body {
-    background: #050606; 
+    background: #e2ebf4;
+    box-shadow: -26px -26px 100px #c2cad2, 26px 26px 100px #ffffff;
+    font-family: 'Poppins', sans-serif
 }
+
 #mainContainer {
-    margin-top: 4vh;
-    margin-bottom: 4vh;
+    margin-top: 7vh;
     padding: 2vh;
     height: auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
+    font-size: 1pc
 }
 
-/* Formulario */
-#formContainer{
-    display: flex ;
+#formContainer {
+    display: flex;
     min-height: inherit;
     height: inherit;
     align-items: center;
     color: #B4B4B4;
-    justify-content:center;   
+    justify-content: center
 }
-#formInfo{
+
+#formInfo {
+    margin: 2vh 0vh 2vh 0vh;
     height: auto;
     align-items: center;
     justify-content: center;
-    color: #B4B4B4;
+    color: #66a3fc;
+    text-align: center
 }
-.form-group{
+
+.form-group {
     background: none;
+    margin-top: 2vh
 }
-.form-control{
+
+.form-control {
     border: none;
     margin-top: 2vh;
-    background: none;
-    border-radius: 8px;
-    color:white;
-    background: linear-gradient(360deg, #1d1e1f, #18191a);
-    box-shadow:  -5px -5px 10px #1a1b1c, 
-                 5px 5px 10px #1c1d1e;
+    color: black;
+    border-radius: 10px;
+    background: #f1f5fe;
+    box-shadow: 7px 7px 15px #c8cbd3, -7px -7px 15px #ffffff
 }
+
 #myProgress {
     width: 100%;
     background-color: #ddd;
     visibility: hidden;
-    margin-top:3vh;
+    margin-top: 3vh
 }
+
 #myBar {
     width: 1%;
     height: 30px;
-    background-color: #4CAF50;
-    color: #050606;
+    background-color: #52b4ff;
+    color: #050606
 }
 
-/* sideMenu */
-#olMenu{
-    justify-content: flex-start;
-    display: flex;
-    height: auto;
-    box-sizing: border-box;
-    padding: 2vh;
-    align-self:center;
-    align-items: center;    
-    margin-right: 16vh;
-}
-.liMenu{
-    justify-content:flex-start ;
-    display: flex;
-    align-self: center;
-    border-radius: 8px;
-    background: #1c1c1c;
-    box-shadow: inset -5px -5px 10px #1b1b1b, 
-    inset 5px 5px 10px #1d1d1d;
-    margin-top: 2vh;
-}
-.liMenu:hover {
-        transition: 0.9s;
-        background-color: orange;
-    }
-.activeLi{
-    background: orange;
-    color:#050606;
-}
-.spanMenu{
-    position: relative;
-    width: 5vh;
-    margin-right: 2vh;
-    border-radius: 8px;
-    color: #ff5900;
-}
-.aMenu {
-    color: #B4B4B4;
-    background: none;
-    font-weight: bold;
-}
-.aMenu:hover {
-        text-decoration: none;
-        color: #050606;
-        transition: 0.3s;
-    }
-.menuBtn{
-    color: #B4B4B4;
-    font-weight: bold;
-}
-#btnGroup{
+#btnGroup {
     display: flex;
     justify-content: space-evenly;
-    align-self:center;
-    margin-top: 4vh;
-    align-items: center;
+    align-self: center;
+    margin-top: 2vh;
+    align-items: center
 }
 
+nav {
+    display:flex;
+    flex-direction:row-reverse;
+    background: #e2ebf4;
+    box-shadow: -26px -26px 100px #c2cad2, 26px 26px 100px #ffffff
+}
+
+.ulMenu {
+    display: flex;
+    width: 100%;
+    justify-content:space-evenly;
+}
+
+.liMenu {
+    display: flex;
+    justify-content: center
+}
+
+.liMenu > a {
+        color: #798696;
+        text-decoration: none
+    }
+
+.liMenu > a:hover {
+            transition: 0.3s;
+            color: #66a3fc
+        }
+
+.spanMenu {
+    margin-right: 1vh;
+    display: none;
+    color: #6ea1fd
+}
+
+.activeLi {
+    color: #66a3fc
+}
+
+@media screen and (max-width: 991px) {
+    .spanMenu {
+        position: static;
+        visibility: visible;
+        display: inline-block;
+        z-index: 0
+    }
+
+    .liMenu {
+        display: normal;
+        justify-content: normal;
+        align-items: center;
+        margin-top: 1vh;
+        height: 5vh
+    }
+
+    .img-fluid {
+        display: none
+    }
+}

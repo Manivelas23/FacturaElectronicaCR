@@ -1,20 +1,19 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
-    <title>Ubicación</title>
+    <title>Tipo Documento</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="styles/styles.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <div class="container col-md-11s" id="mainContainer">
-        <div class="row col-md-5" id="navBar"></div>
+    <div id="navBar"></div>
+    <div class="container" id="mainContainer">
+        <img src="img/ux.png" class="col-md-8 img-fluid" alt="Responsive image">
         <div class="row col-md-8" id="formContainer">
-            <div class="row col-md-11 " id="formInfo">
+            <div class="row col-md-11" id="formInfo">
                 <h5>Formulario Tipo de Documento:</h5>
                 <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
@@ -38,6 +37,8 @@
     </div>
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>`;
+
     <script type="text/javascript">
         function nuevoTD() {
             TD.numeroIdentidadTercero = document.getElementById('numeroIdentidadTercero').value;
@@ -59,5 +60,4 @@
         })();
     </script>
 </body>
-
 </html>
