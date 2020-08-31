@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Factura_Electronica.Models
 {
@@ -119,6 +120,40 @@ namespace Factura_Electronica.Models
             }
             else
                 return "Sin Conexión con la Base de Datos";
+        }
+
+        public List<Ubicacion> Seleccionar_Todo_Ubicacion()
+        {
+            List<Ubicacion> listaUbicacion = new List<Ubicacion>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+
+            if (objeto_conexion.activaBD())
+            {
+                String query;
+                System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                query = "EXEC SELECCIONARTODOUBICACION";
+                objeto_conexion.nueva_consulta(query);
+                CONTENEDOR = objeto_conexion.busca();
+                while (CONTENEDOR.Read())
+                {
+                    Ubicacion ubicacion = new Ubicacion();
+                    ubicacion.Provincia1 = CONTENEDOR["PROVINCIA"].ToString();
+                    ubicacion.Canton1 = CONTENEDOR["CANTON"].ToString();
+                    ubicacion.Distrito1 = CONTENEDOR["DISTRITO"].ToString();
+                    ubicacion.Barrio1 = CONTENEDOR["BARRIO"].ToString();
+                    ubicacion.OtrasSenas1 = CONTENEDOR["OTRASSENAS"].ToString();
+                    ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());
+                    listaUbicacion.Add(ubicacion);
+                }
+                objeto_conexion.conexion.Close();
+                objeto_conexion.conexion.Dispose();
+                CONTENEDOR.Close();
+                return listaUbicacion;
+            }
+            else
+                return listaUbicacion;
         }
     }
 }

@@ -11,6 +11,14 @@ namespace Factura_Electronica.Controllers
 {
     public class UbicacionController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            Ubicacion ubicacion = new Ubicacion();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.Ubicacion>>(HttpStatusCode.Created, ubicacion.Seleccionar_Todo_Ubicacion());
+            return response;
+        }
+
         [HttpPost]
         public HttpResponseMessage Post(FormDataCollection form)
         {
@@ -53,10 +61,10 @@ namespace Factura_Electronica.Controllers
         {
             Ubicacion Ubicacion = new Ubicacion();
 
-            Ubicacion.IdUbicacion1 = Convert.ToInt16(form.Get("IdUbicacion"));
+            Ubicacion.IdUbicacion1 = Convert.ToInt16(form.Get("idUbicacion"));
                 string[] respuesta = new string[2];
                 respuesta[0] = Ubicacion.Elimina_ubicacion();
-                respuesta[1] = form.Get("IdUbicacion");
+                respuesta[1] = form.Get("idUbicacion");
 
                 HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
                 return res;
