@@ -74,6 +74,10 @@ body {
     align-items: center
 }
 
+.activeLi {
+    background-color: #66a3fc;
+}
+
 nav {
     display:flex;
     flex-direction:row-reverse;
@@ -108,9 +112,7 @@ nav {
     color: #6ea1fd
 }
 
-.activeLi {
-    color: #66a3fc
-}
+
 
 @media screen and (max-width: 991px) {
     .spanMenu {

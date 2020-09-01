@@ -1,10 +1,10 @@
 ﻿        const ruta = "https://localhost:44314/api/";
         var i = 0;
-        function eliminaValores() {
-            var x = document.getElementById("formContainer").querySelectorAll(".form-control");
-            for (var i = 0; i < x.length; i++) {
-                x[i].value = "";
-            }
+        function desabilitaGuardar() {
+            document.getElementById('GuardarBtn').disabled = true;
+}
+        function habilitaGuardar() {
+            document.getElementById('GuardarBtn').disabled = false;
         }
         function mover() {
             if (i == 0) {
@@ -95,7 +95,23 @@
               // script += `  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>`;
                 var vectorCargar = [navBar];
                 return vectorCargar;
+}
+        function eliminaValores() {
+            var x = document.getElementById("formContainer").querySelectorAll(".form-control");
+            for (var i = 0; i < x.length; i++) {
+                x[i].value = "";
             }
+}
+        function botones() {
+        document.getElementById('btnGroup').innerHTML+=
+            `
+                    <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
+                    <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
+                    <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                    <input class="btn  btn-light" type="button" id="EliminarBtn" value="Eliminar Campos" />
+            `
+            }
+
     /////////////////////////////////////////////////////////////////////////////////////////
         var Ubicacion = new Object;
         Ubicacion.idUbicacion = "";
@@ -146,6 +162,7 @@
                                     mover();
                                     eliminaValores();
                                     setTimeout(function () { alert(data[0]); }, 1500);
+                                    habilitaGuardar(); 
                                 },
                                 error: function (xhr, textStatus, erroThrown) {
                                     alert(xhr);

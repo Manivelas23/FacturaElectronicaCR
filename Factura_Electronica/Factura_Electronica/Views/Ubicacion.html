@@ -59,9 +59,6 @@
                 <div id="myBar"></div>
             </div>
             <div class="col-md-7 " id="btnGroup">
-                <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
-                <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
-                <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
             </div>
         </div>
     </div>
@@ -118,28 +115,34 @@
             modificarUbicacion(Ubicacion);
         }
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevaUbicacion);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminaUbicacion);
-            document.getElementById('ModificaBtn').addEventListener('click', modificaUbicacion);
             document.getElementById('navBar').innerHTML += cargaNavBar();
             activeLi();
+            botones();
             cargarUbicacion();
+            document.getElementById('GuardarBtn').addEventListener('click', nuevaUbicacion);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaUbicacion);
+            document.getElementById('ModificaBtn').addEventListener('click', modificaUbicacion);   
+            document.getElementById('idUbicacion').addEventListener('keypress', habilitaGuardar);      
         })();
         function cargaDatosFormulario(objetoSerializado) {
+            eliminaValores();
+            habilitaGuardar();  
             document.getElementById('idUbicacion').value = objetoSerializado.IdUbicacion1;
             document.getElementById('Provincia').value = objetoSerializado.Provincia1;
             document.getElementById('Canton').value = objetoSerializado.Canton1;
             document.getElementById('Distrito').value = objetoSerializado.Distrito1;
             document.getElementById('Barrio').value = objetoSerializado.Barrio1;
-            document.getElementById('otrasSenas').value = objetoSerializado.OtrasSenas1;
+            document.getElementById('otrasSenas').value = objetoSerializado.OtrasSenas1; 
+            desabilitaGuardar();
         }
         function verificaEliminar(id) {
             var respuesta = window.confirm(`Desea Eliminar la Ubicación con el id : ${id}`);
-            if (respuesta) {
+            if (respuesta) {         
                 Ubicacion.idUbicacion = id;
                 eliminarUbicacion(Ubicacion);
+                habilitaGuardar();  
             }
-            else {
+            else {               
                 alert('No se ha Realizado Ninguna Acción');
             }
         }
