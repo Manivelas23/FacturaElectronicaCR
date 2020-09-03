@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="navBar"></div>
+    <div id="navBar">
+
+    </div>
     <div class="container" id="mainContainer">
         <img src="img/ux.png" class="col-md-8 img-fluid" alt="Responsive image">
         <div class="row col-md-8" id="formContainer">
@@ -26,38 +28,76 @@
                 <strong>Número de Identidad de Tercero: </strong>
                 <input class=" form-control" type="text" id="numeroIdentidadTercero">
             </div>
-            <div id="myProgress">
-                <div id="myBar"></div>
+            <div class="col-md-9" id="btnGroup">
+                <input class="btn btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
+                <input class="btn btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                <input class="btn btn-light" type="button" id="BorrarBtn" value="Borrar" />
             </div>
-            <div class="col-md-7 " id="btnGroup">
-                <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
-                <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+        </div>
+    </div>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver Documentos Guardados
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="table-responsive">
+                <table class="table text-center table-borderless" id="tabla">
+                </table>
             </div>
         </div>
     </div>
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>`;
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
         function nuevoTD() {
             TD.numeroIdentidadTercero = document.getElementById('numeroIdentidadTercero').value;
             TD.tipoDocumento = document.getElementById('tipoDocumento').value;
-            guardarTD(TD);
+            globalFunction('TipoDocumento', 1, TD);
         }
         function eliminaTD() {
             TD.tipoDocumento = document.getElementById('tipoDocumento').value;
-            eliminarTD(TD);
+            globalFunction('TipoDocumento', 2, TD);
+
         }
         function activeLi() {
             $('#TD').addClass('activeLi');
         }
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevoTD);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminaTD);
             document.getElementById('navBar').innerHTML += cargaNavBar();
             activeLi();
+            cargarTD();
+            document.getElementById('GuardarBtn').addEventListener('click', nuevoTD);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaTD);
+            document.getElementById('BorrarBtn').addEventListener('click', eliminaValores);
+            document.getElementById('tipoDocumento').addEventListener('keypress', habilitaGuardar);
         })();
+        function cargaDatosFormulario(objetoSerializado) {
+            eliminaValores();
+            habilitaGuardar();
+            document.getElementById('tipoDocumento').value = objetoSerializado.Tipodocumento1; 
+            document.getElementById('numeroIdentidadTercero').value = objetoSerializado.NumeroIdentidadTercero1;
+        }
+        function verificaEliminar(id) {
+            var respuesta = window.confirm(`Desea Eliminar el Tipo de Documento : ${id}`);
+            if (respuesta) {
+                TD.tipoDocumento = id;
+                globalFunction('TipoDocumento', 2, TD);
+                habilitaGuardar();
+            }
+            else {
+                alert('No se ha Realizado Ninguna Acción');
+            }
+        }
     </script>
 </body>
 </html>

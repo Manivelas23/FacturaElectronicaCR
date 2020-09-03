@@ -11,6 +11,13 @@ namespace Factura_Electronica.Controllers
 {
     public class TelefonoController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            Telefono telefono = new Telefono();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.Telefono>>(HttpStatusCode.Created, telefono.Seleccionar_Todo_Telefono());
+            return response;
+        }
         [HttpPost]
         public HttpResponseMessage Post(FormDataCollection form)
         {
@@ -44,7 +51,6 @@ namespace Factura_Electronica.Controllers
         {
             Telefono tel = new Telefono();
             tel.NumTelefono1 = Convert.ToInt32(form.Get("numTelefono"));
-            tel.CodigoPais1 = Convert.ToInt32(form.Get("codigoPais"));
 
             string[] respuesta = new string[2];
             respuesta[0] = tel.Elimina_telefono();

@@ -11,6 +11,14 @@ namespace Factura_Electronica.Controllers
 {
     public class FaxController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            Fax fax = new Fax();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.Fax>>(HttpStatusCode.Created, fax.Seleccionar_Todo_Fax());
+            return response;
+        }
+
         [HttpPost]
         public HttpResponseMessage Post(FormDataCollection form)
         {

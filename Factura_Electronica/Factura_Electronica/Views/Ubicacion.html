@@ -43,41 +43,29 @@
                 <strong>Otras Senas:</strong>
                 <textarea class="form-control" type="textarea" id="otrasSenas"></textarea>
             </div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
-
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        ...
-                    </div>
-                </div>
+            <div class="col-md-9" id="btnGroup">
+                <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
+                <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
+                <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                <input class="btn  btn-light" type="button" id="BorrarBtn" value="Borrar" />
             </div>
-            <div id="mostrarProgreso">
-
-            </div>
-            <div id="myProgress">
-                <div id="myBar"></div>
-            </div>
-            <div class="col-md-7 " id="btnGroup">
-            </div>
-        </div>
+        </div>  
+    </div>
+    <div id="myProgress">
+        <div id="myBar"></div>
     </div>
     <div class="accordion" id="accordionExample">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Ver Ubicaciones
-                    </button>
-                </h2>
-            </div>
-
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="table-responsive">
-                    <table class="table text-center table-bordered" id="tabla">
-                    
-                    </table>
-                </div>
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver Ubicaciones Guardadas
+                </button>
+            </h2>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="table-responsive">
+                <table class="table text-center table-borderless" id="tabla">
+                </table>
             </div>
         </div>
     </div>
@@ -85,7 +73,6 @@
     <script src="../Scripts/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript">
-
         function activeLi() {
             $('#UB').addClass('activeLi');
         }
@@ -97,12 +84,12 @@
             Ubicacion.Barrio = document.getElementById('Barrio').value;
             Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
 
-            guardarUbicacion(Ubicacion);
+            globalFunction('Ubicacion', 1, Ubicacion);
         }
         function eliminaUbicacion() {
             Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
 
-            eliminarUbicacion(Ubicacion);
+            globalFunction('Ubicacion', 2, Ubicacion);
         }
         function modificaUbicacion() {
             Ubicacion.idUbicacion = document.getElementById('idUbicacion').value;
@@ -112,37 +99,37 @@
             Ubicacion.Barrio = document.getElementById('Barrio').value;
             Ubicacion.otrasSenas = document.getElementById('otrasSenas').value;
 
-            modificarUbicacion(Ubicacion);
+            globalFunction('Ubicacion', 0, Ubicacion);
         }
         (function () {
             document.getElementById('navBar').innerHTML += cargaNavBar();
             activeLi();
-            botones();
             cargarUbicacion();
             document.getElementById('GuardarBtn').addEventListener('click', nuevaUbicacion);
             document.getElementById('EliminarBtn').addEventListener('click', eliminaUbicacion);
-            document.getElementById('ModificaBtn').addEventListener('click', modificaUbicacion);   
-            document.getElementById('idUbicacion').addEventListener('keypress', habilitaGuardar);      
+            document.getElementById('ModificaBtn').addEventListener('click', modificaUbicacion);
+            document.getElementById('BorrarBtn').addEventListener('click', eliminaValores); 
+            document.getElementById('idUbicacion').addEventListener('keypress', habilitaGuardar);
         })();
         function cargaDatosFormulario(objetoSerializado) {
             eliminaValores();
-            habilitaGuardar();  
+            habilitaGuardar();
             document.getElementById('idUbicacion').value = objetoSerializado.IdUbicacion1;
             document.getElementById('Provincia').value = objetoSerializado.Provincia1;
             document.getElementById('Canton').value = objetoSerializado.Canton1;
             document.getElementById('Distrito').value = objetoSerializado.Distrito1;
             document.getElementById('Barrio').value = objetoSerializado.Barrio1;
-            document.getElementById('otrasSenas').value = objetoSerializado.OtrasSenas1; 
+            document.getElementById('otrasSenas').value = objetoSerializado.OtrasSenas1;
             desabilitaGuardar();
         }
         function verificaEliminar(id) {
             var respuesta = window.confirm(`Desea Eliminar la Ubicación con el id : ${id}`);
-            if (respuesta) {         
+            if (respuesta) {
                 Ubicacion.idUbicacion = id;
-                eliminarUbicacion(Ubicacion);
-                habilitaGuardar();  
+                globalFunction('Ubicacion', 2, Ubicacion);
+                habilitaGuardar();
             }
-            else {               
+            else {
                 alert('No se ha Realizado Ninguna Acción');
             }
         }

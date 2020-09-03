@@ -12,6 +12,42 @@ namespace Factura_Electronica.Models
 
         public decimal MontoDescuento1 { get => MontoDescuento; set => MontoDescuento = value; }
         public string NaturalezaDescuento1 { get => NaturalezaDescuento; set => NaturalezaDescuento = value; }
+
+        public List<Descuento> Seleccionar_Todo_Descuento()
+        {
+            List<Descuento> listaDescuento = new List<Descuento>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC SELECCIONARTODODESCUENTO";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        Descuento descuento = new Descuento();
+                        descuento.MontoDescuento1 = Convert.ToDecimal(CONTENEDOR["MONTODESCUENTO"].ToString());
+                        descuento.NaturalezaDescuento1 = CONTENEDOR["_NATURALEZADESCUENTO"].ToString();
+                        listaDescuento.Add(descuento);
+                    }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listaDescuento;
+                }
+                else
+                    return listaDescuento;
+            }
+            catch
+            {
+                return listaDescuento;
+            }
+        }
         public string Elimina_descuento()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();

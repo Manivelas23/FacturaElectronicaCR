@@ -11,6 +11,14 @@ namespace Factura_Electronica.Controllers
 {
     public class IdentificacionReceptorController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            IdentificacionReceptor idReceptor = new IdentificacionReceptor();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.IdentificacionReceptor>>(HttpStatusCode.Created, idReceptor.Seleccionar_Todo_IdentificacionReceptor());
+            return response;
+        }
+
         [HttpPost]
         public HttpResponseMessage Post(FormDataCollection form)
         {

@@ -11,6 +11,13 @@ namespace Factura_Electronica.Controllers
 {
     public class TipoDocumentoController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            TipoDocumento tipoDocumento = new TipoDocumento();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.TipoDocumento>>(HttpStatusCode.Created, tipoDocumento.Seleccionar_Todo_TipoDocumento());
+            return response;
+        }
         [HttpPut]
         public HttpResponseMessage Put(FormDataCollection form)
         {
@@ -25,7 +32,6 @@ namespace Factura_Electronica.Controllers
             HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
             return res;
         }
-
         [HttpDelete]
         public HttpResponseMessage Delete(FormDataCollection form)
         {

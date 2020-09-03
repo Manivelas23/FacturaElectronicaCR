@@ -12,6 +12,42 @@ namespace Factura_Electronica.Models
 
         public string Identificacionemisor1 { get => Identificacionemisor; set => Identificacionemisor = value; }
         public string Tipo1 { get => Tipo; set => Tipo = value; }
+
+        public List<IdentificacionEmisor> Seleccionar_Todo_IdentificacionEmisor()
+        {
+            List<IdentificacionEmisor> listaIE = new List<IdentificacionEmisor>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC SELECCIONARTODOEMISOR";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        IdentificacionEmisor idEmisor = new IdentificacionEmisor();
+                        idEmisor.Identificacionemisor1 = CONTENEDOR["IDENTIFICACIONEMISOR"].ToString();
+                        idEmisor.Tipo1 = CONTENEDOR["TIPO"].ToString();
+                        listaIE.Add(idEmisor);
+                    }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listaIE;
+                }
+                else
+                    return listaIE;
+            }
+            catch
+            {
+                return listaIE;
+            }
+        }
         public string Actualiza_identificacionEmisor()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();

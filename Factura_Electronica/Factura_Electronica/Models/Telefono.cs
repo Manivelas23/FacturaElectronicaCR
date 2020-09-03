@@ -12,6 +12,42 @@ namespace Factura_Electronica.Models
 
         public int NumTelefono1 { get => NumTelefono; set => NumTelefono = value; }
         public int CodigoPais1 { get => CodigoPais; set => CodigoPais = value; }
+
+        public List<Telefono> Seleccionar_Todo_Telefono()
+        {
+            List<Telefono> listaTelefono = new List<Telefono>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC SELECCIONARTODOTELEFONO";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        Telefono telefono = new Telefono();
+                        telefono.NumTelefono1 = Convert.ToInt32(CONTENEDOR["NUMTELEFONO"].ToString());
+                        telefono.CodigoPais1 = Convert.ToInt32(CONTENEDOR["CODIGOPAIS"].ToString());
+                        listaTelefono.Add(telefono);
+                    }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listaTelefono;
+                }
+                else
+                    return listaTelefono;
+            }
+            catch
+            {
+                return listaTelefono;
+            }
+        }
         public string Actualiza_telefono()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();
@@ -25,8 +61,8 @@ namespace Factura_Electronica.Models
                     query = "EXEC UPDATE_12 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
-                    objeto_conexion.nuevo_parametro(NumTelefono1, "int");
                     objeto_conexion.nuevo_parametro(CodigoPais1, "int");
+                    objeto_conexion.nuevo_parametro(NumTelefono1, "int");
 
                     CONTENEDOR = objeto_conexion.busca();
 
@@ -85,8 +121,8 @@ namespace Factura_Electronica.Models
                     query = "EXEC INSERT_12 ?,?";
                     objeto_conexion.nueva_consulta(query);
 
-                    objeto_conexion.nuevo_parametro(NumTelefono1, "int");
                     objeto_conexion.nuevo_parametro(CodigoPais1,"int");
+                    objeto_conexion.nuevo_parametro(NumTelefono1, "int");
 
                     CONTENEDOR = objeto_conexion.busca();
 

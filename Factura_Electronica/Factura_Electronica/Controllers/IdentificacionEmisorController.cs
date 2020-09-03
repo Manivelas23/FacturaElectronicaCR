@@ -10,6 +10,14 @@ namespace Factura_Electronica.Controllers
 {
     public class IdentificacionEmisorController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            IdentificacionEmisor idEmisor  = new IdentificacionEmisor();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.IdentificacionEmisor>>(HttpStatusCode.Created, idEmisor.Seleccionar_Todo_IdentificacionEmisor());
+            return response;
+        }
+
         [HttpPost]
         public HttpResponseMessage Post(FormDataCollection form)
         {

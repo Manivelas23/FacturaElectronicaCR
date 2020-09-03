@@ -10,6 +10,41 @@ namespace Factura_Electronica.Models
         private int CodigoPais;
         public int NumFax1 { get => NumFax; set => NumFax = value; }
         public int CodigoPais1 { get => CodigoPais; set => CodigoPais = value; }
+        public List<Fax> Seleccionar_Todo_Fax()
+        {
+            List<Fax> listaFax = new List<Fax>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC SELECCIONARTODOFAX";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        Fax fax = new Fax();
+                        fax.NumFax1 = Convert.ToInt32(CONTENEDOR["NUMFAX"].ToString());
+                        fax.CodigoPais1 = Convert.ToInt32(CONTENEDOR["CODIGOPAIS"].ToString());
+                        listaFax.Add(fax);
+                    }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listaFax;
+                }
+                else
+                    return listaFax;
+            }
+            catch
+            {
+                return listaFax;
+            }
+        }
         public string Actualiza_fax()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();

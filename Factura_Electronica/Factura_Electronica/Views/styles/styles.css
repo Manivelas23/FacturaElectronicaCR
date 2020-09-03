@@ -71,11 +71,11 @@ body {
     justify-content: space-evenly;
     align-self: center;
     margin-top: 2vh;
-    align-items: center
+    align-items: center;
 }
 
 .activeLi {
-    background-color: #66a3fc;
+    border-bottom: 1px solid #66a3fc;
 }
 
 nav {
@@ -111,7 +111,6 @@ nav {
     display: none;
     color: #6ea1fd
 }
-
 
 
 @media screen and (max-width: 991px) {

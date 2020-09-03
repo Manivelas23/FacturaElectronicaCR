@@ -12,6 +12,41 @@ namespace Factura_Electronica.Models
 
         public string Identificacionreceptor1 { get => Identificacionreceptor; set => Identificacionreceptor = value; }
         public string Tipo1 { get => Tipo; set => Tipo = value; }
+        public List<IdentificacionReceptor> Seleccionar_Todo_IdentificacionReceptor()
+        {
+            List<IdentificacionReceptor> listaIR = new List<IdentificacionReceptor>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC SELECCIONARTODOID";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        IdentificacionReceptor IR = new IdentificacionReceptor();
+                        IR.Identificacionreceptor1 = CONTENEDOR["IDENTIFICACIONRECEPTOR"].ToString();
+                        IR.Tipo1 = CONTENEDOR["TIPO"].ToString();
+                        listaIR.Add(IR);
+                    }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listaIR;
+                }
+                else
+                    return listaIR;
+            }
+            catch
+            {
+                return listaIR;
+            }
+        }
         public string Actualiza_identificacionreceptor()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();
@@ -75,7 +110,6 @@ namespace Factura_Electronica.Models
         public string Inserta_identificacionreceptor()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();
-
             try
             {
                 if (objeto_conexion.activaBD())

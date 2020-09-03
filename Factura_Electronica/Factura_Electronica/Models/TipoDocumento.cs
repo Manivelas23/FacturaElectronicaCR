@@ -14,6 +14,35 @@ namespace Factura_Electronica.Models
         public string NumeroIdentidadTercero1 { get => NumeroIdentidadTercero; set => NumeroIdentidadTercero = value; }
         public string Tipodocumento1 { get => Tipodocumento; set => Tipodocumento = value; }
 
+        public List<TipoDocumento> Seleccionar_Todo_TipoDocumento()
+        {
+            List<TipoDocumento> listaTipoDocumento = new List<TipoDocumento>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+
+            if (objeto_conexion.activaBD())
+            {
+                String query;
+                System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                query = "EXEC SELECCIONARTODOTIPODOCUMENTO";
+                objeto_conexion.nueva_consulta(query);
+                CONTENEDOR = objeto_conexion.busca();
+                while (CONTENEDOR.Read())
+                {
+                    TipoDocumento tipoDocumento = new TipoDocumento();
+                    tipoDocumento.NumeroIdentidadTercero1 = CONTENEDOR["NUMEROIDENTIDADTERCERO"].ToString();
+                    tipoDocumento.Tipodocumento1 = CONTENEDOR["TIPODOCUMENTO"].ToString();
+                    listaTipoDocumento.Add(tipoDocumento);
+                }
+                objeto_conexion.conexion.Close();
+                objeto_conexion.conexion.Dispose();
+                CONTENEDOR.Close();
+                return listaTipoDocumento;
+            }
+            else
+                return listaTipoDocumento;
+        }
         public string Elimina_TipoDocumento()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();
@@ -74,6 +103,8 @@ namespace Factura_Electronica.Models
                 return err.Message;
             }
         }
+
+    
 
     }
 }

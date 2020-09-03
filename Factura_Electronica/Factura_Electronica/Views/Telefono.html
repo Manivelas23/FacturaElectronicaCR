@@ -28,47 +28,84 @@
                 <strong>Código de País: </strong>
                 <input class="form-control" type="text" id="codigoPais">
             </div>
-            <div id="myProgress">
-                <div id="myBar"></div>
-            </div>
-            <div class="col-md-7 " id="btnGroup">
+
+            <div class="col-md-9" id="btnGroup">
                 <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
                 <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
                 <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                <input class="btn  col-md-3 btn-light" type="button" id="BorrarBtn" value="Borrar" />
+            </div>
+        </div>
+    </div>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver Teléfonos Guardados
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="table-responsive">
+                <table class="table text-center table-borderless" id="tabla">
+                </table>
             </div>
         </div>
     </div>
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>`;
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript">
         function nuevoTelefono() {
             Telefono.numTelefono = document.getElementById('numTelefono').value;
             Telefono.codigoPais = document.getElementById('codigoPais').value;
-            guardarTelefono(Telefono);
+            globalFunction('Telefono', 1, Telefono);
         }
         function eliminaTelefono() {
             Telefono.numTelefono = document.getElementById('numTelefono').value;
-            eliminarTelefono(Telefono);
+            globalFunction('Telefono', 2, Telefono);
         }
         function modificaTelefono() {
             Telefono.numTelefono = document.getElementById('numTelefono').value;
             Telefono.codigoPais = document.getElementById('codigoPais').value;
-            modificarTelefono(Telefono)
+            globalFunction('Telefono', 0, Telefono);
         }
         function activeLi() {
             $('#TEL').addClass('activeLi');
         }
-
-
-        (function () {
+        (function () { 
+            document.getElementById('navBar').innerHTML += cargaNavBar();
+            activeLi();
+            cargarTelefono();
             document.getElementById('GuardarBtn').addEventListener('click', nuevoTelefono);
             document.getElementById('EliminarBtn').addEventListener('click', eliminaTelefono);
             document.getElementById('ModificaBtn').addEventListener('click', modificaTelefono);
-            document.getElementById('navBar').innerHTML += cargaNavBar();
-            activeLi();
+            document.getElementById('BorrarBtn').addEventListener('click', eliminaValores); 
+            document.getElementById('numTelefono').addEventListener('keypress', habilitaGuardar);
 
         })();
+        function cargaDatosFormulario(objetoSerializado) {
+            eliminaValores();
+            habilitaGuardar();
+            document.getElementById('numTelefono').value = objetoSerializado.NumTelefono1;
+            document.getElementById('codigoPais').value = objetoSerializado.CodigoPais1;
+            desabilitaGuardar();
+        }
+        function verificaEliminar(id) {
+            var respuesta = window.confirm(`Desea Eliminar el Teléfono con el Número : ${id}`);
+            if (respuesta) {
+                Telefono.numTelefono = id;
+                globalFunction('Telefono', 2, Telefono);
+                habilitaGuardar();
+            }
+            else {
+                alert('No se ha Realizado Ninguna Acción');
+            }
+        }
     </script>
 </body>
 

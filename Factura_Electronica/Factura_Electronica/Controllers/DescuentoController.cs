@@ -11,6 +11,15 @@ namespace Factura_Electronica.Controllers
 {
     public class DescuentoController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            Descuento descuento = new Descuento();
+
+            HttpResponseMessage response = Request.CreateResponse<List<Models.Descuento>> (HttpStatusCode.Created, descuento.Seleccionar_Todo_Descuento());
+            return response;
+        }
+
         [HttpPut]
         public HttpResponseMessage Put(FormDataCollection form)
         {

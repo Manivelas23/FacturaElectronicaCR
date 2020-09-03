@@ -27,49 +27,85 @@
                 <strong>Tipo de identificación: </strong>
                 <input class="form-control" type="text" id="tipo">
             </div>
-            <div id="myProgress">
-                <div id="myBar"></div>
-            </div>
-            <div class="col-md-7 " id="btnGroup">
+            <div class="col-md-9" id="btnGroup">
                 <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
                 <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
                 <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                <input class="btn  btn-light" type="button" id="BorrarBtn" value="Borrar" />
+            </div>
+        </div>
+    </div>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver Identificaciones Guardadas
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="table-responsive">
+                <table class="table text-center table-borderless" id="tabla">
+                </table>
             </div>
         </div>
     </div>
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>`;
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-
-
         function nuevoIdReceptor() {
             idReceptor.identificacionReceptor = document.getElementById('identificacionReceptor').value;
             idReceptor.tipo = document.getElementById('tipo').value;
-            guardaridReceptor(idReceptor);
+            globalFunction('IdentificacionReceptor', 1, idReceptor);
         }
         function eliminaIdReceptor() {
             idReceptor.identificacionReceptor = document.getElementById('identificacionReceptor').value;
-            eliminaridReceptor(idReceptor);
+            globalFunction('IdentificacionReceptor', 2, idReceptor);
         }
         function modificaIdReceptor() {
             idReceptor.identificacionReceptor = document.getElementById('identificacionReceptor').value;
             idReceptor.tipo = document.getElementById('tipo').value;
-            modificaridReceptor(idReceptor)
+            globalFunction('IdentificacionReceptor', 0, idReceptor);
         }
         function activeLi() {
             $('#IDR').addClass('activeLi');
         }
 
-
         (function () {
+            document.getElementById('navBar').innerHTML += cargaNavBar();
+            activeLi();
+            cargaridReceptor();
             document.getElementById('GuardarBtn').addEventListener('click', nuevoIdReceptor);
             document.getElementById('EliminarBtn').addEventListener('click', eliminaIdReceptor);
             document.getElementById('ModificaBtn').addEventListener('click', modificaIdReceptor);
-            document.getElementById('navBar').innerHTML += cargaNavBar();
-            activeLi();
+            document.getElementById('BorrarBtn').addEventListener('click', eliminaValores); 
+            document.getElementById('identificacionReceptor').addEventListener('keypress', habilitaGuardar);
         })();
+
+        function cargaDatosFormulario(objetoSerializado) {
+            eliminaValores();
+            habilitaGuardar();
+            document.getElementById('identificacionReceptor').value = objetoSerializado.Identificacionreceptor1;
+            document.getElementById('tipo').value = objetoSerializado.Tipo1;
+            desabilitaGuardar();
+        }
+        function verificaEliminar(id) {
+            var respuesta = window.confirm(`Desea Eliminar la Identificación  : ${id}`);
+            if (respuesta) {
+                idReceptor.identificacionReceptor = id;
+                globalFunction('IdentificacionReceptor', 2, idReceptor);
+                habilitaGuardar();
+            }
+            else {
+                alert('No se ha Realizado Ninguna Acción');
+            }
+        }
     </script>
 </body>
 </html>
