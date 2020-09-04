@@ -12,6 +12,15 @@ namespace Factura_Electronica.Controllers
 {
     public class CodigoComercialController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            CodigoComercial codigoComercial = new CodigoComercial();
+
+            HttpResponseMessage response = Request.CreateResponse<List<Models.CodigoComercial>>(HttpStatusCode.Created, codigoComercial.Seleccionar_Todo_CodigoComercial());
+            return response;
+        }
+
         [HttpPut]
         public HttpResponseMessage Put(FormDataCollection form)
         {

@@ -162,26 +162,41 @@
         var Descuento = new Object;
         Descuento.montoDescuento = "";
         Descuento.naturalezaDescuento = "";
-function cargarDescuento() {
-    var tabla = document.getElementById('tabla');
-    $.ajax({
-        url: ruta + 'Descuento', type: 'GET', dataType: 'json', data: Descuento,
-        success: function (data, textStatus, xhr)
-        {
-            if
-                (data.length > 0) {
-                tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`;
-                var filacabezaTabla = document.getElementById('filacabezaTabla');
-                filacabezaTabla.innerHTML += `<th scope="col">Monto Descuento</th><th scope="col">Naturaleza Descuento</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`;
-                for (var z in data) {
-                    document.getElementById('cuerpoTabla').innerHTML +=
-                        `<tr><td>${data[z].MontoDescuento1}</td><td>${data[z].NaturalezaDescuento1}</td><td>
-                <input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].MontoDescuento1} , ${data[z].NaturalezaDescuento1})"/></td></tr>`;
+        function cargarDescuento() {
+        var tabla = document.getElementById('tabla');
+        $.ajax({
+            url: ruta + 'Descuento',
+            type: 'GET',
+            dataType: 'json',
+            data: Descuento,
+            success: function (data, textStatus, xhr) {
+                if (data.length > 0) {
+                    tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`;
+                    var filacabezaTabla = document.getElementById('filacabezaTabla');
+                    filacabezaTabla.innerHTML +=
+                        `
+                                <th scope="col">Monto Descuento</th>
+                                <th scope="col">Naturaleza Descuento</th>
+                               `;
+                    tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`;
+                    for (var z in data) {
+                        console.log(data)
+                        document.getElementById('cuerpoTabla').innerHTML += `
+                                <tr>
+                                  <td>${data[z].MontoDescuento1}</td>           
+                                  <td>${data[z].NaturalezaDescuento1}</td>
+                                  <td><input class="btn  btn-danger" type="button"  value="Eliminar" onClick="verificaEliminar(${data[z].MontoDescuento1} , ${data[z].NaturalezaDescuento1})"/></td>
+                               </tr>
+                           `;
+                    }
                 }
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert(xhr);
             }
-        }, error: function (xhr, textStatus, errorThrown) { alert(xhr); }
-    });
-}
+        });
+    }
     //////////////////////////////////////////////////////////////////////////////////////////
         var Exoneracion = new Object;
         Exoneracion.tipoDocumento = "";
@@ -246,54 +261,17 @@ function cargarDescuento() {
         var CTM = new Object;
         CTM.codigoMoneda = "";
         CTM.tipoCambio = "";
+        function cargarCTM() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'CodigoTipoMoneda', type: 'GET', dataType: 'json', data: Ubicacion, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Código Moneda</th><th scope="col">Tipo de Cambio</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].CodigoMoneda1}</td><td>${data[z].TipoCambio1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].CodigoMoneda1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
         var idEmisor = new Object;
         idEmisor.identificacionEmisor = "";
         idEmisor.tipo = "";
-         function cargaridEmisor() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'IdentificacionEmisor', type: 'GET', dataType: 'json', data: idEmisor, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Identificación Emisor</th><th scope="col">Tipo</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Identificacionemisor1}</td><td>${data[z].Tipo1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Identificacionemisor1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
+        function cargaridEmisor() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'IdentificacionEmisor', type: 'GET', dataType: 'json', data: idEmisor, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Identificación Emisor</th><th scope="col">Tipo</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Identificacionemisor1}</td><td>${data[z].Tipo1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Identificacionemisor1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
         var idReceptor = new Object;
         idReceptor.identificacionReceptor = "";
         idReceptor.tipo = "";
-        function cargaridReceptor() {
-        var tabla = document.getElementById('tabla');
-        $.ajax({
-            url: ruta + 'IdentificacionReceptor',
-            type: 'GET',
-            dataType: 'json',
-            data: idReceptor,
-            success: function (data, textStatus, xhr) {
-                if(data.length > 0) {
-                    tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`;
-                    var filacabezaTabla = document.getElementById('filacabezaTabla');
-                    filacabezaTabla.innerHTML +=
-                                                `
-                                                <th scope="col">Identificación Receptor</th> 
-                                                <th scope="col">Tipo</th>                                          
-                                               `;
-                    tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`;
-                    for (var z in data) {
-                        var objetoSerializado = JSON.stringify(data[z]);
-                        var objetoSerializadoComillas = "";
-                        for (var j in objetoSerializado) {
-                            objetoSerializadoComillas += objetoSerializado[j].replace('"', "'");
-                        }
-                        document.getElementById('cuerpoTabla').innerHTML += `
-                                                <tr>
-                                                  <td>${data[z].Identificacionreceptor1}</td>
-                                                  <td>${data[z].Tipo1}</td>
-                                                  <td><input class="btn  btn-warning" type="button" value="Modificar" onclick="cargaDatosFormulario(${objetoSerializadoComillas})" /></td>
-                                                  <td><input class="btn  btn-danger" type="button"  value="Eliminar" onclick="verificaEliminar(${data[z].Identificacionreceptor1})"/></td>
-                                               </tr>
-                                           `;
-                    }
-                }
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert(xhr);
-        }
-    });
-}
+        function cargaridReceptor() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'IdentificacionReceptor', type: 'GET', dataType: 'json', data: idReceptor, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Identificación Receptor</th><th scope="col">Tipo</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Identificacionreceptor1}</td><td>${data[z].Tipo1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Identificacionreceptor1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
         var Telefono = new Object;
         Telefono.numTelefono = "";
@@ -301,22 +279,23 @@ function cargarDescuento() {
         function cargarTelefono() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'Telefono', type: 'GET', dataType: 'json', data: Telefono, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Teléfono</th><th scope="col">Código País</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].NumTelefono1}</td><td>${data[z].CodigoPais1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].NumTelefono1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
         var codComercial = new Object;
-        codComercial.codigo = "";
         codComercial.tipo = "";
+        codComercial.codigo = "";
+        function cargarCC() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'CodigoComercial', type: 'GET', dataType: 'json', data: codComercial, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Tipo</th><th scope="col">Código</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Tipo1}</td><td>${data[z].Codigo1}</td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Tipo1} , ${data[z].Codigo1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
         var TD = new Object;
         TD.numeroIdentidadTercero = "";
         TD.tipoDocumento = "";
         function cargarTD() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'TipoDocumento', type: 'GET', dataType: 'json', data: TD, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Tipo de Documento</th><th scope="col">Número de Identidad de Tercero</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Tipodocumento1}</td><td>${data[z].NumeroIdentidadTercero1}</td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Tipodocumento1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
-function globalFunction(Controller, methodPos, globalObject) {
+        function globalFunction(Controller, VecPos, Objeto) {
             var method = ["POST", "PUT", "DELETE", "OPTIONS"];
-            var realMethod = method[methodPos];
+            var realMethod = method[VecPos];
                 $.ajax({
                     url: ruta + Controller,
                     type: realMethod, 
                     dataType: 'json',
-                    data: globalObject, 
+                    data: Objeto, 
                     success: function (data, textStatus, xhr) {
                         mover();
                         eliminaValores();

@@ -12,9 +12,17 @@ namespace Factura_Electronica.Controllers
 {
     public class CodigoTipoMonedaController : ApiController
     {
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            CodigoTipoMoneda codigoTipoMoneda = new CodigoTipoMoneda();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.CodigoTipoMoneda>>(HttpStatusCode.Created, codigoTipoMoneda.Seleccionar_Todo_CodigoTipoMoneda());
+            return response;
+        }
+
         [HttpPost]
         public HttpResponseMessage Post(FormDataCollection form)
-        {
+            {
             CodigoTipoMoneda codigoTipoMoneda = new CodigoTipoMoneda();
 
             codigoTipoMoneda.CodigoMoneda1 = form.Get("codigoMoneda");

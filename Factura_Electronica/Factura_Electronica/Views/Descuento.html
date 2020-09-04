@@ -80,20 +80,11 @@
             document.getElementById('EliminarBtn').addEventListener('click', eliminaDescuento);
         })();
 
-        function cargaDatosFormulario(objetoSerializado) {
-            eliminaValores();
-            habilitaGuardar();
-            document.getElementById('montoDescuento').value = objetoSerializado.MontoDescuento1;
-            document.getElementById('naturalezaDescuento').value = objetoSerializado.NaturalezaDescuento1;
-            desabilitaGuardar();
-        }
-        function verificaEliminar(id,dos) {
+        function verificaEliminar(id , dos) {
             var respuesta = window.confirm(`Desea Eliminar el Descuento  : ${id}`);
             if (respuesta) {
                 Descuento.montoDescuento = id;
                 Descuento.naturalezaDescuento = dos;
-                alert(id);
-                alert(dos);
                 globalFunction('Descuento', 2, Descuento);
                 habilitaGuardar();
             }

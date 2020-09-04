@@ -13,6 +13,41 @@ namespace Factura_Electronica.Models
         public string CodigoMoneda1 { get => CodigoMoneda; set => CodigoMoneda = value; }
         public decimal TipoCambio1 { get => TipoCambio; set => TipoCambio = value; }
 
+        public List<CodigoTipoMoneda> Seleccionar_Todo_CodigoTipoMoneda()
+        {
+            List<CodigoTipoMoneda> listaCTM = new List<CodigoTipoMoneda>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC SELECCIONARTODOCTM";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        CodigoTipoMoneda codigoTipoMoneda = new CodigoTipoMoneda();
+                        codigoTipoMoneda.CodigoMoneda1 = CONTENEDOR["CODIGOMONEDA"].ToString();
+                        codigoTipoMoneda.TipoCambio1 = Convert.ToDecimal(CONTENEDOR["TIPOCAMBIO"].ToString());
+                        listaCTM.Add(codigoTipoMoneda);
+                    }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listaCTM;
+                }
+                else
+                    return listaCTM;
+            }
+            catch
+            {
+                return listaCTM;
+            }
+        }
         public string Actualiza_CodigoTipoMoneda()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();

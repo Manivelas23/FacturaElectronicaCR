@@ -20,19 +20,36 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
             </div>
             <div class="form-group col-md-9">
-                <strong>Código: </strong>
-                <input class=" form-control" type="text" id="codigo" autofocus>
-            </div>
-            <div class="form-group col-md-9">
                 <strong>Tipo: </strong>
                 <input class="form-control" type="text" id="tipo">
             </div>
-            <div id="myProgress">
-                <div id="myBar"></div>
+            <div class="form-group col-md-9">
+                <strong>Código: </strong>
+                <input class=" form-control" type="text" id="codigo" autofocus>
             </div>
-            <div class="col-md-7 " id="btnGroup">
+            <div class="col-md-9" id="btnGroup">
                 <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
                 <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                <input class="btn  btn-light" type="button" id="BorrarBtn" value="Borrar" />
+            </div>
+        </div>
+    </div>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver Identificaciones Guardadas
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="table-responsive">
+                <table class="table text-center table-borderless" id="tabla">
+                </table>
             </div>
         </div>
     </div>
@@ -44,23 +61,38 @@
         function nuevocodComercial() {
             codComercial.codigo = document.getElementById('codigo').value;
             codComercial.tipo = document.getElementById('tipo').value;
-            guardarcodComercial(codComercial);
+            globalFunction('CodigoComercial', 1, codComercial);
         }
         function eliminacodComercial() {
             codComercial.codigo = document.getElementById('tipo').value;
             codComercial.tipo = document.getElementById('tipo').value;
-            eliminarcodComercial(codComercial);
+            globalFunction('CodigoComercial', 2, codComercial);
         }
         function activeLi() {
             $('#CC').addClass('activeLi');
         }
 
         (function () {
-            document.getElementById('GuardarBtn').addEventListener('click', nuevocodComercial);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminacodComercial);
             document.getElementById('navBar').innerHTML += cargaNavBar();
             activeLi();
+            cargarCC();
+            document.getElementById('GuardarBtn').addEventListener('click', nuevocodComercial);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminacodComercial);
         })();
+
+        function verificaEliminar(id , dos) {
+            var respuesta = window.confirm(`Desea Eliminar el Descuento  : ${id}`);
+            if (respuesta) {
+                codComercial.tipo = id;
+                codComercial.codigo = dos;
+                console.log(codComercial);
+                globalFunction('CodigoComercial', 2, codComercial);
+                habilitaGuardar();
+            }
+            else {
+                alert('No se ha Realizado Ninguna Acción');
+            }
+        }
     </script>
 </body>
 </html>
