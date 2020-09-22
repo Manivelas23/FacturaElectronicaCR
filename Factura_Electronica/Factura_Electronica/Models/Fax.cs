@@ -22,7 +22,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELECCIONARTODOFAX";
+                    query = "EXEC SELETODOFAX";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
@@ -55,7 +55,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC UPDATE_13 ?,?";
+                    query = "EXEC U_FAX ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoPais1, "int");
@@ -86,7 +86,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC DELETE_14 ?";
+                    query = "EXEC D_FAX ?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(NumFax1, "int");
 
@@ -115,7 +115,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC INSERT_13 ?,?";
+                    query = "EXEC I_FAX ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoPais1, "int");

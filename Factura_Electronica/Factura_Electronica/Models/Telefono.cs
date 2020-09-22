@@ -25,7 +25,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELECCIONARTODOTELEFONO";
+                    query = "EXEC SELETODOTEL";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
@@ -58,7 +58,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC UPDATE_12 ?,?";
+                    query = "EXEC U_TELEFONO ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoPais1, "int");
@@ -89,7 +89,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC DELETE_13 ?";
+                    query = "EXEC D_TELEFONO ?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(NumTelefono1, "int");
 
@@ -118,7 +118,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC INSERT_12 ?,?";
+                    query = "EXEC I_TELEFONO ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoPais1,"int");

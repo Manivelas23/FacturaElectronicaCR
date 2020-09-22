@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Identificación Emisor</title>
+    <title>Identificación Persona</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -15,13 +15,13 @@
         <img src="img/ux.png" class="col-md-8 img-fluid" alt="Responsive image">
         <div class="row col-md-8" id="formContainer">
             <div class="row col-md-11" id="formInfo">
-                <h5>Formulario Identificación del Emisor:</h5>
+                <h5>Formulario Identificación de la Persona:</h5>
                 <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
             </div>
             <div class="form-group col-md-9">
-                <strong>Identificación del Emisor: </strong>
-                <input class=" form-control" type="text" id="identificacionEmisor" autofocus>
+                <strong>Identificación de la Persona: </strong>
+                <input class=" form-control" type="text" id="identificacionPersona" autofocus>
             </div>
             <div class="form-group col-md-9">
                 <strong>Tipo de identificación: </strong>
@@ -59,54 +59,53 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-
-        function nuevoIdEmisor() {
-            idEmisor.identificacionEmisor = document.getElementById('identificacionEmisor').value;
-            idEmisor.tipo = document.getElementById('tipo').value;
-            globalFunction('IdentificacionEmisor', 1, idEmisor);
+        function nuevoidPersona() {
+            idPersona.identificacionPersona = document.getElementById('identificacionPersona').value;
+            idPersona.tipo = document.getElementById('tipo').value;
+            globalFunction('identificacionPersona', 1, idPersona);
         }
-        function eliminaIdEmisor() {
-            idEmisor.identificacionEmisor = document.getElementById('identificacionEmisor').value;
-            globalFunction('IdentificacionEmisor', 2, idEmisor);
+        function eliminaidPersona() {
+            idPersona.identificacionPersona = document.getElementById('identificacionPersona').value;
+            globalFunction('identificacionPersona', 2, idPersona);
         }
-        function modificaIdEmisor() {
-            idEmisor.identificacionEmisor = document.getElementById('identificacionEmisor').value;
-            idEmisor.tipo = document.getElementById('tipo').value;
-            globalFunction('IdentificacionEmisor', 0, idEmisor);
+        function modificaidPersona() {
+            idPersona.identificacionPersona = document.getElementById('identificacionPersona').value;
+            idPersona.tipo = document.getElementById('tipo').value;
+            globalFunction('identificacionPersona', 0, idPersona);
         }
         function activeLi() {
-            $('#IDE').addClass('activeLi');
+            $('#IDR').addClass('activeLi');
         }
 
         (function () {
             document.getElementById('navBar').innerHTML += cargaNavBar();
             activeLi();
-            cargaridEmisor();
-            document.getElementById('GuardarBtn').addEventListener('click', nuevoIdEmisor);
-            document.getElementById('EliminarBtn').addEventListener('click', eliminaIdEmisor);
-            document.getElementById('ModificaBtn').addEventListener('click', modificaIdEmisor);
+            cargaridPersona();
+            document.getElementById('GuardarBtn').addEventListener('click', nuevoidPersona);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaidPersona);
+            document.getElementById('ModificaBtn').addEventListener('click', modificaidPersona);
             document.getElementById('BorrarBtn').addEventListener('click', eliminaValores); 
-            document.getElementById('identificacionEmisor').addEventListener('keypress', habilitaGuardar);
+            document.getElementById('identificacionPersona').addEventListener('keypress', habilitaGuardar);
         })();
 
         function cargaDatosFormulario(objetoSerializado) {
-                eliminaValores();
-                habilitaGuardar();
-                document.getElementById('identificacionEmisor').value = objetoSerializado.Identificacionemisor1;
-                document.getElementById('tipo').value = objetoSerializado.Tipo1;
-                desabilitaGuardar();
-            }
+            eliminaValores();
+            habilitaGuardar();
+            document.getElementById('identificacionPersona').value = objetoSerializado.identificacionPersona1;
+            document.getElementById('tipo').value = objetoSerializado.Tipo1;
+            desabilitaGuardar();
+        }
         function verificaEliminar(id) {
-                var respuesta = window.confirm(`Desea Eliminar la Identificación  : ${id}`);
-                if (respuesta) {
-                    idEmisor.identificacionEmisor = id;
-                    globalFunction('IdentificacionEmisor', 2, idEmisor);
-                    habilitaGuardar();
-                }
-                else {
-                    alert('No se ha Realizado Ninguna Acción');
-                }
+            var respuesta = window.confirm(`Desea Eliminar la Identificación  : ${id}`);
+            if (respuesta) {
+                idPersona.identificacionPersona = id;
+                globalFunction('identificacionPersona', 2, idPersona);
+                habilitaGuardar();
             }
+            else {
+                alert('No se ha Realizado Ninguna Acción');
+            }
+        }
     </script>
 </body>
 </html>

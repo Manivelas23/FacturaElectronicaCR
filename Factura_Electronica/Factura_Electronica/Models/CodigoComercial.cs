@@ -24,7 +24,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELECCIONARTODOCC";
+                    query = "EXEC SELETODOCC";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
@@ -57,7 +57,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC DELETE_18 ?,?";
+                    query = "EXEC D_CODIGOCOMERCIAL ?,?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(Tipo1, "string");
                     objeto_conexion.nuevo_parametro(Codigo1, "string");
@@ -87,7 +87,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC INSERT_17 ?,?";
+                    query = "EXEC I_CODIGOCOMERCIAL ?,?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(Tipo1, "string");
                     objeto_conexion.nuevo_parametro(Codigo1, "string");

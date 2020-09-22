@@ -5,17 +5,16 @@ using System.Web;
 
 namespace Factura_Electronica.Models
 {
-    public class IdentificacionEmisor
+    public class IdentificacionPersona
     {
-        private string Identificacionemisor;
+        private string IdPersona;
         private string Tipo;
 
-        public string Identificacionemisor1 { get => Identificacionemisor; set => Identificacionemisor = value; }
+        public string identificacionPersona1 { get => IdPersona; set => IdPersona = value; }
         public string Tipo1 { get => Tipo; set => Tipo = value; }
-
-        public List<IdentificacionEmisor> Seleccionar_Todo_IdentificacionEmisor()
+        public List<IdentificacionPersona> Seleccionar_Todo_IdentificacionPersona()
         {
-            List<IdentificacionEmisor> listaIE = new List<IdentificacionEmisor>();
+            List<IdentificacionPersona> listaIR = new List<IdentificacionPersona>();
 
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
@@ -25,30 +24,30 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELECCIONARTODOEMISOR";
+                    query = "EXEC SELETODOIDPERSONA";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
                     {
-                        IdentificacionEmisor idEmisor = new IdentificacionEmisor();
-                        idEmisor.Identificacionemisor1 = CONTENEDOR["IDENTIFICACIONEMISOR"].ToString();
-                        idEmisor.Tipo1 = CONTENEDOR["TIPO"].ToString();
-                        listaIE.Add(idEmisor);
+                        IdentificacionPersona IdPersona = new IdentificacionPersona();
+                        IdPersona.identificacionPersona1 = CONTENEDOR["IDENTIFICACION"].ToString();
+                        IdPersona.Tipo1 = CONTENEDOR["TIPO"].ToString();
+                        listaIR.Add(IdPersona);
                     }
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return listaIE;
+                    return listaIR;
                 }
                 else
-                    return listaIE;
+                    return listaIR;
             }
             catch
             {
-                return listaIE;
+                return listaIR;
             }
         }
-        public string Actualiza_identificacionEmisor()
+        public string Actualiza_IdentificacionPersona()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();
             try
@@ -58,71 +57,10 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC UPDATE_9 ?,?";
+                    query = "EXEC U_IDENTIFICACION ?,?";
                     objeto_conexion.nueva_consulta(query);
 
-                    objeto_conexion.nuevo_parametro(Identificacionemisor1, "string");
-                    objeto_conexion.nuevo_parametro(Tipo1,"string");
-
-                    CONTENEDOR = objeto_conexion.busca();
-
-                    objeto_conexion.conexion.Close();
-                    objeto_conexion.conexion.Dispose();
-                    CONTENEDOR.Close();
-                    return "Se modificó la identificación : " + Identificacionemisor1;
-                }
-                else
-                    return "Sin Conexión con la Base de Datos";
-            }
-            catch (Exception err)
-            {
-                return err.Message;
-            }
-        }
-        public string Elimina_identificacionEmisor()
-        {
-            ConexionconBD objeto_conexion = new ConexionconBD();
-            try
-            {
-                if (objeto_conexion.activaBD())
-                {
-                    String query;
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
-
-                    query = "EXEC DELETE_10 ?";
-                    objeto_conexion.nueva_consulta(query);
-                    objeto_conexion.nuevo_parametro(Identificacionemisor1, "string");
-
-                    CONTENEDOR = objeto_conexion.busca();
-
-                    objeto_conexion.conexion.Close();
-                    objeto_conexion.conexion.Dispose();
-                    CONTENEDOR.Close();
-                    return "Se eliminó la identificación : " + Identificacionemisor1;
-                }
-                else
-                    return "Sin Conexión con la Base de Datos";
-            }
-            catch (Exception err)
-            {
-                return err.Message;
-            }
-        }
-        public string Inserta_identificacionEmisor()
-        {
-            ConexionconBD objeto_conexion = new ConexionconBD();
-
-            try
-            {
-                if (objeto_conexion.activaBD())
-                {
-                    String query;
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
-
-                    query = "EXEC INSERT_9 ?,?";
-                    objeto_conexion.nueva_consulta(query);
-
-                    objeto_conexion.nuevo_parametro(Identificacionemisor1, "string");
+                    objeto_conexion.nuevo_parametro(identificacionPersona1, "string");
                     objeto_conexion.nuevo_parametro(Tipo1, "string");
 
                     CONTENEDOR = objeto_conexion.busca();
@@ -130,14 +68,74 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Se guardó la identificación : " + Identificacionemisor1;
+                    return "Se modificó la identificación : " + identificacionPersona1;
                 }
                 else
                     return "Sin Conexión con la Base de Datos";
             }
             catch (Exception err)
             {
-               return err.Message;
+                return err.Message;
+            }
+        }
+        public string Elimina_IdentificacionPersona()
+        {
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC D_IDENTIFICACION ?";
+                    objeto_conexion.nueva_consulta(query);
+                    objeto_conexion.nuevo_parametro(identificacionPersona1, "string");
+
+                    CONTENEDOR = objeto_conexion.busca();
+
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return "Se eliminó la identificación : " + identificacionPersona1;
+                }
+                else
+                    return "Sin Conexión con la Base de Datos";
+            }
+            catch (Exception err)
+            {
+                return err.Message;
+            }
+        }
+        public string Inserta_IdentificacionPersona()
+        {
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC I_IDENTIFICACION ?,?";
+                    objeto_conexion.nueva_consulta(query);
+        
+                    objeto_conexion.nuevo_parametro(identificacionPersona1, "string");
+                    objeto_conexion.nuevo_parametro(Tipo1, "string");
+
+                    CONTENEDOR = objeto_conexion.busca();
+
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return "Se guardó la identificación : " + identificacionPersona1;
+                }
+                else
+                    return "Sin Conexión con la Base de Datos";
+            }
+            catch (Exception err)
+            {
+              return  err.Message;
             }
         }
     }

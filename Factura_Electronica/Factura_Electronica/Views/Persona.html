@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="text" id="nombre" value="" placeholder="nombre"/>
+    <input type="text" id="identificacion" value="" placeholder="id"/>
+    <input type="text" id="telefono" value="" placeholder="tel"/>
+    <input type="text" id="fax" value="" placeholder="fax"/>
+    <input type="text" id="idubicacion" value="" placeholder="ubicacion"/>
+    <input type="text" id="nombrecomercial" value="" placeholder="nombrecomercial"/>
+    <input type="text" id="correo" value="" placeholder="correo"/>
+    <input type="text" id="idExtranjero" value="" placeholder="idExtranjero"/>
+    <input type="text" id="otrasSenasEx" value="" placeholder="otrasSenas"/>
+
+    <input type="button" id="guardarbtn" value="guardar" />
+
+    <script src="../Scripts/Ajax.js"></script>
+    <script src="../Scripts/jquery.js"></script>
+
+    <script type="text/javascript">
+
+        function guarda() {
+             persona.nombre = document.getElementById("nombre").value;
+             persona.idPersona = document.getElementById("identificacion").value;
+             persona.numTelefono = document.getElementById("telefono").value;
+             persona.numFax = document.getElementById("fax").value;
+             persona.idUbicacion = document.getElementById("idubicacion").value;
+             persona.nombreComercial = document.getElementById("nombrecomercial").value;
+             persona.correoElectronico = document.getElementById("correo").value;
+             persona.idExtranjero = document.getElementById("idExtranjero").value;
+             persona.otrasSenasExtranjero = document.getElementById("otrasSenasEx").value;
+
+             globalFunction("Persona", 1 , persona);
+        }
+
+        (function () {
+            document.getElementById("guardarbtn").addEventListener("click", guarda)
+        })();
+
+
+    </script>
+</body >
+</html >

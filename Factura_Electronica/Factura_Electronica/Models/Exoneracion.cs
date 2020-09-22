@@ -32,7 +32,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC UPDATE_19 ?,?,?,?,?,?";
+                    query = "EXEC U_EXONERACION ?,?,?,?,?,?";
                     objeto_conexion.nueva_consulta(query); 
                     objeto_conexion.nuevo_parametro(TipoDocumento1, "string");
                     objeto_conexion.nuevo_parametro(NumeroDocumento1, "string");
@@ -67,7 +67,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC DELETE_15 ?,?"; 
+                    query = "EXEC D_EXONERACION ?,?"; 
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(TipoDocumento1, "string");
@@ -99,7 +99,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC INSERT_19 ?,?,?,?,?,?";
+                    query = "EXEC I_EXONERACION ?,?,?,?,?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(TipoDocumento1, "string");
@@ -124,5 +124,7 @@ namespace Factura_Electronica.Models
                 return err.Message;
             }
         }
+
+       //TODO: Hacer la lista de exoneracion 
     }
 }

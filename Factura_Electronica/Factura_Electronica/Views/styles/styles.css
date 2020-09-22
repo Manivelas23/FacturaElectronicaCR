@@ -6,7 +6,8 @@
 body {
     background: #e2ebf4;
     box-shadow: -26px -26px 100px #c2cad2, 26px 26px 100px #ffffff;
-    font-family: 'Poppins', sans-serif
+    font-family: 'Poppins', sans-serif;
+
 }
 
 #mainContainer {
@@ -85,11 +86,23 @@ nav {
     box-shadow: -26px -26px 100px #c2cad2, 26px 26px 100px #ffffff
 }
 
-.ulMenu {
-    display: flex;
-    width: 100%;
-    justify-content:space-evenly;
+.navbar-brand {
+    border:1px solid black;
+    padding:4px 10px 4px 10px;
+    box-sizing:border-box;
+    border-radius:40px;
 }
+    .navbar-brand:hover {
+        background: rgb(220,220,220);
+        opacity:0.9;
+        transition:0.4s;
+    }
+
+.ulMenu {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
 
 .liMenu {
     display: flex;
@@ -122,6 +135,8 @@ nav {
     }
 
     .liMenu {
+        font-size:1pc;
+        font-weight:bold;
         display: normal;
         justify-content: normal;
         align-items: center;

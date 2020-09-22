@@ -24,7 +24,7 @@ namespace Factura_Electronica.Models ///nombre corregido
                 conexion.Open();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -82,7 +82,7 @@ namespace Factura_Electronica.Models ///nombre corregido
                 transaccion.Commit();
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 transaccion.Rollback();
                 return false;               

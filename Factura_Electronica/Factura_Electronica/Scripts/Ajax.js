@@ -1,5 +1,6 @@
 ﻿        const ruta = "https://localhost:44314/api/";
         var i = 0;
+
         function desabilitaGuardar() {
             document.getElementById('GuardarBtn').disabled = true;
 }
@@ -65,12 +66,12 @@
 
                             <li class=" liMenu nav-item" >
                                 <span class="material-icons spanMenu">contact_mail</span>
-                                <a href="IdentificacionReceptor.html" id="IDR" class="aMenu">Id Receptor</a>
+                                <a href="IdentificacionPersona.html" id="IDR" class="aMenu">Id Persona</a>
                             </li>
 
-                            <li class=" liMenu nav-item" >
-                                <span class="material-icons spanMenu">contact_phone</span>
-                                <a href="IdentificacionEmisor.html" id="IDE" class="aMenu">Id Emisor</a>
+                            <li class="liMenu nav-item" >
+                                <span class="material-icons spanMenu">done</span>
+                                <a href="Persona.html" id="PER" class="aMenu">Persona</a>
                             </li>
 
                             <li class=" liMenu nav-item" >
@@ -87,12 +88,14 @@
                                 <span class="material-icons spanMenu">vpn_key</span>
                                 <a href="CodigoComercial.html" id="CC" class="aMenu">Código Comercial</a>
                             </li>
+                            <li class=" liMenu nav-item" >
+                                <span class="material-icons spanMenu">account_balance</span>
+                                <a href="Impuesto.html" id="IMP" class="aMenu">Impuesto</a>
+                            </li>
                         </ul>     
                     </div>
                 </nav>
                  `
-                //var script = $('body');
-              // script += `  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>`;
                 var vectorCargar = [navBar];
                 return vectorCargar;
 }
@@ -102,6 +105,7 @@
                 x[i].value = "";
             }
 }
+
     /////////////////////////////////////////////////////////////////////////////////////////
         var Ubicacion = new Object;
         Ubicacion.idUbicacion = "";
@@ -197,7 +201,7 @@
             }
         });
     }
-    //////////////////////////////////////////////////////////////////////////////////////////
+    ////////TODO: Terminar exoneracion //////////////////////////////////////////////////////////////////////////////////
         var Exoneracion = new Object;
         Exoneracion.tipoDocumento = "";
         Exoneracion.numeroDocumento = "";
@@ -263,15 +267,11 @@
         CTM.tipoCambio = "";
         function cargarCTM() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'CodigoTipoMoneda', type: 'GET', dataType: 'json', data: Ubicacion, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Código Moneda</th><th scope="col">Tipo de Cambio</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].CodigoMoneda1}</td><td>${data[z].TipoCambio1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].CodigoMoneda1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
-        var idEmisor = new Object;
-        idEmisor.identificacionEmisor = "";
-        idEmisor.tipo = "";
-        function cargaridEmisor() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'IdentificacionEmisor', type: 'GET', dataType: 'json', data: idEmisor, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Identificación Emisor</th><th scope="col">Tipo</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Identificacionemisor1}</td><td>${data[z].Tipo1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Identificacionemisor1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
-    /////////////////////////////////////////////////////////////////////////////////////////
-        var idReceptor = new Object;
-        idReceptor.identificacionReceptor = "";
-        idReceptor.tipo = "";
-        function cargaridReceptor() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'IdentificacionReceptor', type: 'GET', dataType: 'json', data: idReceptor, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Identificación Receptor</th><th scope="col">Tipo</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Identificacionreceptor1}</td><td>${data[z].Tipo1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Identificacionreceptor1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
+        var idPersona = new Object;
+        idPersona.identificacionPersona = "";
+        idPersona.tipo = "";
+        console.log(idPersona);
+        function cargaridPersona() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'IdentificacionPersona', type: 'GET', dataType: 'json', data: idPersona, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Identificación Persona</th><th scope="col">Tipo</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].identificacionPersona1}</td><td>${data[z].Tipo1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].identificacionPersona1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
         var Telefono = new Object;
         Telefono.numTelefono = "";
@@ -288,6 +288,26 @@
         TD.tipoDocumento = "";
         function cargarTD() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'TipoDocumento', type: 'GET', dataType: 'json', data: TD, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Tipo de Documento</th><th scope="col">Número de Identidad de Tercero</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Tipodocumento1}</td><td>${data[z].NumeroIdentidadTercero1}</td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Tipodocumento1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
+        var Impuesto = new Object;
+        Impuesto.codigoImpuesto = "";
+        Impuesto.codigoTarifa = "";
+        Impuesto.tarifa = "";
+        Impuesto.factor_Iva = "";
+        Impuesto.monto = "";
+        Impuesto.montoExportacion = "";
+        //TODO: terminar de cargar impuestos 12:29/12/sep/2020
+    /////////////////////////////////////////////////////////////////////////////////////////
+        var persona = new Object;
+        persona.nombre = "";
+        persona.idPersona = "";
+        persona.numTelefono = "";
+        persona.numFax = "";
+        persona.idUbicacion = "";
+        persona.nombreComercial = "";
+        persona.correoElectronico = "";
+        persona.idExtranjero = "";
+        persona.otrasSenasExtranjero = ""; 
+
         function globalFunction(Controller, VecPos, Objeto) {
             var method = ["POST", "PUT", "DELETE", "OPTIONS"];
             var realMethod = method[VecPos];
@@ -306,3 +326,4 @@
                     }
                 });
 }       
+ 

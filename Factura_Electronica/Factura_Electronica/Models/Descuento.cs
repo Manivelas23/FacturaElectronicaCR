@@ -25,7 +25,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELECCIONARTODODESCUENTO";
+                    query = "EXEC SELETODODESC";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
@@ -58,7 +58,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC DELETE_19 ?,?";
+                    query = "EXEC D_DESCUENTO ?,?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(MontoDescuento1, "int" );
                     objeto_conexion.nuevo_parametro(NaturalezaDescuento1, "string");
@@ -88,7 +88,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC INSERT_18 ?,?";
+                    query = "EXEC I_DESCUENTO ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(MontoDescuento1, "int");

@@ -51,7 +51,7 @@ namespace Factura_Electronica.Models
                     string query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC  UPDATE_15 ?,?,?,?,?,?";
+                    query = "EXEC  U_UBICACION ?,?,?,?,?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(Provincia1, "string");
@@ -78,7 +78,7 @@ namespace Factura_Electronica.Models
                 String query;
                 System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                query = "EXEC DELETE_15 ?";
+                query = "EXEC D_UBICACION ?";
                 objeto_conexion.nueva_consulta(query);
 
                 objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
@@ -100,7 +100,7 @@ namespace Factura_Electronica.Models
                 string query;
                 System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                query = "EXEC INSERT_14 ?,?,?,?,?,?";
+                query = "EXEC I_UBICACION ?,?,?,?,?,?";
                 objeto_conexion.nueva_consulta(query);
 
                 objeto_conexion.nuevo_parametro(Provincia1, "string");
@@ -121,7 +121,6 @@ namespace Factura_Electronica.Models
             else
                 return "Sin Conexión con la Base de Datos";
         }
-
         public List<Ubicacion> Seleccionar_Todo_Ubicacion()
         {
             List<Ubicacion> listaUbicacion = new List<Ubicacion>();
@@ -133,7 +132,7 @@ namespace Factura_Electronica.Models
                 String query;
                 System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                query = "EXEC SELECCIONARTODOUBICACION";
+                query = "EXEC SELETODOUBICACION";
                 objeto_conexion.nueva_consulta(query);
                 CONTENEDOR = objeto_conexion.busca();
                 while (CONTENEDOR.Read())

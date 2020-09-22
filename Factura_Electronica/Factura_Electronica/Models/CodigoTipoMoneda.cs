@@ -25,7 +25,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELECCIONARTODOCTM";
+                    query = "EXEC SELETODOCTM";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
@@ -58,7 +58,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC UPDATE_6 ?,?";
+                    query = "EXEC U_CODIGOTIPOMONEDA ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoMoneda1,"string");
@@ -90,7 +90,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC DELETE_7 ?";
+                    query = "EXEC D_CODIGOTIPOMONEDA ?";
                     objeto_conexion.nueva_consulta(query);
                     objeto_conexion.nuevo_parametro(CodigoMoneda1, "string");
 
@@ -119,7 +119,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC INSERT_6 ?,?";
+                    query = "EXEC I_CODIGOTIPOMONEDA ?,?";
                     objeto_conexion.nueva_consulta(query);
 
                     objeto_conexion.nuevo_parametro(CodigoMoneda1, "string");
