@@ -2,27 +2,139 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Persona</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="styles/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <input type="text" id="nombre" value="" placeholder="nombre"/>
-    <input type="text" id="identificacion" value="" placeholder="id"/>
-    <input type="text" id="telefono" value="" placeholder="tel"/>
-    <input type="text" id="fax" value="" placeholder="fax"/>
-    <input type="text" id="idubicacion" value="" placeholder="ubicacion"/>
-    <input type="text" id="nombrecomercial" value="" placeholder="nombrecomercial"/>
-    <input type="text" id="correo" value="" placeholder="correo"/>
-    <input type="text" id="idExtranjero" value="" placeholder="idExtranjero"/>
-    <input type="text" id="otrasSenasEx" value="" placeholder="otrasSenas"/>
+    <div id="navBar"></div>
+    <div class="container" id="mainContainer">
+        <div class="row col-md-12   " id="formContainer">
+            <div class="row col-md-12" id="formInfo">
+                <h5>Formulario de Información de la Persona:</h5>
+                <br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
+            </div>
+            <div class="form-group col-md-9">
+                <strong>Número de Identificación: </strong>
+                <input class=" form-control" type="text" id="identificacion" autofocus>
+            </div>
+            <div class="form-group col-md-9">
+                <strong>Tipo de Identificación: </strong>
+                <input class=" form-control" type="text" id="tipo" autofocus>
+            </div>
+            <div class="form-group col-md-9">
+                <strong>Nombre Persona: </strong>
+                <input class=" form-control" type="text" id="nombre" autofocus>
+            </div>
+            <div class="form-group col-md-9 extraContainer">
+                <strong class="col-md-12">Teléfono:</strong>
+                <div class="input-container col-md-12 ">
+                    <input class="form-control class-md-10" type="text" id="telefono" autofocus>
+                    <div class="dropdown col-md-2">
+                        <button class="btn btn-info btn-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Teléfonos
+                        </button>
+                        <div class="dropdown-menu select-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <input type="button" id="guardarbtn" value="guardar" />
+            <div class="form-group col-md-9 extraContainer">
+                <strong class="col-md-12">Fax:</strong>
+                <div class="input-container col-md-12 ">
+                    <input class=" form-control col-md-10" type="text" id="fax" autofocus>
+                    <div class="dropdown col-md-2">
+                        <button class="btn btn-info btn-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Fax
+                        </button>
+                        <div class="dropdown-menu select-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="form-group col-md-9 extraContainer">
+                <strong class="col-md-12">Ubicación:</strong>
+                <div class="input-container col-md-12 ">
+                    <input class="form-control" type="text" id="idubicacion" autofocus>
+                    <div class="dropdown col-md-2">
+                        <button class="btn btn-info btn-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Ubicaciones
+                        </button>
+                        <div class="dropdown-menu select-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-9">
+                <strong>Nombre Comercial: </strong>
+                <input class="form-control" type="text" id="nombrecomercial">
+            </div>
+
+            <div class="form-group col-md-9">
+                <strong>Correo: </strong>
+                <input class="form-control" type="text" id="correo">
+            </div> <div class="form-group col-md-9">
+                <strong>Identificación Extranjero: </strong>
+                <input class="form-control" type="email" id="idExtranjero">
+            </div> <div class="form-group col-md-9">
+                <strong>Otras Señas Extranjero: </strong>
+                <input class="form-control" type="text" id="otrasSenasEx">
+            </div>
+            <div class="col-md-9" id="btnGroup">
+                <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
+                <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
+                <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                <input class="btn  btn-light" type="button" id="BorrarBtn" value="Borrar" />
+            </div>
+        </div>
+    </div>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+    <div class="accordion" id="accordionExample">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver Identificaciones Guardadas
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="table-responsive">
+                <table class="table text-center table-borderless" id="tabla">
+                </table>
+            </div>
+        </div>
+    </div>
     <script src="../Scripts/Ajax.js"></script>
     <script src="../Scripts/jquery.js"></script>
+    <script src="../Scripts/Popper.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-
+        $('#PERSONA').addClass('activeLi');
         function guarda() {
+     
+             idPersona.identificacionPersona = document.getElementById("identificacion").value;
+             idPersona.tipo = document.getElementById("tipo").value;
+
              persona.nombre = document.getElementById("nombre").value;
              persona.idPersona = document.getElementById("identificacion").value;
              persona.numTelefono = document.getElementById("telefono").value;
@@ -31,16 +143,15 @@
              persona.nombreComercial = document.getElementById("nombrecomercial").value;
              persona.correoElectronico = document.getElementById("correo").value;
              persona.idExtranjero = document.getElementById("idExtranjero").value;
-             persona.otrasSenasExtranjero = document.getElementById("otrasSenasEx").value;
+            persona.otrasSenasExtranjero = document.getElementById("otrasSenasEx").value;
 
-             globalFunction("Persona", 1 , persona);
+             paramOverload(idPersona, persona, "IdentificacionPersona", "Persona", 1);
         }
-
         (function () {
-            document.getElementById("guardarbtn").addEventListener("click", guarda)
+            document.getElementById('navBar').innerHTML += cargaNavBar();
+            document.getElementById('GuardarBtn').addEventListener('click', guarda);
         })();
 
-
     </script>
-</body >
-</html >
+</body>
+</html>

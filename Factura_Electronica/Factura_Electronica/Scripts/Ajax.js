@@ -38,65 +38,101 @@
 
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                         <ul class="ulMenu navbar-nav mr-auto mt-2 mt-lg-2">
+                                <li class="  dropdown">
+                                    <a class=" aMenu  nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Gestión de Descuentos y Impuestos
+                                    </a>
+                                    <div class="dropdown-menu  flex-column" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">redeem</span>
+                                            <a href="Descuento.html" id="DES" class="aMenu">Descuento</a>
+                                        </div>                 
+                                        <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">account_balance</span>
+                                            <a href="Impuesto.html" id="IMP" class="aMenu">Impuesto</a>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">done</span>
+                                            <a href="Exoneracion.html" id="EXO" class="aMenu">Exoneración</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item  dropdown">
+                                        <a class=" aMenu  nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Factura
+                                        </a>
+                                        <div class="dropdown-menu flex-column" aria-labelledby="navbarDropdown">
+                                            <div class="dropdown-item">
+                                                <span class="material-icons spanMenu">description</span>
+                                                <a href="ResumenFactura.html" id="RFAC" class="aMenu">Resumen de Factura</a>
+                                            </div>                 
+                                            <div class="dropdown-item">
+                                                <span class="material-icons spanMenu">receipt</span>
+                                                <a href="InformacionReferencia.html" id="INFREF" class="aMenu">Información de Referencia</a>
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <span class="material-icons spanMenu">add</span>
+                                                <a href="Otros.html" id="OTR" class="aMenu">Otros</a>
+                                            </div>
+                                            <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">details</span>
+                                            <a href="DetalleServicio.html" id="DETS" class="aMenu">Detalle Servicio</a>
+                                            </div>
+                                        </div>
+                                    </li>
 
-                            <li class="liMenu nav-item">
-                                <span class="material-icons spanMenu">place</span>
-                                <a href="Ubicacion.html" class="aMenu"  id="UB">Ubicacion</a>
+                             <li class="nav-item  dropdown">
+                                    <a class=" aMenu  nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Gestión de Persona
+                                    </a>
+                                    <div class="dropdown-menu flex-column" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-item">
+                                           <span class="material-icons spanMenu">contact_mail</span>
+                                            <a href="IdentificacionPersona.html" id="IDR" class="aMenu">Identificación Persona</a>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">phone</span>
+                                            <a href="Telefono.html" id="TEL" class="aMenu">Teléfono</a>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">print</span>
+                                            <a href="Fax.html"  id="FAX" class="aMenu">Fax</a>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">place</span>
+                                            <a href="Ubicacion.html" class="aMenu"  id="UB">Ubicacion</a>
+                                        </div>
+                                        <div class="dropdown-item">
+                                            <span class="material-icons spanMenu">accessibility</span>
+                                            <a href="Persona.html" id="PERSONA" class="aMenu">Persona</a>
+                                        </div>
+                                    </div>
                             </li>
-                            <li class="liMenu nav-item" >
-                                <span class="material-icons spanMenu">monetization_on</span>
-                                <a href="CodigoTipoMoneda.html" id="CTM" class="aMenu">Tipo Moneda</a>
-                            </li>  
-
-                            <li class="liMenu nav-item" >
-                                <span class="material-icons spanMenu">redeem</span>
-                                <a href="Descuento.html" id="DES" class="aMenu">Descuento</a>
-                            </li>
-
-                            <li class="liMenu nav-item">
-                                <span class="material-icons spanMenu">print</span>
-                                <a href="Fax.html"  id="FAX" class="aMenu">Fax</a>
-                            </li>
-
-                            <li class="liMenu nav-item" >
-                                <span class="material-icons spanMenu">done</span>
-                                <a href="Exoneracion.html" id="EXO" class="aMenu">Exoneración</a>
-                            </li>
-
-
-                            <li class=" liMenu nav-item" >
-                                <span class="material-icons spanMenu">contact_mail</span>
-                                <a href="IdentificacionPersona.html" id="IDR" class="aMenu">Id Persona</a>
-                            </li>
-
-                            <li class="liMenu nav-item" >
-                                <span class="material-icons spanMenu">done</span>
-                                <a href="Persona.html" id="PER" class="aMenu">Persona</a>
-                            </li>
-
-                            <li class=" liMenu nav-item" >
-                                <span class="material-icons spanMenu">phone</span>
-                                <a href="Telefono.html" id="TEL" class="aMenu">Teléfono</a>
-                            </li>
-
-                            <li class=" liMenu nav-item">
-                                <span class="material-icons spanMenu">article</span>
-                                <a href="TipoDocumento.html"  id="TD" class="aMenu">Tipo Documento</a>
-                            </li>
-
-                            <li class=" liMenu nav-item" >
-                                <span class="material-icons spanMenu">vpn_key</span>
-                                <a href="CodigoComercial.html" id="CC" class="aMenu">Código Comercial</a>
-                            </li>
-                            <li class=" liMenu nav-item" >
-                                <span class="material-icons spanMenu">account_balance</span>
-                                <a href="Impuesto.html" id="IMP" class="aMenu">Impuesto</a>
+                            <li class="nav-item  dropdown ">
+                                    <a class=" aMenu  nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Gestión de Documentos y Moneda
+                                    </a>
+                                    <div class="dropdown-menu flex-column" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-item">
+                                        <span class="material-icons spanMenu">article</span>
+                                        <a href="TipoDocumento.html"  id="TD" class="aMenu">Tipo Documento</a>
+                                        </div>                 
+                                        <div class="dropdown-item">
+                                        <span class="material-icons spanMenu">vpn_key</span>
+                                        <a href="CodigoComercial.html" id="CC" class="aMenu">Código Comercial</a>
+                                        </div>
+                                        <div class="dropdown-item">
+                                        <span class="material-icons spanMenu">monetization_on</span>
+                                        <a href="CodigoTipoMoneda.html" id="CTM" class="aMenu">Tipo Moneda</a>
+                                        </div>
+                                    </div>
                             </li>
                         </ul>     
                     </div>
                 </nav>
                  `
-                var vectorCargar = [navBar];
+                var  pageZoom =  document.body.style.zoom="90%";
+                var vectorCargar = [navBar,pageZoom];
                 return vectorCargar;
 }
         function eliminaValores() {
@@ -194,13 +230,12 @@
                            `;
                     }
                 }
-
             },
             error: function (xhr, textStatus, errorThrown) {
                 alert(xhr);
             }
         });
-    }
+ }
     ////////TODO: Terminar exoneracion //////////////////////////////////////////////////////////////////////////////////
         var Exoneracion = new Object;
         Exoneracion.tipoDocumento = "";
@@ -209,53 +244,6 @@
         Exoneracion.fechaEmision = "";
         Exoneracion.porcentajeExoneracion = "";
         Exoneracion.montoExoneracion = "";
-        function guardarExoneracion(Exoneracion) {
-            $.ajax({
-                url: ruta + "Exoneracion",
-                type: 'PUT',
-                dataType: 'json',
-                data: Exoneracion,
-                success: function (data, textStatus, xhr) {
-                    alert(data[0]);
-                    eliminaValores();
-                    console.log(Exoneracion);
-                },
-                error: function (xhr, textStatus, erroThrown) {
-                    alert(xhr);
-                }
-            })
-        }
-        function eliminarExoneracion(Exoneracion) {
-                $.ajax({
-                    url: ruta + 'Descuento',
-                    type: 'DELETE',
-                    dataType: 'json',
-                    data: Exoneracion,
-                    success: function (data, textStatus, xhr) {
-                        alert(data[0]);
-                        eliminaValores();
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        alert(xhr);
-                    }
-                });
-            }
-        function actualizarExoneracion(Exoneracion) {
-                $.ajax({
-                    url: ruta + 'Descuento',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: Exoneracion,
-                    success: function (data, textStatus, xhr) {
-                        alert(data[0]);
-                        eliminaValores();
-                    },
-                    error: function (xhr, textStatus, errorThrown) {
-                        alert(xhr);
-                    }
-
-                });
-    }
     ///////////////////////////////////////////////////////////////////////////////////////////
         var Fax = new Object;
         Fax.numFax = "";
@@ -269,8 +257,7 @@
     /////////////////////////////////////////////////////////////////////////////////////////
         var idPersona = new Object;
         idPersona.identificacionPersona = "";
-        idPersona.tipo = "";
-        console.log(idPersona);
+        idPersona.tipo = "";    
         function cargaridPersona() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'IdentificacionPersona', type: 'GET', dataType: 'json', data: idPersona, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Identificación Persona</th><th scope="col">Tipo</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].identificacionPersona1}</td><td>${data[z].Tipo1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].identificacionPersona1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
     /////////////////////////////////////////////////////////////////////////////////////////
         var Telefono = new Object;
@@ -308,22 +295,39 @@
         persona.idExtranjero = "";
         persona.otrasSenasExtranjero = ""; 
 
-        function globalFunction(Controller, VecPos, Objeto) {
-            var method = ["POST", "PUT", "DELETE", "OPTIONS"];
-            var realMethod = method[VecPos];
-                $.ajax({
-                    url: ruta + Controller,
-                    type: realMethod, 
-                    dataType: 'json',
-                    data: Objeto, 
-                    success: function (data, textStatus, xhr) {
-                        mover();
-                        eliminaValores();
-                        setTimeout(function () { alert(data[0]); }, 1500);
-                    },
-                    error: function (xhr, textStatus, erroThrown) {
-                        alert(xhr);
-                    }
-                });
-}       
- 
+        var method = ["POST", "PUT", "DELETE", "OPTIONS"];
+
+            function globalFunction(Controller, VecPos, Objeto) {
+                console.log("Controller: " + Controller + "/ VecPos: " + VecPos + "/ Objeto: " + Objeto.identificacionPersona)
+                     var realMethod = method[VecPos];
+                        $.ajax({
+                            url: ruta + Controller,
+                            type: realMethod, 
+                            dataType: 'json',
+                            data: Objeto, 
+                            success: function (data, textStatus, xhr) {
+                                mover();
+                                eliminaValores();
+                                setTimeout(function () { alert(data[0]); }, 1000);
+                                setTimeout("document.location=document.location", 1100);
+                            },
+                            error: function (xhr, textStatus, erroThrown) {
+                                alert(xhr);
+                            }
+                        });
+        }       
+            function paramOverload(object1, object2, controller1, controller2, VecPos) {                    
+                               var realMethod = method[VecPos];
+                               $.ajax({
+                                  url: ruta + controller1,
+                                   type: realMethod,
+                                   dataType: 'json',
+                                   data: object1,
+                                   success: function (data, textStatus, xhr) { 
+                                       globalFunction(controller2, VecPos, object2) 
+                                      },
+                                     error: function (xhr, textStatus, erroThrown) {
+                                         alert(xhr);
+                                      }
+                                });
+                        }       

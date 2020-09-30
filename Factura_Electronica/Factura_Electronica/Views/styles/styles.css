@@ -5,9 +5,7 @@
 
 body {
     background: #e2ebf4;
-    box-shadow: -26px -26px 100px #c2cad2, 26px 26px 100px #ffffff;
     font-family: 'Poppins', sans-serif;
-
 }
 
 #mainContainer {
@@ -18,7 +16,6 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
-    font-size: 1pc
 }
 
 #formContainer {
@@ -27,7 +24,7 @@ body {
     height: inherit;
     align-items: center;
     color: #B4B4B4;
-    justify-content: center
+    justify-content: center;
 }
 
 #formInfo {
@@ -36,35 +33,37 @@ body {
     align-items: center;
     justify-content: center;
     color: #66a3fc;
-    text-align: center
+    text-align: center;
+    font-size: 1.1vw;
 }
 
 .form-group {
     background: none;
-    margin-top: 2vh
+    margin-top: 2vh;
+    font-size: 1.2vw;
 }
 
 .form-control {
+    margin-top: 1.5vh;
     border: none;
-    margin-top: 2vh;
     color: black;
     border-radius: 10px;
     background: #f1f5fe;
-    box-shadow: 7px 7px 15px #c8cbd3, -7px -7px 15px #ffffff
+    box-shadow: 7px 0px 15px #c8cbd3, -7px -7px 15px #ffffff;
 }
 
 #myProgress {
     width: 100%;
     background-color: #ddd;
     visibility: hidden;
-    margin-top: 3vh
+    margin-top: 3vh;
 }
 
 #myBar {
     width: 1%;
     height: 30px;
     background-color: #52b4ff;
-    color: #050606
+    color: #050606;
 }
 
 #btnGroup {
@@ -74,57 +73,75 @@ body {
     margin-top: 2vh;
     align-items: center;
 }
-
 .activeLi {
     border-bottom: 1px solid #66a3fc;
 }
-
 nav {
     display:flex;
-    flex-direction:row-reverse;
     background: #e2ebf4;
-    box-shadow: -26px -26px 100px #c2cad2, 26px 26px 100px #ffffff
 }
-
 .navbar-brand {
-    border:1px solid black;
-    padding:4px 10px 4px 10px;
-    box-sizing:border-box;
-    border-radius:40px;
+        border-bottom:1px solid black;
+        font-size: 1.2vw;
 }
-    .navbar-brand:hover {
+.navbar-brand:hover {
         background: rgb(220,220,220);
         opacity:0.9;
         transition:0.4s;
-    }
-
-.ulMenu {
-        display: flex;
-        width: 100%;
-        justify-content: space-evenly;
-    }
-
-.liMenu {
-    display: flex;
-    justify-content: center
 }
+.ulMenu {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.dropdown-menu{
+background-color:rgba(252, 252, 252, 1);
+z-index: 100;
+}
+.dropdown-menu>div{
+    display: flex;
+    align-items: center;
+}
+.dropdown-menu>div:hover {
+   background-color: rgba(102, 163, 252, 0.10);
 
-.liMenu > a {
+}
+.dropdown-menu > div > a {
         color: #798696;
-        text-decoration: none
+        text-decoration: none;
     }
-
-.liMenu > a:hover {
-            transition: 0.3s;
-            color: #66a3fc
-        }
-
+.dropdown-menu > div > a:hover , .select-menu>a:hover{
+            transition: 0.2s;
+            color: #66a3fc;
+}
 .spanMenu {
-    margin-right: 1vh;
-    display: none;
+    /* Arriba | Derecha | Abajo | Izquierda */
+    margin: 0vh 1vh 0vh 0vh;
+    display: normal;
     color: #6ea1fd
 }
-
+.btn-link{
+    font-size: 1.1vw;
+}
+.input-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.extraContainer{
+    margin-right: 4vh;
+}
+.select-menu{
+    background-color: white;
+    transform: translate3d(5px, 35px, 0px)!important;
+    margin-left: 1.3vh;
+    margin-top: 1vh;
+}
+.btn-select{
+    background-color: lightseagreen;
+}
 
 @media screen and (max-width: 991px) {
     .spanMenu {
@@ -133,18 +150,20 @@ nav {
         display: inline-block;
         z-index: 0
     }
-
-    .liMenu {
-        font-size:1pc;
-        font-weight:bold;
-        display: normal;
-        justify-content: normal;
-        align-items: center;
-        margin-top: 1vh;
-        height: 5vh
-    }
-
     .img-fluid {
         display: none
+    }
+    .form-group{
+        font-size: 1.2rem;
+    }
+
+    .form-group>h5{
+        font-size: 1.5rem;
+    }
+    #formInfo>p{
+        font-size: 1rem;
+    }
+    .btn-link{
+        font-size: 1rem;
     }
 }

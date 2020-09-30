@@ -16,20 +16,34 @@ namespace Factura_Electronica.Controllers
         public HttpResponseMessage Put(FormDataCollection form)
         {
             Persona persona = new Persona();
+            IdentificacionPersona idPersona = new IdentificacionPersona();
+            Telefono telefono = new Telefono();
+            Fax fax = new Fax();
+            Ubicacion ubicacion = new Ubicacion();
 
             persona.Nombre1 = form.Get("nombre");
-            persona.ObjIdPersona.identificacionPersona1 = form.Get("idPersona");
-            persona.ObjTelefono.NumTelefono1 = Convert.ToInt32(form.Get("numTelefono"));
-            persona.ObjFax.NumFax1 = Convert.ToInt32(form.Get("numFax"));
-            persona.ObjUbicacion.IdUbicacion1 = Convert.ToInt32(form.Get("idUbicacion"));
-            persona.NombreComercial1 = form.Get("nombreComercial");
-            persona.CorreoElectronico1 = form.Get("correoElectronico");
-            persona.IdentificacionExtranjero1 = form.Get("idExtranjero");
-            persona.OtrasSenasExtranjero1 = form.Get("otrasSenasExtranjero");
+
+            idPersona.identificacionPersona1 = form.Get("idPersona").ToString();
+            persona.identificacionPersona = idPersona;
+
+            telefono.NumTelefono1 = Convert.ToInt32(form.Get("numTelefono").ToString());
+            persona.ObjTelefono1 = telefono;
+
+            fax.NumFax1 = Convert.ToInt32(form.Get("numFax").ToString());
+            persona.ObjFax1 = fax;
+
+            ubicacion.IdUbicacion1 = Convert.ToInt32(form.Get("idUbicacion").ToString());
+            persona.ObjUbicacion = ubicacion;
+
+            persona.NombreComercial1 = form.Get("nombreComercial").ToString();
+            persona.CorreoElectronico1 = form.Get("correoElectronico").ToString();
+            persona.IdentificacionExtranjero1 = form.Get("idExtranjero").ToString();
+            persona.OtrasSenasExtranjero1 = form.Get("otrasSenasExtranjero").ToString();
+    
 
             string[] respuesta = new string[2];
-            respuesta[0] = 
             respuesta[1] = persona.setPersona();
+            respuesta[0] = persona.identificacionPersona.ToString();
             HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
             return res;
 
