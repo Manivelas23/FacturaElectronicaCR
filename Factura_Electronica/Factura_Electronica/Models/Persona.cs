@@ -31,9 +31,9 @@ namespace Factura_Electronica.Models
 
         public string setPersona()
         {
-        //try
-          //  {
-                ConexionconBD objConexion = new ConexionconBD();
+            ConexionconBD objConexion = new ConexionconBD();
+            try
+            {
                 if (objConexion.activaBD())
                 {
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
@@ -61,13 +61,71 @@ namespace Factura_Electronica.Models
                     return $"Se guardó la Persona con la Identificación : {identificacionPersona.identificacionPersona1}";
                 }
                 else return "Sin conexión con la base de datos";
-           // }
-          //  catch(Exception e)
-           // {
-           //    return e.Message;
-           // /}
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+            }
         }
 
+        public Persona getPersonaById()
+        {
+            ConexionconBD objConexion = new ConexionconBD();
+            Persona persona = new Persona();
+            persona.Nombre1 = "NO EXISTE";
+            try
+            {
+                if (objConexion.activaBD())
+                {
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    string query;
+                    query = "EXEC S_PERSONA ?";
+                    objConexion.nueva_consulta(query);
+
+                    objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
+
+                    CONTENEDOR = objConexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        persona.Nombre1 = CONTENEDOR["NOMBRE"].ToString();
+
+                        IdentificacionPersona idPersona = new IdentificacionPersona();
+                        idPersona.identificacionPersona1 = CONTENEDOR["IDENTIFICACION"].ToString();
+                        persona.identificacionPersona = idPersona;
+
+                        Telefono telefono = new Telefono();
+                        telefono.NumTelefono1 = Convert.ToInt32(CONTENEDOR["NUMTELEFONO"].ToString());
+                        persona.ObjTelefono1 = telefono;
+
+                        Fax fax = new Fax();
+                        fax.NumFax1 = Convert.ToInt32(CONTENEDOR["NUMFAX"].ToString());
+                        persona.ObjFax1 = fax;
+
+                        Ubicacion ubicacion = new Ubicacion();
+                        ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());
+                        persona.ObjUbicacion = ubicacion;
+
+                        persona.Nombre1 = CONTENEDOR["NOMBRECOMERCIAL"].ToString();
+                        persona.Nombre1 = CONTENEDOR["CORREOELECTRONICO"].ToString();
+                        persona.Nombre1 = CONTENEDOR["IDENTIFICACIONEXTRANJERO"].ToString();
+                        persona.Nombre1 = CONTENEDOR["OTRASSENASEXTRANJERO"].ToString();
+                    }
+
+                    objConexion.conexion.Close();
+                    objConexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+
+                    return persona;
+                }
+                else { return persona; }
+            }
+            catch (Exception)
+            {
+                persona.Nombre1 = "Error";
+                return persona;
+            }
+        }
     }
 }
 

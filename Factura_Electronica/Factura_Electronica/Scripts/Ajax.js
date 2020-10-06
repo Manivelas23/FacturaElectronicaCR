@@ -135,8 +135,14 @@
                 var vectorCargar = [navBar,pageZoom];
                 return vectorCargar;
 }
+        function disableInputs() {
+            var inputNode = document.getElementById("formContainer").querySelectorAll(".form-control");
+            for(var i in inputNode){
+                inputNode[i].disabled = false;
+            }
+        }
         function eliminaValores() {
-            var x = document.getElementById("formContainer").querySelectorAll(".form-control");
+            var x = document.getElementById("formContainer").querySelectorAll(".form-control");     
             for (var i = 0; i < x.length; i++) {
                 x[i].value = "";
             }
@@ -282,7 +288,7 @@
         Impuesto.factor_Iva = "";
         Impuesto.monto = "";
         Impuesto.montoExportacion = "";
-        //TODO: terminar de cargar impuestos 12:29/12/sep/2020
+        //TODO: terminar de cargar impuestos 12:29 /12/sep/2020
     /////////////////////////////////////////////////////////////////////////////////////////
         var persona = new Object;
         persona.nombre = "";
@@ -295,39 +301,74 @@
         persona.idExtranjero = "";
         persona.otrasSenasExtranjero = ""; 
 
-        var method = ["POST", "PUT", "DELETE", "OPTIONS"];
+        function verificaExistenciaPersona(persona) {
+            $.ajax({
+                url: ruta + 'Persona?id=' + persona.idPersona,
+                type: 'GET',
+                dataType: 'json',
+                data: persona,
+                success: function(data, textStatus, xhr) {                  
+                    switch (data.Nombre1) {
+                        case "NO EXISTE": {
+                            eliminaValores()
+                            break;
+                        }
+                        case "Error": {
+                            alert("Error en la base de datos")
+                            break;
+                        }
+                        default: {
+                            rellenaDatos(persona)
+                            break;
+                        }
+                    }
+                },
+                error: function(xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            });
+        }
 
-            function globalFunction(Controller, VecPos, Objeto) {
-                console.log("Controller: " + Controller + "/ VecPos: " + VecPos + "/ Objeto: " + Objeto.identificacionPersona)
-                     var realMethod = method[VecPos];
-                        $.ajax({
-                            url: ruta + Controller,
-                            type: realMethod, 
-                            dataType: 'json',
-                            data: Objeto, 
-                            success: function (data, textStatus, xhr) {
-                                mover();
-                                eliminaValores();
-                                setTimeout(function () { alert(data[0]); }, 1000);
-                                setTimeout("document.location=document.location", 1100);
-                            },
-                            error: function (xhr, textStatus, erroThrown) {
-                                alert(xhr);
-                            }
-                        });
-        }       
-            function paramOverload(object1, object2, controller1, controller2, VecPos) {                    
-                               var realMethod = method[VecPos];
-                               $.ajax({
-                                  url: ruta + controller1,
-                                   type: realMethod,
-                                   dataType: 'json',
-                                   data: object1,
-                                   success: function (data, textStatus, xhr) { 
-                                       globalFunction(controller2, VecPos, object2) 
-                                      },
-                                     error: function (xhr, textStatus, erroThrown) {
-                                         alert(xhr);
-                                      }
+        var method = ["POST", "PUT", "DELETE", "OPTIONS"];
+        function globalFunction(Controller, VecPos, Objeto) {
+                            var realMethod = method[VecPos];
+                                $.ajax({
+                                    url: ruta + Controller,
+                                    type: realMethod, 
+                                    dataType: 'json',
+                                    data: Objeto, 
+                                    success: function (data, textStatus, xhr) {
+                                        mover();
+                                        eliminaValores();
+                                        setTimeout(function () { alert(data[0]); }, 1000);
+                                        setTimeout("document.location=document.location", 1100);
+                                    },
+                                    error: function (xhr, textStatus, erroThrown) {
+                                        alert(xhr);
+                                    }
                                 });
-                        }       
+                }       
+        function paramOverload(object1, object2, controller1, controller2, VecPos) {                    
+                                    var realMethod = method[VecPos];
+                                    $.ajax({
+                                        url: ruta + controller1,
+                                        type: realMethod,
+                                        dataType: 'json',
+                                        data: object1,
+                                        success: function (data, textStatus, xhr) { 
+                                            globalFunction(controller2, VecPos, object2) 
+                                            },
+                                            error: function (xhr, textStatus, erroThrown) {
+                                                alert(xhr);
+                                            }
+                                        });
+                }       
+        function rellenaDatos(objeto){
+            var inputNode = document.getElementById("formContainer").querySelectorAll(".form-control")
+            var llaves = Object.keys(objeto)
+            console.log(llaves)
+            for(var ele in inputNode){
+                console.log(inputNode[ele])               
+            }    
+
+        }

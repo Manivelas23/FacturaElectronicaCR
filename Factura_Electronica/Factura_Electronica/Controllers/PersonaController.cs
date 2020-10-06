@@ -12,7 +12,6 @@ namespace Factura_Electronica.Controllers
     public class PersonaController : ApiController
     {
         [HttpPut]
-
         public HttpResponseMessage Put(FormDataCollection form)
         {
             Persona persona = new Persona();
@@ -42,11 +41,23 @@ namespace Factura_Electronica.Controllers
     
 
             string[] respuesta = new string[2];
-            respuesta[1] = persona.setPersona();
-            respuesta[0] = persona.identificacionPersona.ToString();
+            respuesta[0] = persona.setPersona();
+            respuesta[1] = form.Get("idPersona").ToString();
             HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
             return res;
 
+        }
+
+        [HttpGet]
+        public HttpResponseMessage Get([FromUri] String id)
+        {
+            Persona persona = new Persona();
+            IdentificacionPersona idPersona = new IdentificacionPersona();
+
+            idPersona.identificacionPersona1 = id;
+            persona.identificacionPersona = idPersona;
+            HttpResponseMessage res = Request.CreateResponse<Models.Persona>(HttpStatusCode.Created, persona.getPersonaById());
+            return res;
         }
     }
 }
