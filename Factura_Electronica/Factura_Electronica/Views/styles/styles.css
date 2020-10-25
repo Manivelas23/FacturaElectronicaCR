@@ -160,6 +160,11 @@ nav {
 	background-color: #66a3fc;
 	color: white;
 }
+#captionIdentificacion{
+	font-size: 1em;
+	color: black;
+	margin-top: 2vh;
+}
 
 @media screen and (max-width: 991px) {
 	.spanMenu {

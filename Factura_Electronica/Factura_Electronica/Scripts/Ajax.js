@@ -131,7 +131,7 @@
                     </div>
                 </nav>
                  `
-                var  pageZoom =  document.body.style.zoom="90%";
+                var  pageZoom =  document.body.style.zoom="80%";
                 var vectorCargar = [navBar,pageZoom];
                 return vectorCargar;
 }
@@ -242,7 +242,7 @@
             }
         });
  }
-    ////////TODO: Terminar exoneracion //////////////////////////////////////////////////////////////////////////////////
+    //////// //////////////////////////////////////////////////////////////////////////////////
         var Exoneracion = new Object;
         Exoneracion.tipoDocumento = "";
         Exoneracion.numeroDocumento = "";
@@ -250,6 +250,7 @@
         Exoneracion.fechaEmision = "";
         Exoneracion.porcentajeExoneracion = "";
         Exoneracion.montoExoneracion = "";
+        //TODO: Terminar exoneracion
     ///////////////////////////////////////////////////////////////////////////////////////////
         var Fax = new Object;
         Fax.numFax = "";
@@ -288,7 +289,7 @@
         Impuesto.factor_Iva = "";
         Impuesto.monto = "";
         Impuesto.montoExportacion = "";
-        //TODO: terminar de cargar impuestos 12:29 /12/sep/2020
+        //TODO: terminar de hacer impuestos 12:29 /12/sep/2020
     /////////////////////////////////////////////////////////////////////////////////////////
         var persona = new Object;
         persona.nombre = "";
@@ -300,35 +301,7 @@
         persona.correoElectronico = "";
         persona.idExtranjero = "";
         persona.otrasSenasExtranjero = ""; 
-
-        function verificaExistenciaPersona(persona) {
-            $.ajax({
-                url: ruta + 'Persona?id=' + persona.idPersona,
-                type: 'GET',
-                dataType: 'json',
-                data: persona,
-                success: function(data, textStatus, xhr) {                  
-                    switch (data.Nombre1) {
-                        case "NO EXISTE": {
-                            eliminaValores()
-                            break;
-                        }
-                        case "Error": {
-                            alert("Error en la base de datos")
-                            break;
-                        }
-                        default: {
-                            rellenaDatos(persona)
-                            break;
-                        }
-                    }
-                },
-                error: function(xhr, textStatus, erroThrown) {
-                    alert(xhr);
-                }
-            });
-        }
-
+      
         var method = ["POST", "PUT", "DELETE", "OPTIONS"];
         function globalFunction(Controller, VecPos, Objeto) {
                             var realMethod = method[VecPos];
@@ -362,13 +335,81 @@
                                                 alert(xhr);
                                             }
                                         });
-                }       
-        function rellenaDatos(objeto){
-            var inputNode = document.getElementById("formContainer").querySelectorAll(".form-control")
-            var llaves = Object.keys(objeto)
-            console.log(llaves)
-            for(var ele in inputNode){
-                console.log(inputNode[ele])               
-            }    
+}       
 
+        function verificaExistenciaPersona(persona) {
+                    $.ajax({
+                        url: ruta + 'Persona?id=' + persona.idPersona,
+                        type: 'GET',
+                        dataType: 'json',
+                        data: persona,
+                        success: function (data, textStatus, xhr) {
+                            disableInputs()
+                            switch (data.Nombre1) {
+                                case "NO EXISTE": 
+                                    console.log('no existe')
+                                    break;                   
+                                case "Error": 
+                                    alert("Error en la base de datos")
+                                    break;                             
+                                default: 
+                                    console.log(data)
+                                    rellenaDatos(data)
+                                    break;
+                            }
+                        },
+                        error: function (xhr, textStatus, erroThrown) {
+                            alert(xhr);
+                        }
+                    });
+        } 
+        function getUbicacionesSelect(selectElement) {
+            $.ajax({
+                url: ruta + 'Ubicacion',
+                type: 'GET',
+                dataType: 'json',
+                data: null,
+                success: function (data, textStatus, xhr) {
+                    for (var i in data) {    
+                        selectElement.innerHTML += `<option id="${data[i].IdUbicacion1}" value="Id:${data[i].IdUbicacion1}> Prov:${data[i].Provincia1} -Cant: ${data[i].Canton1} -Dist:${data[i].Distrito1} -Barrio:${data[i].Barrio1}</option>`;
+                    }
+                },
+                error: function (xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            });
+}
+        function getFaxSelect(selectElement) {
+            $.ajax({
+                url: ruta + 'Fax',
+                type: 'GET',
+                dataType: 'json',
+                data: null,
+                success: function (data, textStatus, xhr) {
+                    for (var i in data) {
+                        selectElement.innerHTML += `<option id="${data[i].NumFax1}" value="${data[i].NumFax1}">${data[i].NumFax1}</option>`;
+                    }
+                },
+                error: function (xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            });
+}
+        function getTelefonSelect(selectElement) {
+            $.ajax({
+                url: ruta + 'Telefono',
+                type: 'GET',
+                dataType: 'json',
+                data: null,
+                success: function (data, textStatus, xhr) {
+                    for (var i in data) {
+                        selectElement.innerHTML += `<option id="${data[i].NumTelefono1}" value="${data[i].NumTelefono1}">${data[i].NumTelefono1}</option>`;
+                    }
+                },
+                error: function (xhr, textStatus, erroThrown) {
+                    alert(xhr);
+                }
+            });
         }
+
+     

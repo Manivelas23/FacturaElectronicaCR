@@ -9,7 +9,7 @@ namespace Factura_Electronica.Models
     {
         private string CodigoActividad;
         private string Clave;
-        private IdentificacionPersona IdPersona; //TODO: verificar si se hizo esto en el script de la base
+        private IdentificacionPersona IdPersona;
         private string NumeroConsecutivo;
         private DateTime FechaEmision;
         private string CondicionVenta;

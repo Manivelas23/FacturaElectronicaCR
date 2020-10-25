@@ -12,73 +12,52 @@
 <body>
     <div id="navBar"></div>
     <div class="container" id="mainContainer">
-        <div class="row col-md-12   " id="formContainer">
+        <div class="row col-md-12  " id="formContainer">
             <div class="row col-md-12" id="formInfo">
                 <h5>Formulario de Información de la Persona:</h5>
                 <br>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sunt voluptatum suscipit recusandae? Debitis,as!</p>
             </div>
+
             <div class="form-group col-md-9">
                 <strong>Número de Identificación: </strong>
-                <input class=" form-control" type="text" id="identificacion" autofocus onkeyup="verificaExistencia(event)">
+                <input class=" form-control" type="text" id="identificacion" autofocus>
+                <input type="button" value="Buscar" onclick="verificaExistencia()" />
             </div>
+
             <div class="form-group col-md-9">
                 <strong>Tipo de Identificación: </strong>
-                <input class=" form-control" type="text" id="tipo" >
+                <input class=" form-control" type="text" id="tipo" disabled=true>
+               
             </div>
+
             <div class="form-group col-md-9">
                 <strong>Nombre Persona: </strong>
-                <input class=" form-control" type="text" id="nombre"  disabled=true >
+                <input class=" form-control" type="text" id="nombre" disabled=true>
             </div>
-            <div class="form-group col-md-9 extraContainer">
+
+            <div class="form-group col-md-9 ">
                 <strong class="col-md-12">Teléfono:</strong>
-                <div class="input-container col-md-12 ">
-                    <input class="form-control class-md-10" type="text" id="telefono" disabled=true >
-                    <div class="dropdown col-md-2">
-                        <button class="btn btn-info btn-header-text btn-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           Ver Teléfonos
-                        </button>
-                        <div class="dropdown-menu select-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
+                <select class="form-control form-control-lg" id="telefono" disabled=true>
+                    <option>Seleccione el Teléfono</option>
+                </select>
+                <a href="Telefono.html">Crear Teléfono</a>
             </div>
 
-            <div class="form-group col-md-9 extraContainer">
+            <div class="form-group col-md-9 ">
                 <strong class="col-md-12">Fax:</strong>
-                <div class="input-container col-md-12 ">
-                    <input class=" form-control col-md-10" type="text" id="fax" disabled=true >
-                    <div class="dropdown col-md-2">
-                        <button class="btn btn-info btn-select btn-header-text dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           Ver Fax
-                        </button>
-                        <div class="dropdown-menu select-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
+                <select class="form-control form-control-lg" id="fax" disabled=true>
+                    <option>Seleccione el Fax</option>
+                </select>
+                <a href="Fax.html">Crear Fax</a>
             </div>
 
-            <div class="form-group col-md-9 extraContainer">
+            <div class="form-group col-md-9 ">
                 <strong class="col-md-12">Ubicación:</strong>
-                <div class="input-container col-md-12 ">
-                    <input class="form-control" type="text" id="idubicacion" disabled=true >
-                    <div class="dropdown col-md-2">
-                        <button class="btn btn-info btn-header-text btn-select dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Ver Ubicaciones
-                        </button>
-                        <div class="dropdown-menu select-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>  <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
+                <select class="form-control form-control-lg" id="ubicacion" disabled=true>
+                    <option>Seleccione la Ubicacion</option>
+                </select>
+                <a href="Ubicacion.html">Crear Ubicación</a>
             </div>
 
             <div class="form-group col-md-9">
@@ -89,13 +68,16 @@
             <div class="form-group col-md-9">
                 <strong>Correo: </strong>
                 <input class="form-control" type="text" id="correo" disabled=true>
-            </div> <div class="form-group col-md-9">
+            </div>
+            <div class="form-group col-md-9">
                 <strong>Identificación Extranjero: </strong>
                 <input class="form-control" type="email" id="idExtranjero" disabled=true>
-            </div> <div class="form-group col-md-9">
+            </div>
+            <div class="form-group col-md-9">
                 <strong>Otras Señas Extranjero: </strong>
                 <input class="form-control" type="text" id="otrasSenasEx" disabled=true>
             </div>
+
             <div class="col-md-9" id="btnGroup">
                 <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
                 <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
@@ -111,7 +93,7 @@
         <div class="card-header" id="headingOne">
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Ver Identificaciones Guardadas
+                    Ver Personas Guardadas
                 </button>
             </h2>
         </div>
@@ -129,16 +111,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+
         $('#PERSONA').addClass('activeLi');
+
         function guarda() {
              idPersona.identificacionPersona = document.getElementById("identificacion").value;
              idPersona.tipo = document.getElementById("tipo").value;
-
              persona.nombre = document.getElementById("nombre").value;
              persona.idPersona = document.getElementById("identificacion").value;
              persona.numTelefono = document.getElementById("telefono").value;
              persona.numFax = document.getElementById("fax").value;
-             persona.idUbicacion = document.getElementById("idubicacion").value;
+             persona.idUbicacion = document.getElementById("ubicacion").value;
              persona.nombreComercial = document.getElementById("nombrecomercial").value;
              persona.correoElectronico = document.getElementById("correo").value;
              persona.idExtranjero = document.getElementById("idExtranjero").value;
@@ -146,36 +129,33 @@
 
              paramOverload(idPersona, persona, "IdentificacionPersona", "Persona", 1);
         }
+
         (function () {
             document.getElementById('navBar').innerHTML += cargaNavBar();
             document.getElementById('GuardarBtn').addEventListener('click', guarda);
+            getUbicacionesSelect(document.getElementById("ubicacion"));
+            getFaxSelect(document.getElementById("fax"))
+            getTelefonSelect(document.getElementById("telefono"))
         })();
 
-        function verificaExistencia(event){
-            if (event.which == 13 || event.KeyCode == 13) {
+        function verificaExistencia(){
                 if (document.getElementById("identificacion").value != "") {
                     var actualId = document.getElementById("identificacion").value;
                     persona.idPersona = actualId;
-                    mover()
-                    verificaExistenciaPersona(persona)
-                    disableInputs()              
+                    verificaExistenciaPersona(persona);
                 }
-            }
         }
-
-
-        // function rellenadatos(personaExistente) {
-        //     document.getElementById("nombre").value = personaExistente.Nombre1;
-        //     document.getElementById("identificacion").value = personaExistente.identificacionPersona.identificacionPersona1;
-        //     document.getElementById("telefono").value = personaExistente.ObjTelefono1.NumTelefono1;
-        //     document.getElementById("fax").value = personaExistente.ObjFax1.NumFax1;
-        //     document.getElementById("idubicacion").value = personaExistente.ObjUbicacion.IdUbicacion1;
-        //     document.getElementById("nombrecomercial").value = personaExistente.NombreComercial1;
-        //     document.getElementById("correo").value = personaExistente.CorreoElectronico1;
-        //     document.getElementById("idExtranjero").value = personaExistente.IdentificacionExtranjero1;
-        //     document.getElementById("otrasSenasEx").value = personaExistente.OtrasSenasExtranjero1;
-        // }
-
+        function rellenaDatos(personaExistente) {
+        document.getElementById("nombre").value = personaExistente.Nombre1;
+        document.getElementById("telefono").value = personaExistente.ObjTelefono1.NumTelefono1;
+        document.getElementById("fax").value = personaExistente.ObjFax1.NumFax1;
+        document.getElementById("ubicacion").value = personaExistente.ObjUbicacion.IdUbicacion1;
+        //TODO:RESOLVER PORQUE LA UBICACION NO SE MUESTRA EN EL SELECT 
+        document.getElementById("nombrecomercial").value = personaExistente.NombreComercial1;
+        document.getElementById("correo").value = personaExistente.CorreoElectronico1;
+        document.getElementById("idExtranjero").value = personaExistente.IdentificacionExtranjero1;
+        document.getElementById("otrasSenasEx").value = personaExistente.OtrasSenasExtranjero1;
+        }
 
     </script>
 </body>

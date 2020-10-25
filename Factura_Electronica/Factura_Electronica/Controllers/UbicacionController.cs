@@ -61,7 +61,7 @@ namespace Factura_Electronica.Controllers
         {
             Ubicacion Ubicacion = new Ubicacion();
 
-            Ubicacion.IdUbicacion1 = Convert.ToInt16(form.Get("idUbicacion"));
+                Ubicacion.IdUbicacion1 = Convert.ToInt32(form.Get("idUbicacion"));
                 string[] respuesta = new string[2];
                 respuesta[0] = Ubicacion.Elimina_ubicacion();
                 respuesta[1] = form.Get("idUbicacion");

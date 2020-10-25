@@ -73,24 +73,31 @@ namespace Factura_Electronica.Models
         public string Elimina_ubicacion()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();
-            if (objeto_conexion.activaBD())
+            try
             {
-                String query;
-                System.Data.OleDb.OleDbDataReader CONTENEDOR;
+                if (objeto_conexion.activaBD())
+                {           
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                query = "EXEC D_UBICACION ?";
-                objeto_conexion.nueva_consulta(query);
+                    query = "EXEC D_UBICACION ?";
+                    objeto_conexion.nueva_consulta(query);
 
-                objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
-                    
-                CONTENEDOR = objeto_conexion.busca();
+                    objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
 
-                objeto_conexion.conexion.Close();
-                objeto_conexion.conexion.Dispose();
-                CONTENEDOR.Close();
-                return "Se eliminó la ubicación con el id : "+ IdUbicacion1;
+                    CONTENEDOR = objeto_conexion.busca();
+
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return "Se eliminó la ubicación con el id : " + IdUbicacion1;
+                }
+                else return "Sin Conexión con la Base de Datos";
             }
-            else return "Sin Conexión con la Base de Datos";
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
         public string Inserta_ubicacion()
         {

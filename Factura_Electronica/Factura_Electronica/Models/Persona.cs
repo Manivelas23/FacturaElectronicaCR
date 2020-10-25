@@ -7,7 +7,7 @@ namespace Factura_Electronica.Models
 {
     public class Persona
     {
-        public Persona(){}
+        public Persona() { }
 
         private string Nombre;
         private IdentificacionPersona IdPersona;
@@ -36,6 +36,7 @@ namespace Factura_Electronica.Models
             {
                 if (objConexion.activaBD())
                 {
+
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
                     string query;
@@ -62,7 +63,7 @@ namespace Factura_Electronica.Models
                 }
                 else return "Sin conexión con la base de datos";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return e.Message;
             }
@@ -73,19 +74,21 @@ namespace Factura_Electronica.Models
             ConexionconBD objConexion = new ConexionconBD();
             Persona persona = new Persona();
             persona.Nombre1 = "NO EXISTE";
-            try
+
+            if (objConexion.activaBD())
             {
-                if (objConexion.activaBD())
+                System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                string query;
+                query = "EXEC S_PERSONA ?";
+                objConexion.nueva_consulta(query);
+
+                objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
+
+                CONTENEDOR = objConexion.busca();
+
+                if (CONTENEDOR.HasRows)
                 {
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
-
-                    string query;
-                    query = "EXEC S_PERSONA ?";
-                    objConexion.nueva_consulta(query);
-
-                    objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
-
-                    CONTENEDOR = objConexion.busca();
                     while (CONTENEDOR.Read())
                     {
                         persona.Nombre1 = CONTENEDOR["NOMBRE"].ToString();
@@ -106,12 +109,12 @@ namespace Factura_Electronica.Models
                         ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());
                         persona.ObjUbicacion = ubicacion;
 
-                        persona.Nombre1 = CONTENEDOR["NOMBRECOMERCIAL"].ToString();
-                        persona.Nombre1 = CONTENEDOR["CORREOELECTRONICO"].ToString();
-                        persona.Nombre1 = CONTENEDOR["IDENTIFICACIONEXTRANJERO"].ToString();
-                        persona.Nombre1 = CONTENEDOR["OTRASSENASEXTRANJERO"].ToString();
+                        persona.NombreComercial1 = CONTENEDOR["NOMBRECOMERCIAL"].ToString();
+                        persona.CorreoElectronico1 = CONTENEDOR["CORREOELECTRONICO"].ToString();
+                        persona.IdentificacionExtranjero1 = CONTENEDOR["IDENTIFICACIONEXTRANJERO"].ToString();
+                        persona.OtrasSenasExtranjero1 = CONTENEDOR["OTRASSENASEXTRANJERO"].ToString();
                     }
-
+                }
                     objConexion.conexion.Close();
                     objConexion.conexion.Dispose();
                     CONTENEDOR.Close();
@@ -120,12 +123,7 @@ namespace Factura_Electronica.Models
                 }
                 else { return persona; }
             }
-            catch (Exception)
-            {
-                persona.Nombre1 = "Error";
-                return persona;
-            }
         }
-    }
+    //TODO: teminar el update y eliminar persona
 }
 
