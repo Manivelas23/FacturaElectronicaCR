@@ -250,7 +250,6 @@
         Exoneracion.fechaEmision = "";
         Exoneracion.porcentajeExoneracion = "";
         Exoneracion.montoExoneracion = "";
-        //TODO: Terminar exoneracion
     ///////////////////////////////////////////////////////////////////////////////////////////
         var Fax = new Object;
         Fax.numFax = "";
@@ -289,7 +288,53 @@
         Impuesto.factor_Iva = "";
         Impuesto.monto = "";
         Impuesto.montoExportacion = "";
-        //TODO: terminar de hacer impuestos 12:29 /12/sep/2020
+        function cargarImpuesto() {
+           var tabla = document.getElementById('tabla');
+           $.ajax({
+               url: ruta + 'Impuesto',
+               type: 'GET',
+               dataType: 'json',
+               data: null,
+               success: function (data, textStatus, xhr) {
+                   if (data.length > 0) {
+                       tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`;
+                       var filacabezaTabla = document.getElementById('filacabezaTabla');
+                       filacabezaTabla.innerHTML +=
+                           `
+                            <th scope="col">Código Impuesto</th>
+                            <th scope="col">Código Tarifa</th>
+                            <th scope="col">Tarifa</th>
+                            <th scope="col">Factor IVA</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">Monto Exortación</th>  
+                           `;
+                       tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`;
+                       for (var z in data) {
+                           var objetoSerializado = JSON.stringify(data[z]);
+                           var objetoSerializadoComillas = "";
+                           for (var j in objetoSerializado) {
+                               objetoSerializadoComillas += objetoSerializado[j].replace('"', "'");
+                           }
+                           document.getElementById('cuerpoTabla').innerHTML += `
+                            <tr>
+                              <td>${data[z].CodigoImpuesto1}</td>
+                              <td>${data[z].CodigoTarifa1}</td>
+                              <td>${data[z].Tarifa1}</td>
+                              <td>${data[z].Factor_Iva1}</td>
+                              <td>${data[z].Monto1}</td>
+                              <td>${data[z].MontoExportacion1}</td>
+                              <td><input class="btn  btn-warning" type="button" value="Modificar" onclick="cargaDatosFormulario(${objetoSerializadoComillas})" /></td>
+                              <td><input class="btn  btn-danger" type="button"  value="Eliminar" onclick="verificaEliminar(${data[z].CodigoImpuesto1})"/></td>
+                           </tr>`;
+                       }
+                   }
+    
+               },
+               error: function (xhr, textStatus, errorThrown) {
+                   alert(xhr);
+               }
+           });
+        }
     /////////////////////////////////////////////////////////////////////////////////////////
         var persona = new Object;
         persona.nombre = "";

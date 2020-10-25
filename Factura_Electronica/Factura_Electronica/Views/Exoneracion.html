@@ -50,6 +50,25 @@
 			</div>
 		</div>
 	</div>
+	<div id="myProgress">
+		<div id="myBar"></div>
+	</div>
+	<div class="accordion" id="accordionExample">
+		<div class="card-header" id="headingOne">
+			<h2 class="mb-0">
+				<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					Ver Teléfonos Guardados
+				</button>
+			</h2>
+		</div>
+
+		<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+			<div class="table-responsive">
+				<table class="table text-center table-borderless" id="tabla">
+				</table>
+			</div>
+		</div>
+	</div>
 	<script src="../Scripts/Ajax.js"></script>
 	<script src="../Scripts/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -61,12 +80,11 @@
 			Exoneracion.nombreInstitucion = document.getElementById('nombreInstitucion').value;
 			Exoneracion.fechaEmision = document.getElementById('fechaEmision').value;
 			Exoneracion.porcentajeExoneracion = document.getElementById('porcentajeExoneracion').value;
-			guardarExoneracion(Exoneracion);
+			globalFunction('Exoneracion', 1, Exoneracion);
 		}
 		function eliminaExoneracion() {
 			Exoneracion.tipoDocumento = document.getElementById('tipoDocumento').value;
 			Exoneracion.numeroDocumento = document.getElementById('numeroDocumento').value;
-			eliminarExoneracion(Exoneracion);
 		}
 		function actualizaExoneracion() {
 			Exoneracion.tipoDocumento = document.getElementById('tipoDocumento').value;
@@ -74,18 +92,17 @@
 			Exoneracion.nombreInstitucion = document.getElementById('nombreInstitucion').value;
 			Exoneracion.fechaEmision = document.getElementById('fechaEmision').value;
 			Exoneracion.porcentajeExoneracion = document.getElementById('porcentajeExoneracion').value;
-			actualizarExoneracion(Exoneracion);
 		}
 		function activeLi() {
 			$('#EXO').addClass('activeLi');
 		}
 
 		(function () {
+			document.getElementById('navBar').innerHTML += cargaNavBar();
+			activeLi();
 			document.getElementById('GuardarBtn').addEventListener('click', nuevaExoneracion);
 			document.getElementById('EliminarBtn').addEventListener('click', eliminaExoneracion);
 			document.getElementById('ModificaBtn').addEventListener('click', actualizaExoneracion);
-			document.getElementById('navBar').innerHTML += cargaNavBar();
-			activeLi();
 		})();
 	</script>
 </body>

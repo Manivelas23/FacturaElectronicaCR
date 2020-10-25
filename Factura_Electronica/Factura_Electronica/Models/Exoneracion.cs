@@ -12,14 +12,14 @@ namespace Factura_Electronica.Models
         private string NombreInstitucion;
         private DateTime FechaEmision;
         private int PorcentajeExoneracion;
-        private decimal MontoExoneracion;
+        private double MontoExoneracion;
 
         public string TipoDocumento1 { get => TipoDocumento; set => TipoDocumento = value; }
         public string NumeroDocumento1 { get => NumeroDocumento; set => NumeroDocumento = value; }
         public string NombreInstitucion1 { get => NombreInstitucion; set => NombreInstitucion = value; }
         public DateTime FechaEmision1 { get => FechaEmision; set => FechaEmision = value; }
         public int PorcentajeExoneracion1 { get => PorcentajeExoneracion; set => PorcentajeExoneracion = value; }
-        public decimal MontoExoneracion1 { get => MontoExoneracion; set => MontoExoneracion = value; }
+        public double MontoExoneracion1 { get => MontoExoneracion; set => MontoExoneracion = value; }
 
         public string Actualiza_Exoneracion()
         {

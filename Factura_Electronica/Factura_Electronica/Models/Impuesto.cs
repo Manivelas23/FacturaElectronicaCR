@@ -84,7 +84,7 @@ namespace Factura_Electronica.Models
                     objeto_conexion.conexion.Close();
                     objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-                    return "Impuesto " + CodigoImpuesto1 + " Guardado Correctamente";
+                    return "Impuesto: " + CodigoImpuesto1 + " Guardado Correctamente";
                 }
                 else
                     return "Sin Conexion a la Base de Datos";

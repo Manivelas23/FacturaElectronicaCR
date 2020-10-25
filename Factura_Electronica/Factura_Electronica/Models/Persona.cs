@@ -28,7 +28,45 @@ namespace Factura_Electronica.Models
         public string CorreoElectronico1 { get => CorreoElectronico; set => CorreoElectronico = value; }
         public string IdentificacionExtranjero1 { get => IdentificacionExtranjero; set => IdentificacionExtranjero = value; }
         public string OtrasSenasExtranjero1 { get => OtrasSenasExtranjero; set => OtrasSenasExtranjero = value; }
+        public string updatePersona()
+        {
+            ConexionconBD objConexion = new ConexionconBD();
+            try
+            {
+                if (objConexion.activaBD())
+                {
 
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    string query;
+                    query = "EXEC U_PERSONA ?,?,?,?,?,?,?,?,?";
+                    objConexion.nueva_consulta(query);
+
+                    objConexion.nuevo_parametro(Nombre1, "string");
+                    objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
+                    objConexion.nuevo_parametro(ObjTelefono1.NumTelefono1, "int");
+                    objConexion.nuevo_parametro(ObjFax1.NumFax1, "int");
+                    objConexion.nuevo_parametro(ObjUbicacion.IdUbicacion1, "int");
+                    objConexion.nuevo_parametro(NombreComercial1, "string");
+                    objConexion.nuevo_parametro(CorreoElectronico1, "string");
+                    objConexion.nuevo_parametro(IdentificacionExtranjero1, "string");
+                    objConexion.nuevo_parametro(OtrasSenasExtranjero1, "string");
+
+                    CONTENEDOR = objConexion.busca();
+
+                    objConexion.conexion.Close();
+                    objConexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+
+                    return $"Se modificó la Persona con la Identificación : {identificacionPersona.identificacionPersona1}";
+                }
+                else return "Sin conexión con la base de datos";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
         public string setPersona()
         {
             ConexionconBD objConexion = new ConexionconBD();
@@ -68,7 +106,6 @@ namespace Factura_Electronica.Models
                 return e.Message;
             }
         }
-
         public Persona getPersonaById()
         {
             ConexionconBD objConexion = new ConexionconBD();
@@ -115,15 +152,15 @@ namespace Factura_Electronica.Models
                         persona.OtrasSenasExtranjero1 = CONTENEDOR["OTRASSENASEXTRANJERO"].ToString();
                     }
                 }
-                    objConexion.conexion.Close();
-                    objConexion.conexion.Dispose();
-                    CONTENEDOR.Close();
+                objConexion.conexion.Close();
+                objConexion.conexion.Dispose();
+                CONTENEDOR.Close();
 
-                    return persona;
-                }
-                else { return persona; }
+                return persona;
             }
+            else { return persona; }
         }
-    //TODO: teminar el update y eliminar persona
-}
+    }
+        
+
 
