@@ -114,25 +114,83 @@ namespace Factura_Electronica.Models
 
             if (objConexion.activaBD())
             {
-                System.Data.OleDb.OleDbDataReader CONTENEDOR;
-
-                string query;
-                query = "EXEC S_PERSONA ?";
-                objConexion.nueva_consulta(query);
-
-                objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
-
-                CONTENEDOR = objConexion.busca();
-
-                if (CONTENEDOR.HasRows)
+                try
                 {
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    string query;
+                    query = "EXEC S_PERSONA ?";
+                    objConexion.nueva_consulta(query);
+
+                    objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
+
+                    CONTENEDOR = objConexion.busca();
+
+                    if (CONTENEDOR.HasRows)
+                    {
+                        while (CONTENEDOR.Read())
+                        {
+                            persona.Nombre1 = CONTENEDOR["NOMBRE"].ToString();
+
+                            IdentificacionPersona idPersona = new IdentificacionPersona();
+                            idPersona.identificacionPersona1 = CONTENEDOR["IDENTIFICACION"].ToString();
+                            persona.identificacionPersona = idPersona;
+
+                            Telefono telefono = new Telefono();
+                            telefono.NumTelefono1 = Convert.ToInt32(CONTENEDOR["NUMTELEFONO"].ToString());
+                            persona.ObjTelefono1 = telefono;
+
+                            Fax fax = new Fax();
+                            fax.NumFax1 = Convert.ToInt32(CONTENEDOR["NUMFAX"].ToString());
+                            persona.ObjFax1 = fax;
+
+                            Ubicacion ubicacion = new Ubicacion();
+                            ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());
+                            persona.ObjUbicacion = ubicacion;
+
+                            persona.NombreComercial1 = CONTENEDOR["NOMBRECOMERCIAL"].ToString();
+                            persona.CorreoElectronico1 = CONTENEDOR["CORREOELECTRONICO"].ToString();
+                            persona.IdentificacionExtranjero1 = CONTENEDOR["IDENTIFICACIONEXTRANJERO"].ToString();
+                            persona.OtrasSenasExtranjero1 = CONTENEDOR["OTRASSENASEXTRANJERO"].ToString();
+                        }
+                    }
+                    objConexion.conexion.Close();
+                    objConexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+
+                    return persona;
+                }
+                catch (Exception e)
+                {
+                    return persona;
+                }
+            }
+            else { return persona; }
+        }
+        public List<Persona> getPersonas()
+        {
+            List<Persona> listaPersona = new List<Persona>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC SELETODOPERSONA";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
                     {
+                        Persona persona = new Persona();
+
                         persona.Nombre1 = CONTENEDOR["NOMBRE"].ToString();
 
-                        IdentificacionPersona idPersona = new IdentificacionPersona();
-                        idPersona.identificacionPersona1 = CONTENEDOR["IDENTIFICACION"].ToString();
-                        persona.identificacionPersona = idPersona;
+                        IdentificacionPersona identificacionPersona = new IdentificacionPersona();
+                        identificacionPersona.identificacionPersona1 = CONTENEDOR["IDENTIFICACION"].ToString();
+                        persona.identificacionPersona = identificacionPersona;
 
                         Telefono telefono = new Telefono();
                         telefono.NumTelefono1 = Convert.ToInt32(CONTENEDOR["NUMTELEFONO"].ToString());
@@ -143,24 +201,27 @@ namespace Factura_Electronica.Models
                         persona.ObjFax1 = fax;
 
                         Ubicacion ubicacion = new Ubicacion();
-                        ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());
-                        persona.ObjUbicacion = ubicacion;
+                        ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());                     
+                        persona.ObjUbicacion = ubicacion.getUbicacionById();
 
-                        persona.NombreComercial1 = CONTENEDOR["NOMBRECOMERCIAL"].ToString();
-                        persona.CorreoElectronico1 = CONTENEDOR["CORREOELECTRONICO"].ToString();
-                        persona.IdentificacionExtranjero1 = CONTENEDOR["IDENTIFICACIONEXTRANJERO"].ToString();
-                        persona.OtrasSenasExtranjero1 = CONTENEDOR["OTRASSENASEXTRANJERO"].ToString();
+                        listaPersona.Add(persona);
                     }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listaPersona;
                 }
-                objConexion.conexion.Close();
-                objConexion.conexion.Dispose();
-                CONTENEDOR.Close();
-
-                return persona;
+                else
+                    return listaPersona;
             }
-            else { return persona; }
+            catch
+            {
+                return listaPersona;
+            }
         }
     }
+}
+  
         
 
 

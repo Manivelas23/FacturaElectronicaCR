@@ -46,29 +46,29 @@ namespace Factura_Electronica.Models
         public string Actualiza_ubicacion()
         {
             ConexionconBD objeto_conexion = new ConexionconBD();
-                if (objeto_conexion.activaBD())
-                {
-                    string query;
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+            if (objeto_conexion.activaBD())
+            {
+                string query;
+                System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC  U_UBICACION ?,?,?,?,?,?";
-                    objeto_conexion.nueva_consulta(query);
+                query = "EXEC  U_UBICACION ?,?,?,?,?,?";
+                objeto_conexion.nueva_consulta(query);
 
-                    objeto_conexion.nuevo_parametro(Provincia1, "string");
-                    objeto_conexion.nuevo_parametro(Canton1, "string");
-                    objeto_conexion.nuevo_parametro(Distrito1, "string");
-                    objeto_conexion.nuevo_parametro(Barrio1, "string");
-                    objeto_conexion.nuevo_parametro(OtrasSenas1, "string");
-                    objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
+                objeto_conexion.nuevo_parametro(Provincia1, "string");
+                objeto_conexion.nuevo_parametro(Canton1, "string");
+                objeto_conexion.nuevo_parametro(Distrito1, "string");
+                objeto_conexion.nuevo_parametro(Barrio1, "string");
+                objeto_conexion.nuevo_parametro(OtrasSenas1, "string");
+                objeto_conexion.nuevo_parametro(IdUbicacion1, "int");
 
 
-                    CONTENEDOR = objeto_conexion.busca();
-                    objeto_conexion.conexion.Close();
-                        objeto_conexion.conexion.Dispose();
-                        CONTENEDOR.Close();
+                CONTENEDOR = objeto_conexion.busca();
+                objeto_conexion.conexion.Close();
+                objeto_conexion.conexion.Dispose();
+                CONTENEDOR.Close();
                 return "Se modificó la ubicación con el id : " + IdUbicacion1;
-                }
-                else return "Sin Conexión con la Base de Datos";
+            }
+            else return "Sin Conexión con la Base de Datos";
         }
         public string Elimina_ubicacion()
         {
@@ -76,7 +76,7 @@ namespace Factura_Electronica.Models
             try
             {
                 if (objeto_conexion.activaBD())
-                {           
+                {
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
@@ -160,6 +160,36 @@ namespace Factura_Electronica.Models
             }
             else
                 return listaUbicacion;
+        }
+
+        public Ubicacion getUbicacionById()
+        {
+            ConexionconBD objConexion = new ConexionconBD();
+            Ubicacion ubicacion = new Ubicacion();
+
+            System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+            string query;
+            query = "EXEC S_UBICACION ?";
+            objConexion.nueva_consulta(query);
+            objConexion.nuevo_parametro(ubicacion.IdUbicacion1, "int");
+            CONTENEDOR = objConexion.busca();
+            if (CONTENEDOR.HasRows)
+            {
+                while (CONTENEDOR.Read())
+                {
+                    ubicacion.Provincia1 = CONTENEDOR["PROVINCIA"].ToString();
+                    ubicacion.Canton1 = CONTENEDOR["CANTON"].ToString();
+                    ubicacion.Distrito1 = CONTENEDOR["DISTRITO"].ToString();
+                    ubicacion.Barrio1 = CONTENEDOR["BARRIO"].ToString();
+                    ubicacion.OtrasSenas1 = CONTENEDOR["OTRASSENAS"].ToString();
+                    ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());
+                }
+            }
+            objConexion.conexion.Close();
+            objConexion.conexion.Dispose();
+            CONTENEDOR.Close();
+            return ubicacion;
         }
     }
 }
