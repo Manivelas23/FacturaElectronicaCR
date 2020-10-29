@@ -48,6 +48,43 @@ namespace Factura_Electronica.Controllers
 
         }
 
+        [HttpPost]
+        public HttpResponseMessage Post(FormDataCollection form)
+        {
+            Persona persona = new Persona();
+            IdentificacionPersona idPersona = new IdentificacionPersona();
+            Telefono telefono = new Telefono();
+            Fax fax = new Fax();
+            Ubicacion ubicacion = new Ubicacion();
+
+            persona.Nombre1 = form.Get("nombre");
+
+            idPersona.identificacionPersona1 = form.Get("idPersona").ToString();
+            persona.identificacionPersona = idPersona;
+
+            telefono.NumTelefono1 = Convert.ToInt32(form.Get("numTelefono").ToString());
+            persona.ObjTelefono1 = telefono;
+
+            fax.NumFax1 = Convert.ToInt32(form.Get("numFax").ToString());
+            persona.ObjFax1 = fax;
+
+            ubicacion.IdUbicacion1 = Convert.ToInt32(form.Get("idUbicacion").ToString());
+            persona.ObjUbicacion = ubicacion;
+
+            persona.NombreComercial1 = form.Get("nombreComercial").ToString();
+            persona.CorreoElectronico1 = form.Get("correoElectronico").ToString();
+            persona.IdentificacionExtranjero1 = form.Get("idExtranjero").ToString();
+            persona.OtrasSenasExtranjero1 = form.Get("otrasSenasExtranjero").ToString();
+
+
+            string[] respuesta = new string[2];
+            respuesta[0] = persona.updatePersona();
+            respuesta[1] = form.Get("idPersona").ToString();
+            HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
+            return res;
+
+        }
+
         [HttpGet]
         public HttpResponseMessage Get([FromUri] String id)
         {
@@ -58,6 +95,33 @@ namespace Factura_Electronica.Controllers
             persona.identificacionPersona = idPersona;
             HttpResponseMessage res = Request.CreateResponse<Models.Persona>(HttpStatusCode.Created, persona.getPersonaById());
             return res;
+        }
+
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            Persona persona = new Persona();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.Persona>>(HttpStatusCode.Created, persona.getPersonas());
+            return response;
+        }
+
+        [HttpDelete]
+        public HttpResponseMessage Delete(FormDataCollection form)
+        {
+            IdentificacionPersona idPersona = new IdentificacionPersona();
+            Persona persona = new Persona();
+
+            idPersona.identificacionPersona1 = form.Get("idPersona").ToString();
+            persona.identificacionPersona = idPersona;
+
+            string[] respuesta = new string[2];
+            respuesta[0] = persona.deletePersona();
+            respuesta[1] = form.Get("idPersona");
+
+            HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
+            return res;
+
+
         }
 
     }

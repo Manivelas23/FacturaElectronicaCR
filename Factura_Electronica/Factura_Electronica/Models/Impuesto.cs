@@ -31,7 +31,7 @@ namespace Factura_Electronica.Models
                 {
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
                     string query;
-                    query = "EXEC SELETODOIMP";
+                    query = "EXEC S_T_IMPUESTO";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())

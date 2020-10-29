@@ -22,7 +22,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELETODOFAX";
+                    query = "EXEC S_T_FAX";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())

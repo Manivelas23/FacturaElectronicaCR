@@ -21,24 +21,24 @@
 
             <div class="form-group col-md-9">
                 <strong>Número de Identificación: </strong>
-                <input class=" form-control" type="text" id="identificacion" autofocus>
-                <input type="button" value="Buscar" onclick="verificaExistencia()" />
+                <input class="form-control" type="text" id="identificacion" autofocus>
+                <input type="button" class="btn btn-outline-info" id="verificarExistencia" value="Verificar Existencia" onclick="verificaExistencia()" />
             </div>
 
             <div class="form-group col-md-9">
                 <strong>Tipo de Identificación: </strong>
-                <input class=" form-control" type="text" id="tipo" disabled=true>
+                <input class=" form-control" type="text" id="tipo" disabled>
                
             </div>
 
             <div class="form-group col-md-9">
                 <strong>Nombre Persona: </strong>
-                <input class=" form-control" type="text" id="nombre" disabled=true>
+                <input class=" form-control" type="text" id="nombre" disabled>
             </div>
 
             <div class="form-group col-md-9 ">
                 <strong class="col-md-12">Teléfono:</strong>
-                <select class="form-control form-control-lg" id="telefono" disabled=true>
+                <select class="form-control form-control-lg" id="telefono" disabled>
                     <option>Seleccione el Teléfono</option>
                 </select>
                 <a href="Telefono.html">Crear Teléfono</a>
@@ -46,7 +46,7 @@
 
             <div class="form-group col-md-9 ">
                 <strong class="col-md-12">Fax:</strong>
-                <select class="form-control form-control-lg" id="fax" disabled=true>
+                <select class="form-control form-control-lg" id="fax" disabled>
                     <option>Seleccione el Fax</option>
                 </select>
                 <a href="Fax.html">Crear Fax</a>
@@ -54,7 +54,7 @@
 
             <div class="form-group col-md-9 ">
                 <strong class="col-md-12">Ubicación:</strong>
-                <select class="form-control form-control-lg" id="ubicacion" disabled=true>
+                <select class="form-control form-control-lg" id="ubicacion" disabled>
                     <option>Seleccione la Ubicacion</option>
                 </select>
                 <a href="Ubicacion.html">Crear Ubicación</a>
@@ -62,20 +62,20 @@
 
             <div class="form-group col-md-9">
                 <strong>Nombre Comercial: </strong>
-                <input class="form-control" type="text" id="nombrecomercial" disabled=true>
+                <input class="form-control" type="text" id="nombrecomercial" disabled>
             </div>
 
             <div class="form-group col-md-9">
                 <strong>Correo: </strong>
-                <input class="form-control" type="text" id="correo" disabled=true>
+                <input class="form-control" type="text" id="correo" disabled>
             </div>
             <div class="form-group col-md-9">
                 <strong>Identificación Extranjero: </strong>
-                <input class="form-control" type="email" id="idExtranjero" disabled=true>
+                <input class="form-control" type="email" id="idExtranjero" disabled>
             </div>
             <div class="form-group col-md-9">
                 <strong>Otras Señas Extranjero: </strong>
-                <input class="form-control" type="text" id="otrasSenasEx" disabled=true>
+                <input class="form-control" type="text" id="otrasSenasEx" disabled>
             </div>
 
             <div class="col-md-9" id="btnGroup">
@@ -114,9 +114,10 @@
 
         $('#PERSONA').addClass('activeLi');
 
-        function guarda() {
+        function guardaPersona() {
              idPersona.identificacionPersona = document.getElementById("identificacion").value;
              idPersona.tipo = document.getElementById("tipo").value;
+
              persona.nombre = document.getElementById("nombre").value;
              persona.idPersona = document.getElementById("identificacion").value;
              persona.numTelefono = document.getElementById("telefono").value;
@@ -129,13 +130,35 @@
 
              paramOverload(idPersona, persona, "IdentificacionPersona", "Persona", 1);
         }
+        function modificaPersona() {
+            idPersona.identificacionPersona = document.getElementById("identificacion").value;
+
+            persona.nombre = document.getElementById("nombre").value;
+            persona.idPersona = document.getElementById("identificacion").value;
+            persona.numTelefono = document.getElementById("telefono").value;
+            persona.numFax = document.getElementById("fax").value;
+            persona.idUbicacion = document.getElementById("ubicacion").value;
+            persona.nombreComercial = document.getElementById("nombrecomercial").value;
+            persona.correoElectronico = document.getElementById("correo").value;
+            persona.idExtranjero = document.getElementById("idExtranjero").value;
+            persona.otrasSenasExtranjero = document.getElementById("otrasSenasEx").value;
+
+            globalFunction("Persona", 0, persona);
+        }
+        function eliminaPersona() {
+            persona.idPersona = document.getElementById("identificacion").value;
+            globalFunction("Persona", 2, persona);
+        }
 
         (function () {
             document.getElementById('navBar').innerHTML += cargaNavBar();
-            document.getElementById('GuardarBtn').addEventListener('click', guarda);
+            cargarPersonas();
             getUbicacionesSelect(document.getElementById("ubicacion"));
             getFaxSelect(document.getElementById("fax"))
             getTelefonSelect(document.getElementById("telefono"))
+            document.getElementById('GuardarBtn').addEventListener('click', guardaPersona);
+            document.getElementById('ModificaBtn').addEventListener('click', modificaPersona);
+            document.getElementById('EliminarBtn').addEventListener('click', eliminaPersona);
         })();
 
         function verificaExistencia(){
@@ -145,16 +168,42 @@
                     verificaExistenciaPersona(persona);
                 }
         }
+        function cargaDatosFormulario(objetoSerializado) {
+            eliminaValores();
+            habilitaGuardar();
+            document.getElementById("identificacion").value = objetoSerializado.identificacionPersona.identificacionPersona1;
+            document.getElementById("nombre").value = objetoSerializado.Nombre1;
+            document.getElementById("telefono").value = objetoSerializado.ObjTelefono1.NumTelefono1;
+            document.getElementById("fax").value = objetoSerializado.ObjFax1.NumFax1;
+            document.getElementById("ubicacion").value = objetoSerializado.ObjUbicacion.IdUbicacion1;
+            document.getElementById("nombrecomercial").value = objetoSerializado.NombreComercial1;
+            document.getElementById("correo").value = objetoSerializado.CorreoElectronico1;
+            document.getElementById("idExtranjero").value = objetoSerializado.IdentificacionExtranjero1;
+            document.getElementById("otrasSenasEx").value = objetoSerializado.OtrasSenasExtranjero1;           
+            desabilitaGuardar();
+            disableInputs();
+        }
         function rellenaDatos(personaExistente) {
+        document.getElementById("identificacion").value = personaExistente.identificacionPersona.identificacionPersona1;
         document.getElementById("nombre").value = personaExistente.Nombre1;
         document.getElementById("telefono").value = personaExistente.ObjTelefono1.NumTelefono1;
         document.getElementById("fax").value = personaExistente.ObjFax1.NumFax1;
         document.getElementById("ubicacion").value = personaExistente.ObjUbicacion.IdUbicacion1;
-        //TODO:RESOLVER PORQUE LA UBICACION NO SE MUESTRA EN EL SELECT 
         document.getElementById("nombrecomercial").value = personaExistente.NombreComercial1;
         document.getElementById("correo").value = personaExistente.CorreoElectronico1;
         document.getElementById("idExtranjero").value = personaExistente.IdentificacionExtranjero1;
         document.getElementById("otrasSenasEx").value = personaExistente.OtrasSenasExtranjero1;
+        }
+        function verificaEliminar(id) {
+            var respuesta = window.confirm(`Desea Eliminar la Persona con la Identificación : ${id}`);
+            if (respuesta) {
+                persona.idPersona = id;
+                globalFunction('Persona', 2, persona);
+                habilitaGuardar();
+            }
+            else {
+                alert('No se ha Realizado Ninguna Acción');
+            }
         }
 
     </script>

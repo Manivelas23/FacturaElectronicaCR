@@ -42,6 +42,10 @@ body {
 	margin-top: 2vh;
 	font-size: 1.2vw;
 }
+.form-group >a{
+	font-size:0.8em;
+	margin-left:3vh;	
+}
 
 .form-control {
 	margin-top: 1.5vh;
@@ -144,26 +148,12 @@ nav {
 	align-items: center;
 }
 
-.extraContainer {
-	margin-right: 4vh;
+.form-control:disabled{
+	font-size:1em;
 }
 
-.select-menu {
-	background-color: white;
-	transform: translate3d(5px, 35px, 0px)!important;
-	margin-left: 1.3vh;
-	margin-top: 1vh;
-}
-
-.btn-select {
-	border: none;
-	background-color: #66a3fc;
-	color: white;
-}
-#captionIdentificacion{
-	font-size: 1em;
-	color: black;
-	margin-top: 2vh;
+#verificarExistencia{
+	margin-top:2vh;
 }
 
 @media screen and (max-width: 991px) {

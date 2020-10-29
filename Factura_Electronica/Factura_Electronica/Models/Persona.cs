@@ -28,6 +28,45 @@ namespace Factura_Electronica.Models
         public string CorreoElectronico1 { get => CorreoElectronico; set => CorreoElectronico = value; }
         public string IdentificacionExtranjero1 { get => IdentificacionExtranjero; set => IdentificacionExtranjero = value; }
         public string OtrasSenasExtranjero1 { get => OtrasSenasExtranjero; set => OtrasSenasExtranjero = value; }
+        public string setPersona()
+        {
+            ConexionconBD objConexion = new ConexionconBD();
+            try
+            {
+                if (objConexion.activaBD())
+                {
+
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    string query;
+                    query = "EXEC I_PERSONA ?,?,?,?,?,?,?,?,?";
+                    objConexion.nueva_consulta(query);
+
+                    objConexion.nuevo_parametro(Nombre1, "string");
+                    objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
+                    objConexion.nuevo_parametro(ObjTelefono1.NumTelefono1, "int");
+                    objConexion.nuevo_parametro(ObjFax1.NumFax1, "int");
+                    objConexion.nuevo_parametro(ObjUbicacion.IdUbicacion1, "int");
+                    objConexion.nuevo_parametro(NombreComercial1, "string");
+                    objConexion.nuevo_parametro(CorreoElectronico1, "string");
+                    objConexion.nuevo_parametro(IdentificacionExtranjero1, "string");
+                    objConexion.nuevo_parametro(OtrasSenasExtranjero1, "string");
+
+                    CONTENEDOR = objConexion.busca();
+
+                    objConexion.conexion.Close();
+                    objConexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+
+                    return $"Se guardó la Persona con la Identificación : {identificacionPersona.identificacionPersona1}";
+                }
+                else return "Sin conexión con la base de datos";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
         public string updatePersona()
         {
             ConexionconBD objConexion = new ConexionconBD();
@@ -67,44 +106,29 @@ namespace Factura_Electronica.Models
                 return e.Message;
             }
         }
-        public string setPersona()
+
+        public string deletePersona()
         {
+            System.Data.OleDb.OleDbDataReader CONTENEDOR;
             ConexionconBD objConexion = new ConexionconBD();
-            try
+
+            Persona persona = new Persona();
+
+            if (objConexion.activaBD())
             {
-                if (objConexion.activaBD())
-                {
+                string query;
+                query = "EXEC D_PERSONA ?";
+                objConexion.nueva_consulta(query);
+                objConexion.nuevo_parametro(persona.identificacionPersona, "string");
 
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+                CONTENEDOR = objConexion.busca();
+                CONTENEDOR.Close();
+                CONTENEDOR.Dispose();
+                return $"Se ha eliminado la persona con la identificación : {persona.identificacionPersona}";
 
-                    string query;
-                    query = "EXEC I_PERSONA ?,?,?,?,?,?,?,?,?";
-                    objConexion.nueva_consulta(query);
-
-                    objConexion.nuevo_parametro(Nombre1, "string");
-                    objConexion.nuevo_parametro(identificacionPersona.identificacionPersona1, "string");
-                    objConexion.nuevo_parametro(ObjTelefono1.NumTelefono1, "int");
-                    objConexion.nuevo_parametro(ObjFax1.NumFax1, "int");
-                    objConexion.nuevo_parametro(ObjUbicacion.IdUbicacion1, "int");
-                    objConexion.nuevo_parametro(NombreComercial1, "string");
-                    objConexion.nuevo_parametro(CorreoElectronico1, "string");
-                    objConexion.nuevo_parametro(IdentificacionExtranjero1, "string");
-                    objConexion.nuevo_parametro(OtrasSenasExtranjero1, "string");
-
-                    CONTENEDOR = objConexion.busca();
-
-                    objConexion.conexion.Close();
-                    objConexion.conexion.Dispose();
-                    CONTENEDOR.Close();
-
-                    return $"Se guardó la Persona con la Identificación : {identificacionPersona.identificacionPersona1}";
-                }
-                else return "Sin conexión con la base de datos";
             }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
+            return $"Error en la base de datos";
+
         }
         public Persona getPersonaById()
         {
@@ -160,7 +184,7 @@ namespace Factura_Electronica.Models
 
                     return persona;
                 }
-                catch (Exception e)
+                catch 
                 {
                     return persona;
                 }
@@ -179,7 +203,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELETODOPERSONA";
+                    query = "EXEC S_T_PERSONA";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())
@@ -201,9 +225,14 @@ namespace Factura_Electronica.Models
                         persona.ObjFax1 = fax;
 
                         Ubicacion ubicacion = new Ubicacion();
-                        ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());                     
-                        persona.ObjUbicacion = ubicacion.getUbicacionById();
+                        ubicacion.IdUbicacion1 = Convert.ToInt32(CONTENEDOR["IDUBICACION"].ToString());
+                        persona.ObjUbicacion = ubicacion;
+                        //persona.ObjUbicacion = ubicacion.getUbicacionById(ubicacion.IdUbicacion1);
 
+                        persona.NombreComercial1 = CONTENEDOR["NOMBRECOMERCIAL"].ToString();
+                        persona.CorreoElectronico1 = CONTENEDOR["CORREOELECTRONICO"].ToString();
+                        persona.IdentificacionExtranjero1 = CONTENEDOR["IDENTIFICACIONEXTRANJERO"].ToString();
+                        persona.OtrasSenasExtranjero1 = CONTENEDOR["OTRASSENASEXTRANJERO"].ToString();
                         listaPersona.Add(persona);
                     }
                     objeto_conexion.conexion.Close();

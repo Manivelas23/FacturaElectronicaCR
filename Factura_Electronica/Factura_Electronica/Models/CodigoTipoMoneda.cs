@@ -25,7 +25,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELETODOCTM";
+                    query = "EXEC S_T_CTM";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())

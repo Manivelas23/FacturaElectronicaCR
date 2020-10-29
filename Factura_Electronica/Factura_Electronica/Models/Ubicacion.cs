@@ -139,7 +139,7 @@ namespace Factura_Electronica.Models
                 String query;
                 System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                query = "EXEC SELETODOUBICACION";
+                query = "EXEC S_T_UBICACION";
                 objeto_conexion.nueva_consulta(query);
                 CONTENEDOR = objeto_conexion.busca();
                 while (CONTENEDOR.Read())
@@ -161,8 +161,7 @@ namespace Factura_Electronica.Models
             else
                 return listaUbicacion;
         }
-
-        public Ubicacion getUbicacionById()
+        public Ubicacion getUbicacionById(int id)
         {
             ConexionconBD objConexion = new ConexionconBD();
             Ubicacion ubicacion = new Ubicacion();
@@ -172,7 +171,7 @@ namespace Factura_Electronica.Models
             string query;
             query = "EXEC S_UBICACION ?";
             objConexion.nueva_consulta(query);
-            objConexion.nuevo_parametro(ubicacion.IdUbicacion1, "int");
+            objConexion.nuevo_parametro(id, "int");
             CONTENEDOR = objConexion.busca();
             if (CONTENEDOR.HasRows)
             {

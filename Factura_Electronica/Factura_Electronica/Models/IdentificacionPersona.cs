@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,7 +24,7 @@ namespace Factura_Electronica.Models
                     String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    query = "EXEC SELETODOIDPERSONA";
+                    query = "EXEC S_T_IDPERSONA";
                     objeto_conexion.nueva_consulta(query);
                     CONTENEDOR = objeto_conexion.busca();
                     while (CONTENEDOR.Read())

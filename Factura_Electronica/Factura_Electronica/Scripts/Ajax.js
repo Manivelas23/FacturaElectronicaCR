@@ -1,6 +1,7 @@
 ﻿        const ruta = "https://localhost:44314/api/";
         var i = 0;
-
+    
+        ///FUNCIONAL
         function desabilitaGuardar() {
             document.getElementById('GuardarBtn').disabled = true;
 }
@@ -131,8 +132,8 @@
                     </div>
                 </nav>
                  `
-                var  pageZoom =  document.body.style.zoom="80%";
-                var vectorCargar = [navBar,pageZoom];
+             //   var  pageZoom =  document.body.style.zoom="80%";
+                var vectorCargar = [navBar];
                 return vectorCargar;
 }
         function disableInputs() {
@@ -148,44 +149,20 @@
             }
 }
 
+        //DECLARACION DE OBJETOS
         var Ubicacion = new Object; Ubicacion.idUbicacion = "", Ubicacion.Provincia = "", Ubicacion.Canton = "", Ubicacion.Distrito = "", Ubicacion.Barrio = "", Ubicacion.otrasSenas = "";
         var Descuento = new Object; Descuento.montoDescuento = "", Descuento.naturalezaDescuento = "";
         var Exoneracion = new Object; Exoneracion.tipoDocumento = "", Exoneracion.numeroDocumento = "", Exoneracion.nombreInstitucion = "", Exoneracion.fechaEmision = "", Exoneracion.porcentajeExoneracion = "", Exoneracion.montoExoneracion = "";
         var Fax = new Object; Fax.numFax = "", Fax.codigoPais = "";
         var CTM = new Object; CTM.codigoMoneda = "", CTM.tipoCambio = "";
         var idPersona = new Object; idPersona.identificacionPersona = "", idPersona.tipo = "";
-   
+        var Telefono = new Object; Telefono.numTelefono = "", Telefono.codigoPais = "";
+        var codComercial = new Object; codComercial.tipo = "", codComercial.codigo = "";
+        var TD = new Object; TD.numeroIdentidadTercero = "", TD.tipoDocumento = "";
+        var TD=new Object;TD.numeroIdentidadTercero="",TD.tipoDocumento="";
+        var Impuesto = new Object; Impuesto.codigoImpuesto = "", Impuesto.codigoTarifa = "", Impuesto.tarifa = "", Impuesto.factor_Iva = "", Impuesto.monto = "", Impuesto.montoExportacion = "";
+        var persona = new Object; persona.nombre = "", persona.idPersona = "", persona.numTelefono = "", persona.numFax = "", persona.idUbicacion = "", persona.nombreComercial = "", persona.correoElectronico = "", persona.idExtranjero = "", persona.otrasSenasExtranjero = "";
 
-        var Telefono = new Object;
-        Telefono.numTelefono = "";
-        Telefono.codigoPais = "";
- 
-        var codComercial = new Object;
-        codComercial.tipo = "";
-        codComercial.codigo = "";
-
-        var TD = new Object;
-        TD.numeroIdentidadTercero = "";
-        TD.tipoDocumento = "";
-
-        var Impuesto = new Object;
-        Impuesto.codigoImpuesto = "";
-        Impuesto.codigoTarifa = "";
-        Impuesto.tarifa = "";
-        Impuesto.factor_Iva = "";
-        Impuesto.monto = "";
-        Impuesto.montoExportacion = "";
-   
-        var persona = new Object;
-        persona.nombre = "";
-        persona.idPersona = "";
-        persona.numTelefono = "";
-        persona.numFax = "";
-        persona.idUbicacion = "";
-        persona.nombreComercial = "";
-        persona.correoElectronico = "";
-        persona.idExtranjero = "";
-        persona.otrasSenasExtranjero = ""; 
 
         //SETTERS      
         var method = ["POST", "PUT", "DELETE", "OPTIONS"];
@@ -353,6 +330,60 @@
         }
     });
 }
+        function cargarPersonas() {
+            var tabla = document.getElementById('tabla');
+            $.ajax({
+                url: ruta + 'Persona',
+                type: 'GET',
+                dataType: 'json',
+                data: null,
+                success: function (data, textStatus, xhr) {
+                    if (data.length > 0) {
+                        tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`;
+                        var filacabezaTabla = document.getElementById('filacabezaTabla');
+                        filacabezaTabla.innerHTML +=
+                            `
+                                    <th scope="col">Identificación</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Teléfono</th>
+                                    <th scope="col">Fax</th>
+                                    <th scope="col">Ubicación</th>
+                                    <th scope="col">Nombre Comercial</th>  
+                                    <th scope="col">Correo Electrónico</th>  
+                                    <th scope="col">Identificación Extranjero</th>  
+                                    <th scope="col">Otras Senas Extranjero</th>  
+                                   `;
+                        tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`;
+                        for (var z in data) {
+                            var objetoSerializado = JSON.stringify(data[z]);
+                            var objetoSerializadoComillas = "";
+                            for (var j in objetoSerializado) {
+                                objetoSerializadoComillas += objetoSerializado[j].replace('"', "'");
+                            }
+                            document.getElementById('cuerpoTabla').innerHTML += `
+                                    <tr>
+                                      <td>${data[z].identificacionPersona.identificacionPersona1}</td>
+                                      <td>${data[z].Nombre1}</td>
+                                      <td>${data[z].ObjTelefono1.NumTelefono1}</td>
+                                      <td>${data[z].ObjFax1.NumFax1}</td>
+                                      <td>${data[z].ObjUbicacion.IdUbicacion1}</td>
+                                      <td>${data[z].NombreComercial1}</td>
+                                      <td>${data[z].CorreoElectronico1}</td>
+                                      <td>${data[z].IdentificacionExtranjero1}</td>
+                                      <td>${data[z].OtrasSenasExtranjero1}</td>
+                                      <td><input class="btn  btn-warning" type="button" value="Modificar" onclick="cargaDatosFormulario(${objetoSerializadoComillas})" /></td>
+                                      <td><input class="btn  btn-danger" type="button"  value="Eliminar" onclick="verificaEliminar(${data[z].identificacionPersona.identificacionPersona1})"/></td>
+                                   </tr>
+                               `;
+                        }
+                    }
+
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(xhr);
+                }
+            });
+        }
 
         function cargarTelefono() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'Telefono', type: 'GET', dataType: 'json', data: Telefono, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Teléfono</th><th scope="col">Código País</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { var objetoSerializado = JSON.stringify(data[z]); var objetoSerializadoComillas = ""; for (var j in objetoSerializado) { objetoSerializadoComillas += objetoSerializado[j].replace('"', "'"); } document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].NumTelefono1}</td><td>${data[z].CodigoPais1}</td><td><input class="btn btn-warning"type="button"value="Modificar"onclick="cargaDatosFormulario(${objetoSerializadoComillas})"/></td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].NumTelefono1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
         function cargarCC() { var tabla = document.getElementById('tabla'); $.ajax({ url: ruta + 'CodigoComercial', type: 'GET', dataType: 'json', data: codComercial, success: function (data, textStatus, xhr) { if (data.length > 0) { tabla.innerHTML += `<thead id="cabezaTabla"><tr id="filacabezaTabla"></tr></thead>`; var filacabezaTabla = document.getElementById('filacabezaTabla'); filacabezaTabla.innerHTML += `<th scope="col">Tipo</th><th scope="col">Código</th>`; tabla.innerHTML += `<tbody id="cuerpoTabla"></tbody>`; for (var z in data) { document.getElementById('cuerpoTabla').innerHTML += `<tr><td>${data[z].Tipo1}</td><td>${data[z].Codigo1}</td><td><input class="btn btn-danger"type="button"value="Eliminar"onclick="verificaEliminar(${data[z].Tipo1} , ${data[z].Codigo1})"/></td></tr>`; } } }, error: function (xhr, textStatus, errorThrown) { alert(xhr); } }); }
@@ -378,7 +409,7 @@
                                     alert("Error en la base de datos")
                                     break;                             
                                 default: 
-                                    console.log(data)
+                                    document.
                                     rellenaDatos(data)
                                     break;
                             }
@@ -389,20 +420,20 @@
                     });
         } 
         function getUbicacionesSelect(selectElement) {
-            $.ajax({
-                url: ruta + 'Ubicacion',
-                type: 'GET',
-                dataType: 'json',
-                data: null,
-                success: function (data, textStatus, xhr) {
-                    for (var i in data) {    
-                        selectElement.innerHTML += `<option id="${data[i].IdUbicacion1}" value="Id:${data[i].IdUbicacion1}> Prov:${data[i].Provincia1} -Cant: ${data[i].Canton1} -Dist:${data[i].Distrito1} -Barrio:${data[i].Barrio1}</option>`;
-                    }
-                },
-                error: function (xhr, textStatus, erroThrown) {
-                    alert(xhr);
-                }
-            });
+                    $.ajax({
+                        url: ruta + 'Ubicacion',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: null,
+                        success: function (data, textStatus, xhr) {
+                            for (var i in data) {    
+                                selectElement.innerHTML += `<option id="${data[i].IdUbicacion1}" value="${data[i].IdUbicacion1}"> Prov:${data[i].Provincia1} -Cant: ${data[i].Canton1} -Dist:${data[i].Distrito1} -Barrio:${data[i].Barrio1}</option>`;
+                            }
+                        },
+                        error: function (xhr, textStatus, erroThrown) {
+                            alert(xhr);
+                        }
+                    });
 }
         function getFaxSelect(selectElement) {
             $.ajax({
@@ -435,6 +466,7 @@
                     alert(xhr);
                 }
             });
-        }
+}
+
 
      

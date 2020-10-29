@@ -36,15 +36,14 @@ namespace Factura_Electronica.Controllers
         [HttpPut]
         public HttpResponseMessage Put(FormDataCollection form)
         {
-            Fax fax = new Fax();
-            fax.NumFax1 = Convert.ToInt32(form.Get("numFax"));
-            fax.CodigoPais1 = Convert.ToInt32(form.Get("codigoPais"));
-
-            string[] respuesta = new string[2];
-            respuesta[0] = fax.Inserta_fax();
-            respuesta[1] = form.Get("numFax");
-            HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
-            return res;
+                Fax fax = new Fax();
+                fax.NumFax1 = Convert.ToInt32(form.Get("numFax"));
+                fax.CodigoPais1 = Convert.ToInt32(form.Get("codigoPais"));
+                string[] respuesta = new string[2];
+                respuesta[0] = fax.Inserta_fax();
+                respuesta[1] = form.Get("numFax");
+                HttpResponseMessage res = Request.CreateResponse<string[]>(HttpStatusCode.Created, respuesta);
+                return res;         
         }
 
         [HttpDelete]
