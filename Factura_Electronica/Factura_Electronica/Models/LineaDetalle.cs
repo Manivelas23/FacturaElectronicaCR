@@ -23,6 +23,7 @@ namespace Factura_Electronica.Models
         private int Consecutivo;
         CodigoComercial CodigoComercial;
         Descuento Descuento;
+        //private List<LineaDetalle_Impuesto_Exoneracion> lineaDetalle_impuesto_exoneracion;
 
         public int NumeroLinea1 { get => NumeroLinea; set => NumeroLinea = value; }
         public string PartidaArancelaria1 { get => PartidaArancelaria; set => PartidaArancelaria = value; }
@@ -37,10 +38,10 @@ namespace Factura_Electronica.Models
         public decimal BaseImponible1 { get => BaseImponible; set => BaseImponible = value; }
         public decimal ImpuestoNeto1 { get => ImpuestoNeto; set => ImpuestoNeto = value; }
         public decimal MontoTotalLinea1 { get => MontoTotalLinea; set => MontoTotalLinea = value; }
-        public int Consecutivo1 { get => Consecutivo; set => Consecutivo = value; }
+        public int Consecutivo1 { get => Consecutivo; set => Consecutivo = value; } 
         public CodigoComercial CodigoComercial1 { get => CodigoComercial; set => CodigoComercial = value; }
         public Descuento Descuento1 { get => Descuento; set => Descuento = value; }
-
+       // public List<LineaDetalle_Impuesto_Exoneracion> LineaDetalle_impuesto_exoneracion { get => lineaDetalle_impuesto_exoneracion; set => lineaDetalle_impuesto_exoneracion = value; }
 
         public string setResumenFactura()
         {

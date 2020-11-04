@@ -20,7 +20,7 @@ namespace Factura_Electronica.Controllers
             exoneracion.NombreInstitucion1 = Convert.ToString(form.Get("NombreInstitucion"));
             exoneracion.FechaEmision1 = Convert.ToDateTime(form.Get("FechaEmision"));
             exoneracion.PorcentajeExoneracion1 = Convert.ToInt32(form.Get("PorcentajeExoneracion"));
-            exoneracion.MontoExoneracion1 = Convert.ToDouble(form.Get("MontoExoneracion"));
+            exoneracion.MontoExoneracion1 = Convert.ToDecimal(form.Get("MontoExoneracion"));
 
             string[] respuesta = new string[2];
             respuesta[0] = exoneracion.Actualiza_Exoneracion();
@@ -38,7 +38,7 @@ namespace Factura_Electronica.Controllers
             exoneracion.NombreInstitucion1 = Convert.ToString(form.Get("nombreInstitucion"));
             exoneracion.FechaEmision1 = Convert.ToDateTime(form.Get("fechaEmision"));
             exoneracion.PorcentajeExoneracion1 = Convert.ToInt32(form.Get("porcentajeExoneracion"));
-            exoneracion.MontoExoneracion1 = Convert.ToDouble(form.Get("montoExoneracion"));
+            exoneracion.MontoExoneracion1 = Convert.ToDecimal(form.Get("montoExoneracion"));
 
             string[] respuesta = new string[2];
             respuesta[0] = exoneracion.Inserta_Exoneracion();
@@ -60,6 +60,13 @@ namespace Factura_Electronica.Controllers
             return res;
         }
 
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            Exoneracion exoneracion = new Exoneracion();
+            HttpResponseMessage response = Request.CreateResponse<List<Models.Exoneracion>>(HttpStatusCode.Created, exoneracion.Seleccionar_Todo_Exoneracion());
+            return response;
+        }
     }
 
 }

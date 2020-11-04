@@ -1,0 +1,130 @@
+﻿ <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Línea Detalle</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link href="styles/styles.css" rel="stylesheet" />
+        <link href="cdn.datatables.net/1.10.22/css/jquery.dataTables.min.csss" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="navBar"></div>
+        <div class="container" id="mainContainer">
+            <div class="row col-md-8" id="formContainer">
+                <div class="row col-md-11" id="formInfo">
+                    <h5>Formulario Línea Detalle:</h5>
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Número de Línea:</strong>
+                    <input class="form-control" type="text" id="numeroLinea" autofocus>
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Partida Alancelaría:</strong>
+                    <input class="form-control" type="text" id="partidaAlanceralia">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Código:</strong>
+                    <input class=" form-control" type="text" id="codigo">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Cantidad:</strong>
+                    <input class=" form-control x" type="text" id="cantidad">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Unidad de Medida:</strong>
+                    <input class=" form-control" type="text" id="unidadMedida">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Unidad de Medida Comercial:</strong>
+                    <input class=" form-control" type="text" id="unidadMedidaComercial">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Detalle:</strong>
+                    <input class=" form-control" type="text" id="detalle">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Precio Unitario:</strong>
+                    <input class=" form-control" type="text" id="precioUnitario">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Monto Total:</strong>
+                    <input class=" form-control" type="text" id="montoTotal">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Sub Total:</strong>
+                    <input class=" form-control" type="text" id="subTotal">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Base Imponible:</strong>
+                    <input class=" form-control" type="text" id="baseImponible">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Impuesto Neto:</strong>
+                    <input class=" form-control" type="text" id="impuestoNeto">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Monto Total Línea:</strong>
+                    <input class=" form-control" type="text" id="montoTotalLinea">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Consecutivo:</strong>
+                    <input class=" form-control" type="text" id="consecutivo">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Tipo de Código Comercial:</strong>
+                    <input class=" form-control" type="text" id="tipoCodComercial">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Código Comercial:</strong>
+                    <input class=" form-control" type="text" id="codComercial">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Monto del Descuento:</strong>
+                    <input class=" form-control" type="text" id="montoDescuento">
+                </div>
+                <div class="form-group col-md-9">
+                    <strong>Naturaleza del Descuento:</strong>
+                    <input class=" form-control" type="text" id="naturalezaDescuento">
+                </div>
+                <div class="form-group">
+                    <div class="col">
+                        <h4>Listado Impuestos</h4>
+                        <table id="listadoImpuestos"></table>
+                        <h4>Listado Exoneraciones</h4>
+                        <table id="listadoExoneraciones"></table>
+                    </div>
+                </div>
+                <div class="form-group col-md-9 ">
+                    <strong class="col-md-12">Descuento:</strong>
+                    <select class="form-control form-control-lg" id="descuentoSelect" >
+                        <option>Seleccione el Descuento:</option>
+                    </select>
+                    <a href="Descuento.html">Crear Descuento</a>
+                </div>
+                <div class="form-group col-md-9 ">
+                    <strong class="col-md-12">Código Comercial:</strong>
+                    <select class="form-control form-control-lg" id="codComercialSelect" >
+                        <option>Seleccione el Código Comercial</option>
+                    </select>
+                    <a href="CodigoComercial.html">Crear Código Comercial</a>
+                </div>
+                <div class="col-md-9" id="btnGroup">
+                    <input class="btn  btn-outline-success" type="button" id="GuardarBtn" value="Guardar" />
+                    <input class="btn  btn-outline-warning" type="button" id="ModificaBtn" value="Modificar" />
+                    <input class="btn  btn-outline-danger" type="button" id="EliminarBtn" value="Eliminar" />
+                    <input class="btn  btn-light" type="button" id="BorrarBtn" value="Borrar" />
+                </div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
+        <script src="../Scripts/Ajax.js"></script>
+        <script src="../Scripts/jquery.js"></script>
+        <script src="cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -57,7 +57,7 @@
 		<div class="card-header" id="headingOne">
 			<h2 class="mb-0">
 				<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					Ver Teléfonos Guardados
+					Ver Exoneraciones Guardados
 				</button>
 			</h2>
 		</div>
@@ -80,11 +80,13 @@
 			Exoneracion.nombreInstitucion = document.getElementById('nombreInstitucion').value;
 			Exoneracion.fechaEmision = document.getElementById('fechaEmision').value;
 			Exoneracion.porcentajeExoneracion = document.getElementById('porcentajeExoneracion').value;
+            Exoneracion.montoExoneracion = document.getElementById('montoExoneracion').value;
 			globalFunction('Exoneracion', 1, Exoneracion);
 		}
 		function eliminaExoneracion() {
 			Exoneracion.tipoDocumento = document.getElementById('tipoDocumento').value;
 			Exoneracion.numeroDocumento = document.getElementById('numeroDocumento').value;
+            globalFunction('Exoneracion', 2, Exoneracion);
 		}
 		function actualizaExoneracion() {
 			Exoneracion.tipoDocumento = document.getElementById('tipoDocumento').value;
@@ -92,6 +94,8 @@
 			Exoneracion.nombreInstitucion = document.getElementById('nombreInstitucion').value;
 			Exoneracion.fechaEmision = document.getElementById('fechaEmision').value;
 			Exoneracion.porcentajeExoneracion = document.getElementById('porcentajeExoneracion').value;
+            Exoneracion.montoExoneracion = document.getElementById('montoExoneracion').value;
+            globalFunction('Exoneracion', 0, Exoneracion);
 		}
 		function activeLi() {
 			$('#EXO').addClass('activeLi');
@@ -100,10 +104,35 @@
 		(function () {
 			document.getElementById('navBar').innerHTML += cargaNavBar();
 			activeLi();
+			cargarExoneracion();
 			document.getElementById('GuardarBtn').addEventListener('click', nuevaExoneracion);
 			document.getElementById('EliminarBtn').addEventListener('click', eliminaExoneracion);
 			document.getElementById('ModificaBtn').addEventListener('click', actualizaExoneracion);
 		})();
+
+        function cargaDatosFormulario(objetoSerializado) {
+            eliminaValores();
+            habilitaGuardar();
+			document.getElementById("tipoDocumento").value = objetoSerializado.TipoDocumento1;
+			document.getElementById("numeroDocumento").value = objetoSerializado.NumeroDocumento1;
+			document.getElementById("nombreInstitucion").value = objetoSerializado.NombreInstitucion1;
+            document.getElementById("porcentajeExoneracion").value = objetoSerializado.PorcentajeExoneracion1;
+            document.getElementById("montoExoneracion").value = objetoSerializado.MontoExoneracion1;
+            //TODO: arreglar el formato de fecha en el html
+            desabilitaGuardar();
+            }
+        function verificaEliminar(id,id2) {
+            var respuesta = window.confirm(`Desea Eliminar la Exoneración con el Número de Documento : ${id2}`);
+            if (respuesta) {
+                Exoneracion.tipoDocumento = id
+                Exoneracion.numeroDocumento = id2 
+                globalFunction('Exoneracion', 2, Exoneracion);
+                habilitaGuardar();
+            }
+            else {
+                alert('No se ha Realizado Ninguna Acción');
+            }
+        }
 	</script>
 </body>
 </html>

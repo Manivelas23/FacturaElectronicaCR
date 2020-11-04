@@ -87,6 +87,7 @@
     <Content Include="Views\CodigoComercial.html" />
     <Content Include="Views\CodigoTipoMoneda.html" />
     <Content Include="Views\Descuento.html" />
+    <Content Include="Views\LineaDetalle.html" />
     <Content Include="Views\Persona.html" />
     <Content Include="Views\Exoneracion.html" />
     <Content Include="Views\Fax.html" />
