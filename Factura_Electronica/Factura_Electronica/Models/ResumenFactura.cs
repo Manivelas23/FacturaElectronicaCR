@@ -22,7 +22,7 @@ namespace Factura_Electronica.Models
         private decimal TotalIVADevuelto;
         private decimal TotalOtrosCargos;
         private decimal TotalComprobante;
-        private Factura Factura;
+        private Factura1 Factura;
         private CodigoTipoMoneda CodigoTipoMoneda;
 
         public decimal TotalServGravados1 { get => TotalServGravados; set => TotalServGravados = value; }
@@ -40,7 +40,7 @@ namespace Factura_Electronica.Models
         public decimal TotalIVADevuelto1 { get => TotalIVADevuelto; set => TotalIVADevuelto = value; }
         public decimal TotalOtrosCargos1 { get => TotalOtrosCargos; set => TotalOtrosCargos = value; }
         public decimal TotalComprobante1 { get => TotalComprobante; set => TotalComprobante = value; }
-        public Factura Factura1 { get => Factura; set => Factura = value; }
+        public Factura1 Factura1 { get => Factura; set => Factura = value; }
         public CodigoTipoMoneda CodigoTipoMoneda1 { get => CodigoTipoMoneda; set => CodigoTipoMoneda = value; }
 
         public string setResumenFactura()

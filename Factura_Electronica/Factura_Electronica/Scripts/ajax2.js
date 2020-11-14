@@ -1587,6 +1587,14 @@ LineaDetalle.listaLineadetalle_impuesto_exoneracion = [];
 var impuestoscargados = [];
 var exoneracionescargadas = [];
 
+function Seleccionarimpuesto(id) {
+
+    Lineadetalle_impuesto_exoneracion.Impuestocodigo = id;
+    Lineadetalle_impuesto_exoneracion.Lineadetalleconsecutivo = LineaDetalle.Consecutivo;
+    Lineadetalle_impuesto_exoneracion.Tipodocumento = "";
+    Lineadetalle_impuesto_exoneracion.Numerodocumento = "";
+
+}
 
 function calculamontototal() {
 
@@ -1611,6 +1619,7 @@ function calculamontototaldescuento() {
 }
 
 function calculaimpuestos() {
+
     var calculomontoimpuesto = 0;
     for (var indice in LineaDetalle.listaLineadetalle_impuesto_exoneracion) {
         for (var indiceimpuesto in impuestoscargados) {

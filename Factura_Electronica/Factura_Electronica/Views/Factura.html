@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="styles/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="espacionav"></div>
+    <hr />
+    <div class="row justify-content-center">
+        <h1>Confeccione una Factura</h1>
+    </div>
+    <hr />
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Codigo de la Actividad</h3></th>
+                <th scope="col"> <input type="text" id="codigoactividad" placeholder="Escriba el Codigo de actividad" class="form-control" /></th>
+
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Clave</h3></th>
+                <th scope="col"> <input type="text" id="clave" placeholder="Escriba la Clave" class="form-control" /></th>
+
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Numero Consecutivo</h3></th>
+                <th scope="col"><input type="text" id="numeroconsecutivo" placeholder="Escriba el Numero de consecutivo" class="form-control" /></th>
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Fecha de emision</h3></th>
+                <th scope="col"><input type="date" id="fechaemision" placeholder="Seleccione la Fecha de emision" class="form-control" /></th>
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Emisor</h3></th>
+                <th scope="col">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" id="infoemisorsel">
+                        Seleccione el emisor
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <input type="button" value="Nuevo Emisor" id="btn_agregar_nuevo_emisor" class="btn btn-primary" onclick="location.href='Persona.html'" />
+
+                            <table id="emisores"></table>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Receptor</h3></th>
+                <th scope="col">
+                    <a id="inforeceptorsel" class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Seleccione el receptor
+                    </a>
+                    <div class="collapse" id="collapseExample2">
+                        <div class="card card-body">
+                            <input type="button" value="Nuevo Receptor" id="btn_agregar_nuevo_receptor" class="btn btn-primary" onclick="location.href='Persona.html'" />
+                            <table id="receptores"></table>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Condicion de venta</h3></th>
+                <th scope="col"> <input type="text" id="condicionventa" placeholder="Escriba la Condicion de venta" class="form-control" /></th>
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Plazo del credito</h3></th>
+                <th scope="col"><input type="text" id="plazocredito" placeholder="Escriba el Plazo de credito" class="form-control" /></th>
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Medio de pago</h3></th>
+                <th scope="col"><input type="text" id="mediopago" placeholder="Escriba el Medio de pago" class="form-control" /></th>
+            </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><h3>Linea detalle</h3></th>
+                <th scope="col">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Tabla de lineas detalle
+                    </a>
+                    <div class="collapse" id="collapseExample3">
+                        <div class="card card-body">
+                            <input type="button" value="Nueva linea detalle" id="btn_agregar_nueva_lineadetalle" class="btn btn-primary" onclick="location.href='LineaDetalle.html'" />
+
+                            <table id="listadodelineasdetalle"></table>
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <div class="row justify-content-center">
+        <input type="button" class="btn btn-success" value="Guardar" id="btnguardar" />
+        <input type="button" class="btn btn-info" value="Limpiar" id="btnlimpiar" />
+    </div>
+
+    <hr>
+    <div class="row justify-content-center">
+        <h3>Lineas detalle actual</h3>
+        <table id="lineasdetalleagregados"></table>
+    </div>
+    <hr>
+    <div class="table-responsive-sm">
+        <table class="table" id="listadoFacturas">
+        </table>
+    </div>
+
+    <script src="../Scripts/Ajax.js"></script>
+    <script src="../Scripts/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+
+            document.getElementById("btnguardar").addEventListener("click", guardadatosalobjeto);
+            document.getElementById("btnlimpiar").addEventListener("click", limpiar);
+
+            cargarpersonasparaseleccionaremisores();
+            cargarpersonasparaseleccionarreceptores();
+            cargarlineasdetalleparaseleccionar();
+            cargarfacturas();
+        })();
+        function guardadatosalobjeto() {
+
+            Factura.Codigoactividad = document.getElementById("codigoactividad").value;
+            Factura.Clave = document.getElementById("clave").value;
+            Factura.Numeroconsecutivo = document.getElementById("numeroconsecutivo").value;
+            Factura.Fechaemision = document.getElementById("fechaemision").value;
+            Factura.Condicionventa = document.getElementById("condicionventa").value;
+            Factura.Plazocredito = document.getElementById("plazocredito").value;
+            Factura.Mediopago = document.getElementById("mediopago").value;
+            GuardarFactura()
+        }
+        function limpiar() {
+
+            document.getElementById("codigoactividad").value;
+            document.getElementById("clave").value;
+            document.getElementById("numeroconsecutivo").value;
+            document.getElementById("fechaemision").value;
+            document.getElementById("condicionventa").value;
+            document.getElementById("plazocredito").value;
+            document.getElementById("mediopago").value;
+
+        }
+    </script>
+</body>
+</html>

@@ -88,6 +88,7 @@
     <Content Include="Views\CodigoComercial.html" />
     <Content Include="Views\CodigoTipoMoneda.html" />
     <Content Include="Views\Descuento.html" />
+    <Content Include="Views\Factura.html" />
     <Content Include="Views\LineaDetalle.html" />
     <Content Include="Views\Persona.html" />
     <Content Include="Views\Exoneracion.html" />
@@ -107,6 +108,7 @@
     <Compile Include="Controllers\CodigoTipoMonedaController.cs" />
     <Compile Include="Controllers\DescuentoController.cs" />
     <Compile Include="Controllers\ExoneracionController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\FaxController.cs" />
     <Compile Include="Controllers\IdentificacionPersonaController.cs" />
     <Compile Include="Controllers\ImpuestoController.cs" />
@@ -118,7 +120,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Factura.cs" />
+    <Compile Include="Models\DetalleServicio.cs" />
+    <Compile Include="Models\Factura1.cs" />
     <Compile Include="Models\InformacionReferencia.cs" />
     <Compile Include="Models\LineaDetalle.cs" />
     <Compile Include="Models\LineaDetalle_Impuesto_Exoneracion.cs" />

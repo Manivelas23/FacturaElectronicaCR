@@ -9,11 +9,11 @@ namespace Factura_Electronica.Models
     {
         private string  OtroTexto;
         private string OtroContenido;
-        private Factura objFactura;
+        private Factura1 objFactura;
 
         public string OtroTexto1 { get => OtroTexto; set => OtroTexto = value; }
         public string OtroContenido1 { get => OtroContenido; set => OtroContenido = value; }
-        public Factura ObjFactura { get => objFactura; set => objFactura = value; }
+        public Factura1 ObjFactura { get => objFactura; set => objFactura = value; }
 
         public string setOtros()
         {

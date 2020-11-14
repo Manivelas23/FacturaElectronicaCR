@@ -66,7 +66,11 @@
                                             <div class="dropdown-item">
                                                 <span class="material-icons spanMenu">description</span>
                                                 <a href="LineaDetalle.html" id="RFAC" class="aMenu">Línea Detalle</a>
-                                            </div>                                                       
+                                            </div>
+                                            <div class="dropdown-item">
+                                                <span class="material-icons spanMenu">description</span>
+                                                <a href="Factura.html" id="RFAC" class="aMenu">Factura</a>
+                                            </div>
                                         </div>
                                     </li>
 
@@ -180,6 +184,18 @@
 
         var impuestoscargados = [];
         var exoneracionescargadas = [];
+
+        var Factura = new Object();
+        Factura.Codigoactividad = "";
+        Factura.Clave = "";
+        Factura.Numeroconsecutivo = "";
+        Factura.Fechaemision = "";
+        Factura.Emisorpersona = "";
+        Factura.Receptorpersona = "";
+        Factura.Condicionventa = "";
+        Factura.Plazocredito = "";
+        Factura.Mediopago = "";
+        Factura.lineasdetalledelafactura = [];
 
         //SETTERS      
         var method = ["POST", "PUT", "DELETE", "OPTIONS"];
@@ -919,10 +935,9 @@
             });
 
         }
-
         function cargarlineasdetalle() {
           
-            document.getElementById("listalinea").innerHTML = "";
+            document.getElementById("lineasDetalles").innerHTML = "";
             $.ajax({
                 url: ruta + 'LineaDetalle',
                 type: 'GET',
@@ -932,33 +947,30 @@
                     // alert(data[0]);
                     console.log(data, "cargarlineasdetalle")
                     if (data.length > 0) {
-                        document.getElementById("listalinea").innerHTML += '<thead id="listadocabeza" class="thead bg-primary text-white"><tr id="filalistadocabeza"></tr></thead>';
+                        document.getElementById("lineasDetalles").innerHTML += '<thead id="listadocabezaLineas" class="thead bg-primary text-white"><tr id="filalistadocabezaLineas"></tr></thead>';
 
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Consecutivo</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Numero de linea</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Partida arancelaria</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Código</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Código comercial</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Cantidad</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Consecutivo</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Numero de linea</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Partida arancelaria</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Código</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Código comercial</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Código Tipo</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Cantidad</th>';
 
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Unidad de medida</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Unidad de medida comercial</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Detalle</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Precio unitario</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Monto total</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Descuento</th>';
-
-
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Sub total</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Base imponible</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Impuesto neto</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Monto total de la linea</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Unidad de medida</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Unidad de medida comercial</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Detalle</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Precio unitario</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Monto total</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Descuento</th>';
 
 
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Para modificar</th>';
-                        document.getElementById("filalistadocabeza").innerHTML += '<th scope="col">Para eliminar</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Sub total</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Base imponible</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Impuesto neto</th>';
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Monto total de la linea</th>';
 
-                        document.getElementById("listalinea").innerHTML += '<tbody id="listadocuerpo"></tbody>';
+                        document.getElementById("lineasDetalles").innerHTML += '<tbody id="listadocuerpoLinea"></tbody>';
 
                         for (var indice in data) {
                             var objetoserializado = JSON.stringify(data[indice]);
@@ -970,7 +982,7 @@
 
                             }
 
-                            document.getElementById("listadocuerpo").innerHTML += '<tr><td>' + data[indice].Consecutivo1 + '</td><td>' + data[indice].Numlinea1 + '</td><td>' + data[indice].Partidaarancelaria1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigocomercial1.Tipo1 + ' ' + data[indice].Codigocomercial1.Codigo1 + '</td><td>' + data[indice].Cantidad1 + '</td><td>' + data[indice].Unidadmedida1 + '</td><td>' + data[indice].Unidadmedidacomercial1 + '</td><td>' + data[indice].Detalle1 + '</td><td>' + data[indice].Preciounitario1 + '</td><td>' + data[indice].Montototal1 + '</td><td>' + data[indice].objetoDescuento.NaturalezaDescuento1 + ' ' + data[indice].objetoDescuento.MontoDescuento1 + '</td><td>' + data[indice].Subtotal1 + '</td><td>' + data[indice].Baseimponible1 + '</td><td>' + data[indice].Impuestoneto1 + '</td><td>' + data[indice].Montototallinea1 + '</td></tr>';
+                            document.getElementById("listadocuerpoLinea").innerHTML += '<tr><td>' + data[indice].Consecutivo1 + '</td><td>' + data[indice].Numlinea1 + '</td><td>' + data[indice].Partidaarancelaria1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigocomercial1.Tipo1 + '</td><td> ' + data[indice].Codigocomercial1.Codigo1 + '</td><td>' + data[indice].Cantidad1 + '</td><td>' + data[indice].Unidadmedida1 + '</td><td>' + data[indice].Unidadmedidacomercial1 + '</td><td>' + data[indice].Detalle1 + '</td><td>' + data[indice].Preciounitario1 + '</td><td>' + data[indice].Montototal1 + '</td><td>' + data[indice].objetoDescuento.NaturalezaDescuento1 + ' ' + data[indice].objetoDescuento.MontoDescuento1 + '</td><td>' + data[indice].Subtotal1 + '</td><td>' + data[indice].Baseimponible1 + '</td><td>' + data[indice].Impuestoneto1 + '</td><td>' + data[indice].Montototallinea1 + '</td></tr>';
 
                             //   document.getElementById("listadocuerpo").innerHTML += '<tr><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigotarifa1 + '</td><td>' + data[indice].Tarifa1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Monto1 + '</td><td>' + data[indice].Montoexportacion1 + '</td><td><input type="button" value="Modificar" id="btnmodificar" class="btn btn-primary" onclick="cargardatosenelformulario(' + data[indice] + ')" /></td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="verificareliminar(' + data[indice].Codigo1 + ')" /></td></tr>';
 
@@ -981,13 +993,11 @@
 
                 ,
                 error: function (xhr, textStatus, errorThrown) {
-                    $("#infodelineasdedetallecarga").remove();
                     alert(xhr);
                 }
 
             });
         }
-
         function eliminarlineadetalle(Linea) {
             $.ajax({
                 url: urlaconectarse + "Lineadetalle",
@@ -1004,12 +1014,10 @@
                 }
             })
         }
-
-        function cargarlineasdetalleparaseleccionar(idtabla) {
-            controldemastraravance.innerHTML += creadortarjetadecarga('Cargando las lineas de detalle', 'Se esta cargando el listado de lineas de detalle', 'infodelineasdedetallecarga');
-            document.getElementById(idtabla).innerHTML = "";
+        function cargarlineasdetalleparaseleccionar() {
+            document.getElementById("listadodelineasdetalle").innerHTML = "";
             $.ajax({
-                url: urlaconectarse + 'Lineadetalle',
+                url: ruta + 'LineaDetalle',
                 type: 'GET',
                 dataType: 'json',
                 data: null,
@@ -1018,33 +1026,33 @@
                     console.log(data, "Lineas Detalles")
                     if (data.length > 0) {
 
-                        document.getElementById(idtabla).innerHTML += '<thead id="listadocabeza' + idtabla + '"><tr id="filalistadocabeza' + idtabla + '"></tr></thead>';
+                        document.getElementById("listadodelineasdetalle").innerHTML += '<thead id="listadocabezalistadodelineasdetalle"><tr id="filalistadocabezalistadodelineasdetalle"></tr></thead>';
 
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Consecutivo</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Numero de linea</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Partida arancelaria</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Código</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Código comercial</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Cantidad</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Consecutivo</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle" ).innerHTML += '<th scope="col">Numero de linea</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Partida arancelaria</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Código</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Código comercial</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Cantidad</th>';
 
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Unidad de medida</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Unidad de medida comercial</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Detalle</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Precio unitario</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Monto total</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Descuento</th>';
-
-
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Sub total</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Base imponible</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Impuesto neto</th>';
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Monto total de la linea</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Unidad de medida</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Unidad de medida comercial</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Detalle</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle" ).innerHTML += '<th scope="col">Precio unitario</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle" ).innerHTML += '<th scope="col">Monto total</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle" ).innerHTML += '<th scope="col">Descuento</th>';
 
 
-                        document.getElementById("filalistadocabeza" + idtabla).innerHTML += '<th scope="col">Seleccionar</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle" ).innerHTML += '<th scope="col">Sub total</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle" ).innerHTML += '<th scope="col">Base imponible</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Impuesto neto</th>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Monto total de la linea</th>';
 
 
-                        document.getElementById(idtabla).innerHTML += '<tbody id="listadocuerpo' + idtabla + '"></tbody>';
+                        document.getElementById("filalistadocabezalistadodelineasdetalle").innerHTML += '<th scope="col">Seleccionar</th>';
+
+
+                        document.getElementById("listadodelineasdetalle").innerHTML += '<tbody id="listadocuerpolistadodelineasdetalle"></tbody>';
 
 
                         //document.getElementById("listado").innerHTML += '';
@@ -1057,30 +1065,20 @@
 
 
                             }
-                            document.getElementById("listadocuerpo" + idtabla).innerHTML += '<tr><td>' + data[indice].Consecutivo1 + '</td><td>' + data[indice].Numlinea1 + '</td><td>' + data[indice].Partidaarancelaria1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigocomercial1.Tipo1 + ' ' + data[indice].Codigocomercial1.Codigo1 + '</td><td>' + data[indice].Cantidad1 + '</td><td>' + data[indice].Unidadmedida1 + '</td><td>' + data[indice].Unidadmedidacomercial1 + '</td><td>' + data[indice].Detalle1 + '</td><td>' + data[indice].Preciounitario1 + '</td><td>' + data[indice].Montototal1 + '</td><td>' + data[indice].Montodescuento1.NaturalezaDescuento1 + ' ' + data[indice].Montodescuento1.MontoDescuento1 + '</td><td>' + data[indice].Subtotal1 + '</td><td>' + data[indice].Baseimponible1 + '</td><td>' + data[indice].Impuestoneto1 + '</td><td>' + data[indice].Montototallinea1 + '</td><td><input type="button" value="Seleccionar" id="btnmodificar" class="btn btn-primary" onclick="paraseleccionarunalineadetalle(' + objetoserializadocomillas + ')" /></td></tr>';
+                            document.getElementById("listadocuerpolistadodelineasdetalle").innerHTML += '<tr><td>' + data[indice].Consecutivo1 + '</td><td>' + data[indice].Numlinea1 + '</td><td>' + data[indice].Partidaarancelaria1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigocomercial1.Tipo1 + ' ' + data[indice].Codigocomercial1.Codigo1 + '</td><td>' + data[indice].Cantidad1 + '</td><td>' + data[indice].Unidadmedida1 + '</td><td>' + data[indice].Unidadmedidacomercial1 + '</td><td>' + data[indice].Detalle1 + '</td><td>' + data[indice].Preciounitario1 + '</td><td>' + data[indice].Montototal1 + '</td><td>' + data[indice].objetoDescuento.NaturalezaDescuento1 + ' ' + data[indice].objetoDescuento.MontoDescuento1 + '</td><td>' + data[indice].Subtotal1 + '</td><td>' + data[indice].Baseimponible1 + '</td><td>' + data[indice].Impuestoneto1 + '</td><td>' + data[indice].Montototallinea1 + '</td><td><input type="button" value="Seleccionar" id="btnmodificar" class="btn btn-primary" onclick="paraseleccionarunalineadetalle(' + objetoserializadocomillas + ')" /></td></tr>';
                         }
                     }
-                    else {
-
-                    }
-
-
-                    $("#infodelineasdedetallecarga").remove();
-                    $('#' + idtabla).DataTable({
+                    $('#listadodelineasdetalle').DataTable({
                         "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
                     });
                 }
-
-
-                ,
-                error: function (xhr, textStatus, errorThrown) {
-                    $("#infodelineasdedetallecarga").remove();
+               ,
+                error: function (xhr, textStatus, errorThrown) {            
                     alert(xhr);
                 }
 
             });
         }
-
         function paraseleccionarunalineadetalle(objeto) {
             objeto.Numerolinea1 = parseInt(Factura.lineasdetalledelafactura.length) + 1
             var person = prompt("Desea cambiar la cantidad de unidades de la linea, actualmente es " + objeto.Cantidad1, "");
@@ -1098,4 +1096,248 @@
             agregarlineadetallealafactura(objeto);
         }
 
+        //FACTURA
+        function paraseleccionarunalineadetalle(objeto) {
+            objeto.Numerolinea1 = parseInt(Factura.lineasdetalledelafactura.length) + 1
+            var person = prompt("Desea cambiar la cantidad de unidades de la linea, actualmente es " + objeto.Cantidad1, "");
 
+            if (person == null || person == "") {
+
+            } else {
+                objeto.Impuestoneto1 = (objeto.Impuestoneto1 / objeto.Cantidad1) * person;
+                objeto.Cantidad1 = person;
+                objeto.Montototal1 = objeto.Cantidad1 * objeto.Preciounitario1;
+                objeto.Subtotal1 = objeto.Montototal1 - objeto.Descuento1.Montodescuento1;
+
+                objeto.Montototallinea1 = objeto.Subtotal1 - objeto.Impuestoneto1;
+            }
+            agregarlineadetallealafactura(objeto);
+        }
+        function agregarlineadetallealafactura(objeto) {
+
+
+            Factura.lineasdetalledelafactura.push(objeto);
+            rellenatabladelineasdetallesseleccionados();
+
+
+        }
+        function rellenatabladelineasdetallesseleccionados() {
+
+            document.getElementById("lineasdetalleagregados").innerHTML = "";
+
+            document.getElementById("lineasdetalleagregados").innerHTML += '<thead id="listadocabezalineasdetalleagregados"><tr id="filalistadocabezalineasdetalleagregados"></tr></thead>';
+
+            document.getElementById("filalistadocabezalineasdetalleagregados").innerHTML += '<th scope="col">Consecutivo</th>';
+            document.getElementById("filalistadocabezalineasdetalleagregados").innerHTML += '<th scope="col">Cantidad</th>';
+            document.getElementById("filalistadocabezalineasdetalleagregados").innerHTML += '<th scope="col">Detalle</th>';
+            document.getElementById("filalistadocabezalineasdetalleagregados").innerHTML += '<th scope="col">Monto total</th>';
+
+            document.getElementById("filalistadocabezalineasdetalleagregados").innerHTML += '<th scope="col">Eiminar</th>';
+
+            document.getElementById("lineasdetalleagregados").innerHTML += '<tbody id="listadocuerpolineasdetalleagregado"></tbody>';
+
+            var data = Factura.lineasdetalledelafactura;
+            for (var indice in data) {
+
+                document.getElementById("listadocuerpolineasdetalleagregado").innerHTML += '<tr><td>' + data[indice].Consecutivo1 + '</td><td>' + data[indice].Cantidad1 + '</td><td>' + data[indice].Detalle1 + '</td><td>' + data[indice].Montototallinea1 + '</td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="paraeliminarunalineadetalle(' + data[indice].Consecutivo1 + ')" /></td></tr>';
+            }
+            $('#lineasdetalleagregados').DataTable({
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            });
+        }
+        function GuardarFactura() {
+            Factura.lineasdetalledelafactura = JSON.stringify(Factura.lineasdetalledelafactura);
+            $.ajax({
+                url: ruta + 'Factura',
+                type: 'PUT',
+                dataType: 'json',
+                data: Factura,
+                success: function (data, textStatus, xhr) {
+                    alert(data[0]);
+                    location.href = 'Factura.html';
+                }
+
+
+                ,
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(xhr);
+                }
+
+            });
+        }
+        function cargarfacturas() {       
+            document.getElementById("listadoFacturas").innerHTML = "";
+            $.ajax({
+                url: ruta + 'Factura',
+                type: 'GET',
+                dataType: 'json',
+                data: Factura,
+                success: function (data, textStatus, xhr) {
+                    console.log(data, "Facturas")
+                    if (data.length > 0) {
+
+                        document.getElementById("listadoFacturas").innerHTML += '<thead id="listadocabezaFac" class="thead bg-primary text-white"><tr id="filalistadocabezaFac"></tr></thead>';
+
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Clave</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Numero de consecutivo</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Código de actividad</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Fecha de emisión</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Emisor</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Receptor</th>';
+
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Condición de venta</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Plazo del cerdito</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Medio de pago</th>';
+
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Para modificar</th>';
+                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Para eliminar</th>';
+
+                        document.getElementById("listadoFacturas").innerHTML += '<tbody id="listadocuerpoFac"></tbody>';
+
+                        for (var indice in data) {
+                            var objetoserializado = JSON.stringify(data[indice]);
+                            var objetoserializadocomillas = "";
+                            for (var caracter in objetoserializado) {
+
+                                objetoserializadocomillas += objetoserializado[caracter].replace('"', "'");
+                            }
+                            document.getElementById("listadocuerpoFac").innerHTML += '<tr><td>' + data[indice].Clave1 + '</td><td>' + data[indice].Numeroconsecutivo1 + '</td><td>' + data[indice].Codigoactividad1 + '</td><td>' + data[indice].Fechaemision1 + '</td><td>' + data[indice].Identificacionemisor1.Nombre1 + '</td><td>' + data[indice].Identificacionreceptor1.Nombre1 + '</td><td>' + data[indice].Condicionventa1 + '</td><td>' + data[indice].Plazocredito1 + '</td><td>' + data[indice].Mediopago1 + '</td><td><input type="button" value="Modificar" id="btnmodificar" class="btn btn-primary" onclick="cargardatosenelformulario(' + objetoserializadocomillas + ')" /></td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="verificareliminar(' + data[indice].Clave1 + ')" /></td></tr>';
+                        
+                        }
+                    }
+                }
+                ,
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(xhr);
+                }
+
+            });
+}
+
+        function cargarpersonasparaseleccionaremisores() {
+            document.getElementById("emisores").innerHTML = "";
+            $.ajax({
+                url: ruta + 'Persona',
+                type: 'GET',
+                dataType: 'json',
+                data: null,
+                success: function (data, textStatus, xhr) {
+                    // alert(data[0]);
+                    console.log(data, "Emisores")
+                    if (data.length > 0) {
+
+                        document.getElementById("emisores").innerHTML += '<thead id="listadocabeza"><tr id="filalistadocabezaemisores' + '"></tr></thead>';
+
+                        document.getElementById("filalistadocabezaemisores" ).innerHTML += '<th scope="col">Nombre</th>';
+                        document.getElementById("filalistadocabezaemisores" ).innerHTML += '<th scope="col">Numero de identificación</th>';
+                        document.getElementById("filalistadocabezaemisores" ).innerHTML += '<th scope="col">Nombre comercial</th>';
+                        document.getElementById("filalistadocabezaemisores" ).innerHTML += '<th scope="col">Ubicación </th>';
+                        document.getElementById("filalistadocabezaemisores").innerHTML += '<th scope="col">Teléfono</th>';
+                        document.getElementById("filalistadocabezaemisores" ).innerHTML += '<th scope="col">Fax</th>';
+                        document.getElementById("filalistadocabezaemisores" ).innerHTML += '<th scope="col">Correo</th>';
+                        document.getElementById("filalistadocabezaemisores" ).innerHTML += '<th scope="col">Identificación de extranjero</th>';
+                        document.getElementById("filalistadocabezaemisores").innerHTML += '<th scope="col">Seleccionar</th>';
+
+
+                        document.getElementById("emisores").innerHTML += '<tbody id="listadocuerpoemisores' + '"></tbody>';
+
+
+                        //document.getElementById("listado").innerHTML += '';
+                        for (var indice in data) {
+                            var objetoserializado = JSON.stringify(data[indice]);
+                            var objetoserializadocomillas = "";
+                            for (var caracter in objetoserializado) {
+                                objetoserializadocomillas += objetoserializado[caracter].replace('"', "'");
+                            }
+
+
+                            document.getElementById("listadocuerpoemisores").innerHTML += '<tr><td>' + data[indice].Nombre1 + '</td><td>' + data[indice].identificacionPersona.identificacionPersona1 + '</td><td>' + data[indice].NombreComercial1 + '</td><td>' + data[indice].ObjUbicacion.IdUbicacion1 +'</td><td>' + data[indice].ObjTelefono1.NumTelefono1 + '</td><td>' + data[indice].ObjFax1.NumFax1 + '</td><td>' + data[indice].CorreoElectronico1 + '</td><td>' + data[indice].IdentificacionExtranjero1 + '</td><td><input type="button" value="Seleccionar" id="btnEmisor" class="btn btn-primary" onclick="seleccionarpersonaemisor(' + objetoserializadocomillas + ')" /></td></tr>';
+
+                            //   document.getElementById("listadocuerpo").innerHTML += '<tr><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigotarifa1 + '</td><td>' + data[indice].Tarifa1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Monto1 + '</td><td>' + data[indice].Montoexportacion1 + '</td><td><input type="button" value="Modificar" id="btnmodificar" class="btn btn-primary" onclick="cargardatosenelformulario(' + data[indice] + ')" /></td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="verificareliminar(' + data[indice].Codigo1 + ')" /></td></tr>';
+
+                        }
+                    }
+                    $('#emisores').DataTable();
+                }
+                ,
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(xhr);
+                }
+
+            });
+}
+        function cargarpersonasparaseleccionarreceptores() {
+            document.getElementById("receptores").innerHTML = "";
+            $.ajax({
+                url: ruta + 'Persona',
+                type: 'GET',
+                dataType: 'json',
+                data: null,
+                success: function (data, textStatus, xhr) {
+                    // alert(data[0]);
+                    console.log(data, "Receptores")
+                    if (data.length > 0) {
+
+                        document.getElementById("receptores").innerHTML += '<thead id="listadocabezareceptores"><tr id="filalistadocabezareceptores"></tr></thead>';
+
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Nombre</th>';
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Numero de identificación</th>';
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Nombre comercial</th>';
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Ubicación </th>';
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Teléfono</th>';
+                        document.getElementById("filalistadocabezareceptores"  ).innerHTML += '<th scope="col">Fax</th>';
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Correo</th>';
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Identificación de extranjero</th>';
+                        document.getElementById("filalistadocabezareceptores" ).innerHTML += '<th scope="col">Seleccionar</th>';
+
+
+                        document.getElementById("receptores").innerHTML += '<tbody id="listadocuerporeceptores"></tbody>';
+
+
+                        //document.getElementById("listado").innerHTML += '';
+                        for (var indice in data) {
+                            var objetoserializado = JSON.stringify(data[indice]);
+                            var objetoserializadocomillas = "";
+                            for (var caracter in objetoserializado) {
+
+                                objetoserializadocomillas += objetoserializado[caracter].replace('"', "'");
+
+
+                            }
+
+
+                            document.getElementById("listadocuerporeceptores").innerHTML += '<tr><td>' + data[indice].Nombre1 + '</td><td>' + data[indice].identificacionPersona.identificacionPersona1 + '</td><td>' + data[indice].NombreComercial1 + '</td><td>' + data[indice].ObjUbicacion.IdUbicacion1  + '</td><td>' + data[indice].ObjTelefono1.NumTelefono1 + '</td><td>' + data[indice].ObjFax1.NumFax1 + '</td><td>' + data[indice].CorreoElectronico1 + '</td><td>' + data[indice].IdentificacionExtranjero1 + '</td><td><input type="button" value="Seleccionar" id="btnReceptor" class="btn btn-primary" onclick="seleccionarpersonareceptor(' + objetoserializadocomillas + ')" /></td></tr>';
+
+                            //   document.getElementById("listadocuerpo").innerHTML += '<tr><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigotarifa1 + '</td><td>' + data[indice].Tarifa1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Monto1 + '</td><td>' + data[indice].Montoexportacion1 + '</td><td><input type="button" value="Modificar" id="btnmodificar" class="btn btn-primary" onclick="cargardatosenelformulario(' + data[indice] + ')" /></td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="verificareliminar(' + data[indice].Codigo1 + ')" /></td></tr>';
+
+                        }
+                    }
+                    else {
+
+                    }
+                    $('#receptores').DataTable();
+                }
+               ,
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(xhr);
+                }
+
+            });
+}
+
+        function seleccionarpersonaemisor(objeto) {
+
+            document.getElementById("infoemisorsel").innerHTML = "Seleccione el emisor Emisor seleccionado actual: " + objeto.Nombre1;
+            $('.collapseExample').collapse('hide');
+
+            Factura.Emisorpersona = objeto.identificacionPersona.identificacionPersona1;
+
+
+        }
+        function seleccionarpersonareceptor(objeto) {
+
+            document.getElementById("inforeceptorsel").innerHTML = "Seleccione el receptor Receptor seleccionado actual: " + objeto.Nombre1;
+
+            $('.collapseExample2').collapse('hide');
+            Factura.Receptorpersona = objeto.identificacionPersona.identificacionPersona1;
+        }

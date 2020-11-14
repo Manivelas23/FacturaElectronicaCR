@@ -12,14 +12,14 @@ namespace Factura_Electronica.Models
         private DateTime FechaEmision;
         private string Codigo;
         private string Razon;
-        private Factura objFactura;
+        private Factura1 objFactura;
 
         public string TipoDoc1 { get => TipoDoc; set => TipoDoc = value; }
         public string Numero1 { get => Numero; set => Numero = value; }
         public DateTime FechaEmision1 { get => FechaEmision; set => FechaEmision = value; }
         public string Codigo1 { get => Codigo; set => Codigo = value; }
         public string Razon1 { get => Razon; set => Razon = value; }
-        public Factura ObjFactura { get => objFactura; set => objFactura = value; }
+        public Factura1 ObjFactura { get => objFactura; set => objFactura = value; }
 
 
         public string setInformacionReferencia()
