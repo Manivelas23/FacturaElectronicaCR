@@ -1,177 +1,245 @@
 ﻿using System;
+using Factura_Electronica.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Factura_Electronica.Models
+namespace FECR.Models
 {
     public class LineaDetalle
     {
-        private int NumeroLinea;
-        private string PartidaArancelaria;
+        private int Numlinea;
+        private string Partidaarancelaria;
         private string Codigo;
         private decimal Cantidad;
-        private string UnidadMedida;
-        private string UnidadMedidaComercial;
+        private string Unidadmedida;
+        private string Unidadmedidacomercial;
         private string Detalle;
-        private decimal PrecioUnitario;
-        private decimal MontoTotal;
-        private decimal SubTotal;
-        private decimal BaseImponible;
-        private decimal ImpuestoNeto;
-        private decimal MontoTotalLinea;
-        private int Consecutivo;
-        CodigoComercial CodigoComercial;
-        Descuento Descuento;
-        //private List<LineaDetalle_Impuesto_Exoneracion> lineaDetalle_impuesto_exoneracion;
+        private decimal Preciounitario;
+        private decimal Montototal;
+        private decimal Subtotal;
+        private decimal Baseimponible;
+        private decimal Impuestoneto;
+        private decimal Montototallinea;
+        private int Consecutivo;//llave primaria//
+        private CodigoComercial Codigocomercial;
+        private Descuento Montodescuento;
+        private Descuento Naturalezadescuento;
+        private List<Lineadetalle_Impuesto_Exoneracion> Lista_lineadetalleImpuestoExoneracion;
 
-        public int NumeroLinea1 { get => NumeroLinea; set => NumeroLinea = value; }
-        public string PartidaArancelaria1 { get => PartidaArancelaria; set => PartidaArancelaria = value; }
+        public int Numlinea1 { get => Numlinea; set => Numlinea = value; }
+        public string Partidaarancelaria1 { get => Partidaarancelaria; set => Partidaarancelaria = value; }
         public string Codigo1 { get => Codigo; set => Codigo = value; }
         public decimal Cantidad1 { get => Cantidad; set => Cantidad = value; }
-        public string UnidadMedida1 { get => UnidadMedida; set => UnidadMedida = value; }
-        public string UnidadMedidaComercial1 { get => UnidadMedidaComercial; set => UnidadMedidaComercial = value; }
+        public string Unidadmedida1 { get => Unidadmedida; set => Unidadmedida = value; }
+        public string Unidadmedidacomercial1 { get => Unidadmedidacomercial; set => Unidadmedidacomercial = value; }
         public string Detalle1 { get => Detalle; set => Detalle = value; }
-        public decimal PrecioUnitario1 { get => PrecioUnitario; set => PrecioUnitario = value; }
-        public decimal MontoTotal1 { get => MontoTotal; set => MontoTotal = value; }
-        public decimal SubTotal1 { get => SubTotal; set => SubTotal = value; }
-        public decimal BaseImponible1 { get => BaseImponible; set => BaseImponible = value; }
-        public decimal ImpuestoNeto1 { get => ImpuestoNeto; set => ImpuestoNeto = value; }
-        public decimal MontoTotalLinea1 { get => MontoTotalLinea; set => MontoTotalLinea = value; }
-        public int Consecutivo1 { get => Consecutivo; set => Consecutivo = value; } 
-        public CodigoComercial CodigoComercial1 { get => CodigoComercial; set => CodigoComercial = value; }
-        public Descuento Descuento1 { get => Descuento; set => Descuento = value; }
-       // public List<LineaDetalle_Impuesto_Exoneracion> LineaDetalle_impuesto_exoneracion { get => lineaDetalle_impuesto_exoneracion; set => lineaDetalle_impuesto_exoneracion = value; }
+        public decimal Preciounitario1 { get => Preciounitario; set => Preciounitario = value; }
+        public decimal Montototal1 { get => Montototal; set => Montototal = value; }
+        public decimal Subtotal1 { get => Subtotal; set => Subtotal = value; }
+        public decimal Baseimponible1 { get => Baseimponible; set => Baseimponible = value; }
+        public decimal Impuestoneto1 { get => Impuestoneto; set => Impuestoneto = value; }
+        public decimal Montototallinea1 { get => Montototallinea; set => Montototallinea = value; }
+        public int Consecutivo1 { get => Consecutivo; set => Consecutivo = value; }
+        public CodigoComercial Codigocomercial1 { get => Codigocomercial; set => Codigocomercial = value; }
+        public Descuento objetoDescuento { get => Montodescuento; set => Montodescuento = value; }
+        public List<Lineadetalle_Impuesto_Exoneracion> Lista_lineadetalleImpuestoExoneracion1 { get => Lista_lineadetalleImpuestoExoneracion; set => Lista_lineadetalleImpuestoExoneracion = value; }
 
-        public string setResumenFactura()
+        public string Elimina_Lineadetalle()
         {
+            ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
-                ConexionconBD objConexion = new ConexionconBD();
-                if (objConexion.activaBD())
+                if (objeto_conexion.activaBD())
                 {
+                    String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    string query;
-                    query = "EXEC I_LINEADETALLE ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
-                    objConexion.nueva_consulta(query);
-
-                    objConexion.nuevo_parametro(NumeroLinea1, "int");
-                    objConexion.nuevo_parametro(PartidaArancelaria1, "string");
-                    objConexion.nuevo_parametro(Codigo1, "string");
-                    objConexion.nuevo_parametro(Cantidad1, "decimal");
-                    objConexion.nuevo_parametro(UnidadMedida1, "string");
-                    objConexion.nuevo_parametro(UnidadMedidaComercial1, "string");
-                    objConexion.nuevo_parametro(Detalle1, "string");
-                    objConexion.nuevo_parametro(PrecioUnitario1, "decimal");
-                    objConexion.nuevo_parametro(MontoTotal1, "decimal");
-                    objConexion.nuevo_parametro(SubTotal1, "decimal");
-                    objConexion.nuevo_parametro(BaseImponible1, "decimal");
-                    objConexion.nuevo_parametro(ImpuestoNeto1, "decimal");
-                    objConexion.nuevo_parametro(MontoTotalLinea1, "decimal");
-                    objConexion.nuevo_parametro(Consecutivo1, "int");
-                    objConexion.nuevo_parametro(CodigoComercial1.Tipo1, "string");
-                    objConexion.nuevo_parametro(CodigoComercial1.Codigo1, "string");
-                    objConexion.nuevo_parametro(Descuento1.MontoDescuento1, "decimal");
-                    objConexion.nuevo_parametro(Descuento1.NaturalezaDescuento1, "string");
-
-                    CONTENEDOR = objConexion.busca();
-
-                    objConexion.conexion.Close();
-                    objConexion.conexion.Dispose();
-                    CONTENEDOR.Close();
-
-                    return $"Se guardó la Linea Detalle con el consecutivo : {Consecutivo1}";
-                }
-                else return "Sin conexión con la base de datos";
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-        }
-
-        public string deleteResumenFactura()
-        {
-            try
-            {
-                ConexionconBD objConexion = new ConexionconBD();
-                if (objConexion.activaBD())
-                {
-                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
-
-                    string query;
                     query = "EXEC D_LINEADETALLE ?";
-                    objConexion.nueva_consulta(query);
 
-                    objConexion.nuevo_parametro(Consecutivo1, "int");
+                    objeto_conexion.nueva_consulta(query);
 
+                    objeto_conexion.nuevo_parametro(Consecutivo1, "int");
 
-                    CONTENEDOR = objConexion.busca();
+                    CONTENEDOR = objeto_conexion.busca();
 
-                    objConexion.conexion.Close();
-                    objConexion.conexion.Dispose();
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-
-                    return $"Se eliminó la Linea Detalle con el consecutivo : {Consecutivo1}";
+                    return "Eliminación Realizada Con Éxito";
                 }
-                else return "Sin conexión con la base de datos";
+                else return "Sin Conexión con la Base de Datos";
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                return e.Message;
+                return err.Message;
             }
         }
-
-        public string updateResumenFactura()
+        public string Actualiza_Lineadetalle()
         {
+            ConexionconBD objeto_conexion = new ConexionconBD();
             try
             {
-                ConexionconBD objConexion = new ConexionconBD();
-                if (objConexion.activaBD())
+                if (objeto_conexion.activaBD())
                 {
+                    String query;
                     System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
-                    string query;
                     query = "EXEC U_LINEADETALLE ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
-                    objConexion.nueva_consulta(query);
+                    objeto_conexion.nueva_consulta(query);
 
-                    objConexion.nuevo_parametro(NumeroLinea1, "int");
-                    objConexion.nuevo_parametro(PartidaArancelaria1, "string");
-                    objConexion.nuevo_parametro(Codigo1, "string");
-                    objConexion.nuevo_parametro(Cantidad1, "decimal");
-                    objConexion.nuevo_parametro(UnidadMedida1, "string");
-                    objConexion.nuevo_parametro(UnidadMedidaComercial1, "string");
-                    objConexion.nuevo_parametro(Detalle1, "string");
-                    objConexion.nuevo_parametro(PrecioUnitario1, "decimal");
-                    objConexion.nuevo_parametro(MontoTotal1, "decimal");
-                    objConexion.nuevo_parametro(SubTotal1, "decimal");
-                    objConexion.nuevo_parametro(BaseImponible1, "decimal");
-                    objConexion.nuevo_parametro(ImpuestoNeto1, "decimal");
-                    objConexion.nuevo_parametro(MontoTotalLinea1, "decimal");
-                    objConexion.nuevo_parametro(Consecutivo1, "int");
-                    objConexion.nuevo_parametro(CodigoComercial1.Tipo1, "string");
-                    objConexion.nuevo_parametro(CodigoComercial1.Codigo1, "string");
-                    objConexion.nuevo_parametro(Descuento1.MontoDescuento1, "decimal");
-                    objConexion.nuevo_parametro(Descuento1.NaturalezaDescuento1, "string");
+                    objeto_conexion.nuevo_parametro(Numlinea1, "int");
+                    objeto_conexion.nuevo_parametro(Partidaarancelaria1, "string");
+                    objeto_conexion.nuevo_parametro(Codigo1, "string");
+                    objeto_conexion.nuevo_parametro(Cantidad1, "decimal");
+                    objeto_conexion.nuevo_parametro(Unidadmedida1, "string");
+                    objeto_conexion.nuevo_parametro(Unidadmedidacomercial1, "string");
+                    objeto_conexion.nuevo_parametro(Detalle1, "string");
+                    objeto_conexion.nuevo_parametro(Preciounitario1, "decimal");
+                    objeto_conexion.nuevo_parametro(Montototal1, "decimal");
+                    objeto_conexion.nuevo_parametro(Subtotal1, "decimal");
+                    objeto_conexion.nuevo_parametro(Baseimponible1, "decimal");
+                    objeto_conexion.nuevo_parametro(Impuestoneto1, "decimal");
+                    objeto_conexion.nuevo_parametro(Montototallinea1, "decimal");
+                    objeto_conexion.nuevo_parametro(Consecutivo1, "int");
+                    objeto_conexion.nuevo_parametro(Codigocomercial1.Tipo1, "string");
+                    objeto_conexion.nuevo_parametro(Codigocomercial1.Codigo1, "string");
+                    objeto_conexion.nuevo_parametro(objetoDescuento.MontoDescuento1, "decimal");
+                    objeto_conexion.nuevo_parametro(objetoDescuento.NaturalezaDescuento1, "string");
+                    CONTENEDOR = objeto_conexion.busca();
 
-                    CONTENEDOR = objConexion.busca();
-
-                    objConexion.conexion.Close();
-                    objConexion.conexion.Dispose();
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
                     CONTENEDOR.Close();
-
-                    return $"Se modificó la Linea Detalle con el consecutivo : {Consecutivo1}";
+                    return "Actualización Realizada Con Éxito";
                 }
-                else return "Sin conexión con la base de datos";
+                else return "Sin Conexión con la Base de Datos";
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                return e.Message;
+                return err.Message;
             }
         }
+        public string Inserta_Lineadetalle()
+        {
+            ConexionconBD objeto_conexion = new ConexionconBD();
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    String query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
 
+                    query = "EXEC I_LINEADETALLE ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+
+                    objeto_conexion.nueva_consulta(query);
+                    objeto_conexion.nuevo_parametro(Numlinea1, "int");
+                    objeto_conexion.nuevo_parametro(Partidaarancelaria1, "string");
+                    objeto_conexion.nuevo_parametro(Codigo1, "string");
+                    objeto_conexion.nuevo_parametro(Cantidad1, "decimal");
+                    objeto_conexion.nuevo_parametro(Unidadmedida1, "string");
+                    objeto_conexion.nuevo_parametro(Unidadmedidacomercial1, "string");
+                    objeto_conexion.nuevo_parametro(Detalle1, "string");
+                    objeto_conexion.nuevo_parametro(Preciounitario1, "decimal");
+                    objeto_conexion.nuevo_parametro(Montototal1, "decimal");
+                    objeto_conexion.nuevo_parametro(Subtotal1, "decimal");
+                    objeto_conexion.nuevo_parametro(Baseimponible1, "decimal");
+                    objeto_conexion.nuevo_parametro(Impuestoneto1, "decimal");
+                    objeto_conexion.nuevo_parametro(Montototallinea1, "decimal");
+                    objeto_conexion.nuevo_parametro(Consecutivo1, "int");
+                    objeto_conexion.nuevo_parametro(Codigocomercial1.Tipo1, "string");
+                    objeto_conexion.nuevo_parametro(Codigocomercial1.Codigo1, "string");
+                    objeto_conexion.nuevo_parametro(objetoDescuento.MontoDescuento1, "decimal");
+                    objeto_conexion.nuevo_parametro(objetoDescuento.NaturalezaDescuento1, "string");
+                    CONTENEDOR = objeto_conexion.busca();
+
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return "Inserción Realizada Con Éxito";
+                }
+                else return "Sin Conexión con la Base de Datos";
+            }
+            catch (Exception err)
+            {
+                return err.Message;
+            }
+        }
+        public List<LineaDetalle> todaslaslineasdetalle()
+        {
+            List<LineaDetalle> listadeLineaDetalleadevolver = new List<LineaDetalle>();
+
+            ConexionconBD objeto_conexion = new ConexionconBD();
+
+
+            try
+            {
+                if (objeto_conexion.activaBD())
+                {
+                    string query;
+                    System.Data.OleDb.OleDbDataReader CONTENEDOR;
+
+                    query = "EXEC S_T_LINEADETALLE";
+                    objeto_conexion.nueva_consulta(query);
+                    CONTENEDOR = objeto_conexion.busca();
+                    while (CONTENEDOR.Read())
+                    {
+                        LineaDetalle _lineaDetalle = new LineaDetalle();
+
+                        _lineaDetalle.Numlinea1 = Convert.ToInt32(CONTENEDOR["NUMEROLINEA"].ToString());
+                        _lineaDetalle.Partidaarancelaria1 = CONTENEDOR["PARTIDAARANCELARIA"].ToString();
+                        _lineaDetalle.Codigo1 = CONTENEDOR["CODIGO"].ToString();
+                        _lineaDetalle.Cantidad1 = Convert.ToDecimal(CONTENEDOR["CANTIDAD"].ToString());
+                        _lineaDetalle.Unidadmedida1 = CONTENEDOR["UNIDADMEDIDA"].ToString();
+                        _lineaDetalle.Unidadmedidacomercial1 = CONTENEDOR["UNIDADMEDIDACOMERCIAL"].ToString();
+                        _lineaDetalle.Detalle1 = CONTENEDOR["DETALLE"].ToString();
+                        _lineaDetalle.Preciounitario1 = Convert.ToDecimal(CONTENEDOR["PRECIOUNITARIO"].ToString());
+                        _lineaDetalle.Montototal1 = Convert.ToDecimal(CONTENEDOR["MONTOTOTAL"].ToString());
+                        _lineaDetalle.Subtotal1 = Convert.ToDecimal(CONTENEDOR["SUBTOTAL"].ToString());
+                        _lineaDetalle.Baseimponible1 = Convert.ToDecimal(CONTENEDOR["BASEIMPONIBLE"].ToString());
+                        _lineaDetalle.Impuestoneto1 = Convert.ToDecimal(CONTENEDOR["IMPUESTONETO"].ToString());
+                        _lineaDetalle.Montototallinea1 = Convert.ToDecimal(CONTENEDOR["MONTOTOTALLINEA"].ToString());
+                        _lineaDetalle.Consecutivo1 = Convert.ToInt32(CONTENEDOR["CONSECUTIVO"].ToString());
+
+                        CodigoComercial _codigocomercial = new CodigoComercial();
+                        _codigocomercial.Tipo1 = CONTENEDOR["TIPO"].ToString();
+                        _codigocomercial.Codigo1 = CONTENEDOR["CODIGO"].ToString();
+                        _lineaDetalle.Codigocomercial1 = _codigocomercial;
+
+                        Descuento _descuento = new Descuento();
+                        _descuento.MontoDescuento1 = Convert.ToDecimal(CONTENEDOR["MONTODESCUENTO"].ToString());
+                        _descuento.NaturalezaDescuento1 = CONTENEDOR["_NATURALEZADESCUENTO"].ToString();
+                        _lineaDetalle.objetoDescuento = _descuento;
+
+
+                        List<Lineadetalle_Impuesto_Exoneracion> _lista = new List<Lineadetalle_Impuesto_Exoneracion>();
+                        Lineadetalle_Impuesto_Exoneracion lineadetalle_Impuesto_Exoneracion = new Lineadetalle_Impuesto_Exoneracion();
+
+                        _lista = lineadetalle_Impuesto_Exoneracion.todaslaslineasdetalleIMPEXO_x_lineadetalle(_lineaDetalle.Consecutivo1);
+                        _lineaDetalle.Lista_lineadetalleImpuestoExoneracion1 = _lista;
+                        listadeLineaDetalleadevolver.Add(_lineaDetalle);
+
+
+                    }
+                    objeto_conexion.conexion.Close();
+                    objeto_conexion.conexion.Dispose();
+                    CONTENEDOR.Close();
+                    return listadeLineaDetalleadevolver;
+                }
+                else
+                {
+
+
+                    return listadeLineaDetalleadevolver;
+                }
+            }
+            catch 
+            {
+                return listadeLineaDetalleadevolver;
+            }
+
+
+        }
 
     }
-
 }
