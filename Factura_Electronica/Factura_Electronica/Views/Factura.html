@@ -11,8 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="espacionav"></div>
-    <hr />
+    <div id="navBar"></div>
     <div class="row justify-content-center">
         <h1>Confeccione una Factura</h1>
     </div>
@@ -130,7 +129,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
         (function () {
-
+            document.getElementById("navBar").innerHTML += cargaNavBar();
             document.getElementById("btnguardar").addEventListener("click", guardadatosalobjeto);
             document.getElementById("btnlimpiar").addEventListener("click", limpiar);
 

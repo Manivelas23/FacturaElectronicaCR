@@ -2,279 +2,272 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
-    <link href="styles/styles.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Línea Detalle</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-</head>
-<body>
-    <div id="navBar"></div>
-
-    <hr />
-    <div class="row justify-content-center">
-        <h1>Gestión Linea Detalle</h1>
-    </div>
-    <hr />
-
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Consecutivo</h3></th>
-                <th scope="col"><input type="text" class="form-control" id="consecutivo" placeholder="Escriba el numero consecutivo" /></th>
-
-                <th scope="col"></th>
-                <th scope="col"><h3>Numero de linea </h3></th>
-                <th scope="col"><input type="text" class="form-control" id="numerodelinea" placeholder="Escriba el Numero de linea" /></th>
-            </tr>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Partida Arancelaria</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="partidaarancelaria" placeholder="Escriba la Partida Arancelaria" /></th>
-                <th scope="col"></th>
-                <th scope="col"><h3>Código</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="codigo" placeholder="Escriba el Código " /></th>
-            </tr>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Cantidad</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="cantidad" placeholder="Escriba la Cantidad" onkeyup="cambioencantidad()" /></th>
-                <th scope="col"></th>
-                <th scope="col"><h3>Unidad de Medida</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="unidaddemedida" placeholder="Escriba la Unidad de Medida" /></th>
-            </tr>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Unidad de Medida Comercial</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="unidaddemedidacomercial" placeholder="Escriba la Unidad de Medida Comercial" /></th>
-                <th scope="col"></th>
-                <th scope="col"><h3>Detalle</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="detalle" placeholder="Escriba el Detalle" /></th>
-            </tr>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Precio Unitario</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="preciounitario" placeholder="Escriba el Precio Unitario" onkeyup="cambioenPreciounitario()" /></th>
-                <th scope="col"></th>
-                <th scope="col"><h3>Monto Total</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="montototal" placeholder="Monto Total" disabled /></th>
-            </tr>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Base imponible</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="baseimponible" placeholder="Escriba la Base imponible" /></th>
-                <th scope="col"></th>
-                <th scope="col"><h3>Subtotal</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="subtotal" placeholder="Subtotal" disabled /></th>
-            </tr>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Impuesto neto</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="impuestoneto" placeholder="Escriba el Impuesto neto" /></th>
-                <th scope="col"></th>
-                <th scope="col"><h3>Monto total Linea</h3></th>
-                <th scope="col"> <input type="text" class="form-control" id="montototallinea" placeholder="Monto total Linea" disabled /></th>
-            </tr>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"><h3>Codigo Comercial</h3></th>
-                <th scope="col">
-                    <select class="form-control form-control-lg" id="codigocomercial">
-                        <option>Seleccione el Codigo Comercial</option>
-                    </select>
-                <th scope="col"></th>
-                <th scope="col"><h3>Monto Descuento</h3></th>
-                <th scope="col">
-                    <select class="form-control form-control-lg" id="descuento" onchange="cambioenDescuento()">
-                        <option>Selecciones el Descuento</option>
-                    </select>
-                </th>
-            </tr>
-        </tbody>
-    </table>
-    <div class="table-responsive">
-        <div class="d-flex justify-content-center text-light bg-primary">
-            <h3>Impuestos de la linea actual</h3>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="styles/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <body>
+        <div id="navBar"></div>
+        <hr />
+        <div class="row justify-content-center">
+            <h1>Gestión Linea Detalle</h1>
         </div>
         <hr />
-        <table id="impuestos"></table>
-        <hr />
 
-    </div>
-    <div class="row justify-content-center">
-        <input type="button" class="btn btn-success" value="Guardar" id="btnguardar" />
-        <!--<input type="button" class="btn btn-warning" value="Actualizar" id="btnactualizar" />-->
-        <input type="button" class="btn btn-info" value="Limpiar" id="btnlimpiar" />
-    </div>
+        <table class="table table-striped table-responsive">
+            <tbody>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Consecutivo</h3></th>
+                    <th scope="col"><input type="text" class="form-control" id="consecutivo" placeholder="Escriba el numero consecutivo" /></th>
+
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Numero de linea </h3></th>
+                    <th scope="col"><input type="text" class="form-control" id="numerodelinea" placeholder="Escriba el Numero de linea" /></th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Partida Arancelaria</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="partidaarancelaria" placeholder="Escriba la Partida Arancelaria" /></th>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Código</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="codigo" placeholder="Escriba el Código " /></th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Cantidad</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="cantidad" placeholder="Escriba la Cantidad" onkeyup="cambioencantidad()" /></th>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Unidad de Medida</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="unidaddemedida" placeholder="Escriba la Unidad de Medida" /></th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Unidad de Medida Comercial</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="unidaddemedidacomercial" placeholder="Escriba la Unidad de Medida Comercial" /></th>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Detalle</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="detalle" placeholder="Escriba el Detalle" /></th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Precio Unitario</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="preciounitario" placeholder="Escriba el Precio Unitario" onkeyup="cambioenPreciounitario()" /></th>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Monto Total</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="montototal" placeholder="Monto Total" disabled /></th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Base imponible</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="baseimponible" placeholder="Escriba la Base imponible" /></th>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Subtotal</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="subtotal" placeholder="Subtotal" disabled /></th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Impuesto neto</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="impuestoneto" placeholder="Escriba el Impuesto neto" /></th>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Monto total Linea</h3></th>
+                    <th scope="col"> <input type="text" class="form-control" id="montototallinea" placeholder="Monto total Linea" disabled /></th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Codigo Comercial</h3></th>
+                    <th scope="col">
+                        <select class="form-control form-control-lg" id="codigocomercial">
+                            <option>Seleccione el Codigo Comercial</option>
+                        </select>
+                    <th scope="col"></th>
+                    <th scope="col"><h3>Monto Descuento</h3></th>
+                    <th scope="col">
+                        <select class="form-control form-control-lg" id="descuento" onchange="cambioenDescuento()">
+                            <option>Selecciones el Descuento</option>
+                        </select>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-responsive">
+            <div class="d-flex justify-content-center text-light bg-primary">
+                <h3>Impuestos de la linea actual</h3>
+            </div>
+            <hr />
+            <table id="impuestos"></table>
+            <hr />
+
+        </div>
 
 
-    <div class="modal fade" id="modalexos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" style="max-width: 1000px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Seleccione la exoneracion si aplica</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h3>Tabla de exoneraciones</h3>
-                    <table id="exoneracionesagregadas"></table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="agregarimpuestoexoneracion()">Salir</button>
+        <div class="modal fade" id="modalexos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" style="max-width: 1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Seleccione la exoneracion si aplica</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Tabla de exoneraciones</h3>
+                        <table id="exoneracionesagregadas"></table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="agregarimpuestoexoneracion()">Salir</button>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="table-responsive">
-        <div class="d-flex justify-content-center bg-primary text-white">
-            <h3>Impuestos</h3>
+        <div class="table-responsive">
+            <div class="d-flex justify-content-center bg-primary text-white">
+                <h3>Impuestos</h3>
+            </div>
+            <hr />
+            <table id="impuestosagregados"></table>
+            <hr />
+        </div>
+        <div class="row justify-content-center">
+            <input type="button" class="btn btn-success" value="Guardar" id="btnguardar" />
+            <!--<input type="button" class="btn btn-warning" value="Actualizar" id="btnactualizar" />-->
+            <input type="button" class="btn btn-info" value="Limpiar" id="btnlimpiar" />
         </div>
         <hr />
-        <table id="impuestosagregados"></table>
-        <hr />
-    </div>
-
-    <!--<div class="table-responsive">
-        <div class="d-flex justify-content-center ">
-            <h3>Lineas detalle</h3>
+        <div class="table-responsive">
+            <div class="d-flex justify-content-center ">
+                <h3>Lineas detalle</h3>
+            </div>
+            <hr />
+            <table class="table" id="lineasDetalles"></table>
         </div>
-        <hr />
-        <table class="table" id="listalinea"></table>
-    </div>-->
 
-    <div class="table-responsive">
-        <div class="d-flex justify-content-center ">
-            <h3>Lineas detalle</h3>
-        </div>
-        <hr />
-        <table class="table" id="lineasDetalles"></table>
-    </div>
 
-    <script src="../Scripts/Ajax.js"></script>
-    <script src="../Scripts/jquery.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="../Scripts/Ajax.js"></script>
+        <script src="../Scripts/jquery.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        (function () {
-            document.getElementById('navBar').innerHTML += cargaNavBar();
-            cargarlineasdetalle();
-            impuestosselec(document.getElementById("impuestosagregados"));
-            exoneracionesselec(document.getElementById("exoneracionesagregadas"));
+            (function () {
+                document.getElementById('navBar').innerHTML += cargaNavBar();
+                cargarlineasdetalle();
+                impuestosselec(document.getElementById("impuestosagregados"));
+                exoneracionesselec(document.getElementById("exoneracionesagregadas"));
 
-            descuentosselect(document.getElementById("descuento"));
-            codigocomerciaselect(document.getElementById("codigocomercial"));
+                descuentosselect(document.getElementById("descuento"));
+                codigocomerciaselect(document.getElementById("codigocomercial"));
 
-            document.getElementById("btnguardar").addEventListener("click", rellenaobjetoparaguardar);
-            document.getElementById("btnlimpiar").addEventListener("click", limpiar);
-        })();
+                document.getElementById("btnguardar").addEventListener("click", rellenaobjetoparaguardar);
+                document.getElementById("btnlimpiar").addEventListener("click", limpiar);
+            })();
 
-        function cambioencantidad() {
-            if (document.getElementById("cantidad").value == "") {
+            function cambioencantidad() {
+                if (document.getElementById("cantidad").value == "") {
 
-                document.getElementById("cantidad").value = 0;
+                    document.getElementById("cantidad").value = 0;
+                }
+                LineaDetalle.Cantidad = document.getElementById("cantidad").value;
+                automatizaciondecalculos(document.getElementById("montototal"), document.getElementById("subtotal"), document.getElementById("impuestoneto"), document.getElementById("montototallinea"), document.getElementById("baseimponible"));
+
             }
-            LineaDetalle.Cantidad = document.getElementById("cantidad").value;
-            automatizaciondecalculos(document.getElementById("montototal"), document.getElementById("subtotal"), document.getElementById("impuestoneto"), document.getElementById("montototallinea"), document.getElementById("baseimponible"));
+            function cambioenPreciounitario() {
+                if (document.getElementById("preciounitario").value == "") {
 
-        }
-        function cambioenPreciounitario() {
-            if (document.getElementById("preciounitario").value == "") {
+                    document.getElementById("preciounitario").value = 0;
+                }
+                LineaDetalle.Preciounitario = document.getElementById("preciounitario").value;
+                automatizaciondecalculos(document.getElementById("montototal"), document.getElementById("subtotal"), document.getElementById("impuestoneto"), document.getElementById("montototallinea"), document.getElementById("baseimponible"));
 
-                document.getElementById("preciounitario").value = 0;
             }
-            LineaDetalle.Preciounitario = document.getElementById("preciounitario").value;
-            automatizaciondecalculos(document.getElementById("montototal"), document.getElementById("subtotal"), document.getElementById("impuestoneto"), document.getElementById("montototallinea"), document.getElementById("baseimponible"));
+            function cambioenDescuento() {
+                if (document.getElementById("descuento").value == "") {
+                    document.getElementById("descuento").value = 0;
+                }
+                LineaDetalle.Descuentomonto = document.getElementById("descuento").value;
+                automatizaciondecalculos(document.getElementById("montototal"), document.getElementById("subtotal"), document.getElementById("impuestoneto"), document.getElementById("montototallinea"), document.getElementById("baseimponible"));
 
-        }
-        function cambioenDescuento() {
-            if (document.getElementById("descuento").value == "") {
-                document.getElementById("descuento").value = 0;
             }
-            LineaDetalle.Descuentomonto = document.getElementById("descuento").value;
-            automatizaciondecalculos(document.getElementById("montototal"), document.getElementById("subtotal"), document.getElementById("impuestoneto"), document.getElementById("montototallinea"), document.getElementById("baseimponible"));
+            function verificareliminar(id) {
 
-        }
-        function verificareliminar(id) {
+                var answer = window.confirm("Desea eliminar la linea detalle " + id + "?");
+                if (answer) {
 
-            var answer = window.confirm("Desea eliminar la linea detalle " + id + "?");
-            if (answer) {
-
-                LineaDetalle.Consecutivo = id;
-                eliminarlineadetalle(LineaDetalle, document.getElementById("espacioparaavance"));
+                    LineaDetalle.Consecutivo = id;
+                    eliminarlineadetalle(LineaDetalle, document.getElementById("espacioparaavance"));
+                }
+                else {
+                    alert("No se ha realizado ninguna accion")
+                }
             }
-            else {
-                alert("No se ha realizado ninguna accion")
+
+            function rellenaobjetoparaguardar() {
+
+                LineaDetalle.Numerolinea = document.getElementById("numerodelinea").value;
+                LineaDetalle.Partidaarancelaria = document.getElementById("partidaarancelaria").value;
+                LineaDetalle.Codigo = document.getElementById("codigo").value;
+                LineaDetalle.Codigocomercialtipo = $("#codigocomercial").find('option:selected').attr('id');
+                LineaDetalle.Codigocomercialcodigo = document.getElementById("codigocomercial").value;
+                LineaDetalle.Cantidad = document.getElementById("cantidad").value;
+                LineaDetalle.Unidadmedida = document.getElementById("unidaddemedida").value;
+                LineaDetalle.Unidadmedidacomercial = document.getElementById("unidaddemedidacomercial").value;
+                LineaDetalle.Detalle = document.getElementById("detalle").value;
+                LineaDetalle.Preciounitario = document.getElementById("preciounitario").value;
+                LineaDetalle.Montototal = document.getElementById("montototal").value;
+                LineaDetalle.Descuentomonto = document.getElementById("descuento").value;
+                LineaDetalle.Descuentonaturaleza = $("#descuento").find('option:selected').attr('id');
+                LineaDetalle.Subtotal = document.getElementById("subtotal").value;
+                LineaDetalle.Baseimponible = document.getElementById("baseimponible").value;
+                LineaDetalle.Impuestoneto = document.getElementById("impuestoneto").value;
+                LineaDetalle.Montototallinea = document.getElementById("montototallinea").value;
+                LineaDetalle.Consecutivo = document.getElementById("consecutivo").value;
+
+
+                guardarlineadetalle();
             }
-        }
+            function cargardatosenelformulario(objetoserializado) {
+                document.getElementById("numerodelinea").value = objetoserializado.Numlinea1;
+                document.getElementById("partidaarancelaria").value = objetoserializado.Partidaarancelaria1;
+                document.getElementById("codigo").value = objetoserializado.Codigo1;
+                document.getElementById("codigocomercial").value = objetoserializado.Codigocomercial1.Tipo1;
+                document.getElementById("cantidad").value = objetoserializado.Cantidad1;
+                document.getElementById("unidaddemedida").value = objetoserializado.Unidadmedida1;
+                document.getElementById("unidaddemedidacomercial").value = objetoserializado.Unidadmedidacomercial1;
+                document.getElementById("detalle").value = objetoserializado.Detalle1;
+                document.getElementById("preciounitario").value = objetoserializado.Preciounitario1;
+                document.getElementById("montototal").value = objetoserializado.Montototal1;
+                document.getElementById("descuento").value = objetoserializado.Montodescuento1.NaturalezaDescuento1;
+                document.getElementById("subtotal").value = objetoserializado.Subtotal1;
+                document.getElementById("baseimponible").value = objetoserializado.Baseimponible1;
+                document.getElementById("impuestoneto").value = objetoserializado.Impuestoneto1;
+                document.getElementById("montototallinea").value = objetoserializado.Montototallinea1;
+                document.getElementById("consecutivo").value = objetoserializado.Consecutivo1;
+            }
+            function limpiar() {
+                document.getElementById("numerodelinea").value = "";
+                document.getElementById("partidaarancelaria").value = "";
+                document.getElementById("codigo").value = "";
+                document.getElementById("codigocomercial").value = "";
+                document.getElementById("cantidad").value = "";
+                document.getElementById("unidaddemedida").value = "";
+                document.getElementById("unidaddemedidacomercial").value = "";
+                document.getElementById("detalle").value = "";
+                document.getElementById("preciounitario").value = "";
+                document.getElementById("montototal").value = "";
+                document.getElementById("descuento").value = "";
+                document.getElementById("subtotal").value = "";
+                document.getElementById("baseimponible").value = "";
+                document.getElementById("impuestoneto").value = "";
+                document.getElementById("montototallinea").value = "";
+                document.getElementById("consecutivo").value = "";
+            }
 
-        function rellenaobjetoparaguardar() {
-
-            LineaDetalle.Numerolinea = document.getElementById("numerodelinea").value;
-            LineaDetalle.Partidaarancelaria = document.getElementById("partidaarancelaria").value;
-            LineaDetalle.Codigo = document.getElementById("codigo").value;
-            LineaDetalle.Codigocomercialtipo = $("#codigocomercial").find('option:selected').attr('id');
-            LineaDetalle.Codigocomercialcodigo = document.getElementById("codigocomercial").value;
-            LineaDetalle.Cantidad = document.getElementById("cantidad").value;
-            LineaDetalle.Unidadmedida = document.getElementById("unidaddemedida").value;
-            LineaDetalle.Unidadmedidacomercial = document.getElementById("unidaddemedidacomercial").value;
-            LineaDetalle.Detalle = document.getElementById("detalle").value;
-            LineaDetalle.Preciounitario = document.getElementById("preciounitario").value;
-            LineaDetalle.Montototal = document.getElementById("montototal").value;
-            LineaDetalle.Descuentomonto = document.getElementById("descuento").value;
-            LineaDetalle.Descuentonaturaleza = $("#descuento").find('option:selected').attr('id');
-            LineaDetalle.Subtotal = document.getElementById("subtotal").value;
-            LineaDetalle.Baseimponible = document.getElementById("baseimponible").value;
-            LineaDetalle.Impuestoneto = document.getElementById("impuestoneto").value;
-            LineaDetalle.Montototallinea = document.getElementById("montototallinea").value;
-            LineaDetalle.Consecutivo = document.getElementById("consecutivo").value;
-
-
-            guardarlineadetalle();
-        }
-        function cargardatosenelformulario(objetoserializado) {
-            document.getElementById("numerodelinea").value = objetoserializado.Numlinea1;
-            document.getElementById("partidaarancelaria").value = objetoserializado.Partidaarancelaria1;
-            document.getElementById("codigo").value = objetoserializado.Codigo1;
-            document.getElementById("codigocomercial").value = objetoserializado.Codigocomercial1.Tipo1;
-            document.getElementById("cantidad").value = objetoserializado.Cantidad1;
-            document.getElementById("unidaddemedida").value = objetoserializado.Unidadmedida1;
-            document.getElementById("unidaddemedidacomercial").value = objetoserializado.Unidadmedidacomercial1;
-            document.getElementById("detalle").value = objetoserializado.Detalle1;
-            document.getElementById("preciounitario").value = objetoserializado.Preciounitario1;
-            document.getElementById("montototal").value = objetoserializado.Montototal1;
-            document.getElementById("descuento").value = objetoserializado.Montodescuento1.NaturalezaDescuento1;
-            document.getElementById("subtotal").value = objetoserializado.Subtotal1;
-            document.getElementById("baseimponible").value = objetoserializado.Baseimponible1;
-            document.getElementById("impuestoneto").value = objetoserializado.Impuestoneto1;
-            document.getElementById("montototallinea").value = objetoserializado.Montototallinea1;
-            document.getElementById("consecutivo").value = objetoserializado.Consecutivo1;
-        }
-        function limpiar() {
-            document.getElementById("numerodelinea").value = "";
-            document.getElementById("partidaarancelaria").value = "";
-            document.getElementById("codigo").value = "";
-            document.getElementById("codigocomercial").value = "";
-            document.getElementById("cantidad").value = "";
-            document.getElementById("unidaddemedida").value = "";
-            document.getElementById("unidaddemedidacomercial").value = "";
-            document.getElementById("detalle").value = "";
-            document.getElementById("preciounitario").value = "";
-            document.getElementById("montototal").value = "";
-            document.getElementById("descuento").value = "";
-            document.getElementById("subtotal").value = "";
-            document.getElementById("baseimponible").value = "";
-            document.getElementById("impuestoneto").value = "";
-            document.getElementById("montototallinea").value = "";
-            document.getElementById("consecutivo").value = "";
-        }
-
-    </script>
-</body>
+        </script>
+    </body>
 </html>

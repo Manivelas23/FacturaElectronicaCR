@@ -35,7 +35,6 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="Index.html">Inicio</a>
 
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                         <ul class="ulMenu navbar-nav mr-auto mt-2 mt-lg-2">
@@ -68,7 +67,7 @@
                                                 <a href="LineaDetalle.html" id="RFAC" class="aMenu">Línea Detalle</a>
                                             </div>
                                             <div class="dropdown-item">
-                                                <span class="material-icons spanMenu">description</span>
+                                                <span class="material-icons spanMenu">receipt_long</span>
                                                 <a href="Factura.html" id="RFAC" class="aMenu">Factura</a>
                                             </div>
                                         </div>
@@ -970,6 +969,8 @@
                         document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Impuesto neto</th>';
                         document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Monto total de la linea</th>';
 
+                        document.getElementById("filalistadocabezaLineas").innerHTML += '<th scope="col">Eliminar</th>';
+
                         document.getElementById("lineasDetalles").innerHTML += '<tbody id="listadocuerpoLinea"></tbody>';
 
                         for (var indice in data) {
@@ -982,7 +983,7 @@
 
                             }
 
-                            document.getElementById("listadocuerpoLinea").innerHTML += '<tr><td>' + data[indice].Consecutivo1 + '</td><td>' + data[indice].Numlinea1 + '</td><td>' + data[indice].Partidaarancelaria1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigocomercial1.Tipo1 + '</td><td> ' + data[indice].Codigocomercial1.Codigo1 + '</td><td>' + data[indice].Cantidad1 + '</td><td>' + data[indice].Unidadmedida1 + '</td><td>' + data[indice].Unidadmedidacomercial1 + '</td><td>' + data[indice].Detalle1 + '</td><td>' + data[indice].Preciounitario1 + '</td><td>' + data[indice].Montototal1 + '</td><td>' + data[indice].objetoDescuento.NaturalezaDescuento1 + ' ' + data[indice].objetoDescuento.MontoDescuento1 + '</td><td>' + data[indice].Subtotal1 + '</td><td>' + data[indice].Baseimponible1 + '</td><td>' + data[indice].Impuestoneto1 + '</td><td>' + data[indice].Montototallinea1 + '</td></tr>';
+                            document.getElementById("listadocuerpoLinea").innerHTML += '<tr><td>' + data[indice].Consecutivo1 + '</td><td>' + data[indice].Numlinea1 + '</td><td>' + data[indice].Partidaarancelaria1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigocomercial1.Tipo1 + '</td><td> ' + data[indice].Codigocomercial1.Codigo1 + '</td><td>' + data[indice].Cantidad1 + '</td><td>' + data[indice].Unidadmedida1 + '</td><td>' + data[indice].Unidadmedidacomercial1 + '</td><td>' + data[indice].Detalle1 + '</td><td>' + data[indice].Preciounitario1 + '</td><td>' + data[indice].Montototal1 + '</td><td>' + data[indice].objetoDescuento.NaturalezaDescuento1 + ' ' + data[indice].objetoDescuento.MontoDescuento1 + '</td><td>' + data[indice].Subtotal1 + '</td><td>' + data[indice].Baseimponible1 + '</td><td>' + data[indice].Impuestoneto1 + '</td><td>' + data[indice].Montototallinea1 + '</td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="verificareliminar(' + data[indice].Consecutivo1 + ')" /></td></tr>';  
 
                             //   document.getElementById("listadocuerpo").innerHTML += '<tr><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Codigotarifa1 + '</td><td>' + data[indice].Tarifa1 + '</td><td>' + data[indice].Codigo1 + '</td><td>' + data[indice].Monto1 + '</td><td>' + data[indice].Montoexportacion1 + '</td><td><input type="button" value="Modificar" id="btnmodificar" class="btn btn-primary" onclick="cargardatosenelformulario(' + data[indice] + ')" /></td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="verificareliminar(' + data[indice].Codigo1 + ')" /></td></tr>';
 
@@ -1000,16 +1001,15 @@
         }
         function eliminarlineadetalle(Linea) {
             $.ajax({
-                url: urlaconectarse + "Lineadetalle",
+                url: ruta + "Lineadetalle",
                 type: "DELETE",
                 dataType: "json",
                 data: Linea,
                 success: function (data, textstatus, xhr) {
                     alert(data[0]);
-                    $('#iinfodelineadetalleelimina' + data[1]).remove();
+                    location.href = 'LineaDetalle.html';
                 },
                 error: function (xhr, textstatus, errorthrown) {
-                    $('#iinfodelineadetalleelimina' + data[1]).remove();
                     alert(xhr);
                 }
             })
@@ -1189,9 +1189,6 @@
                         document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Plazo del cerdito</th>';
                         document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Medio de pago</th>';
 
-                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Para modificar</th>';
-                        document.getElementById("filalistadocabezaFac").innerHTML += '<th scope="col">Para eliminar</th>';
-
                         document.getElementById("listadoFacturas").innerHTML += '<tbody id="listadocuerpoFac"></tbody>';
 
                         for (var indice in data) {
@@ -1201,7 +1198,7 @@
 
                                 objetoserializadocomillas += objetoserializado[caracter].replace('"', "'");
                             }
-                            document.getElementById("listadocuerpoFac").innerHTML += '<tr><td>' + data[indice].Clave1 + '</td><td>' + data[indice].Numeroconsecutivo1 + '</td><td>' + data[indice].Codigoactividad1 + '</td><td>' + data[indice].Fechaemision1 + '</td><td>' + data[indice].Identificacionemisor1.Nombre1 + '</td><td>' + data[indice].Identificacionreceptor1.Nombre1 + '</td><td>' + data[indice].Condicionventa1 + '</td><td>' + data[indice].Plazocredito1 + '</td><td>' + data[indice].Mediopago1 + '</td><td><input type="button" value="Modificar" id="btnmodificar" class="btn btn-primary" onclick="cargardatosenelformulario(' + objetoserializadocomillas + ')" /></td><td><input type="button" value="Eliminar" id="btnelimina" class="btn btn-primary" onclick="verificareliminar(' + data[indice].Clave1 + ')" /></td></tr>';
+                            document.getElementById("listadocuerpoFac").innerHTML += '<tr><td>' + data[indice].Clave1 + '</td><td>' + data[indice].Numeroconsecutivo1 + '</td><td>' + data[indice].Codigoactividad1 + '</td><td>' + data[indice].Fechaemision1 + '</td><td>' + data[indice].Identificacionemisor1.Nombre1 + '</td><td>' + data[indice].Identificacionreceptor1.Nombre1 + '</td><td>' + data[indice].Condicionventa1 + '</td><td>' + data[indice].Plazocredito1 + '</td><td>' + data[indice].Mediopago1 + '</td></tr>';
                         
                         }
                     }
